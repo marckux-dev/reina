@@ -1,6 +1,8 @@
-
 ---
 import '../styles/global.css';
+import { findPageByUrl, siteMap } from '../data/siteMap';
+import Navbar from '../components/Navbar.astro';
+const pageData = findPageByUrl(Astro.url.pathname)
 ---
 
 <html lang="es">
@@ -9,9 +11,10 @@ import '../styles/global.css';
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+    <title>{ pageData.title } | Reina Multiservicios</title>
 	</head>
 	<body>
-		<h1 class="text-3xl font-bold">Astro</h1>
+    <Navbar siteMap={siteMap} />
+    <h1 class="text-center text-3xl font-bold mt-4">{ pageData.h1 }</h1>
 	</body>
 </html>

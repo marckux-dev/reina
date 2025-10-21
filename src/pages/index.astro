@@ -1,16 +1,16 @@
 ---
-import '../styles/global.css';
+const target = "/inicio/"; 
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1 class="text-3xl font-bold">Astro</h1>
-	</body>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content={`0; url=${target}`} />
+    <link rel="canonical" href={target} />
+    <title>Redirigiendo a Inicio...</title>
+  </head>
+  <body>
+    <p>Redirigiendo a <a href={target}>Inicio</a>...</p>
+  </body>
 </html>
+
