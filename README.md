@@ -1,33 +1,71 @@
-# Astro Starter Kit: Minimal
+# 🌟 Proyecto Astro + TailwindCSS + DaisyUI
+
+Este proyecto es un **sitio web estático** construido con [Astro](https://astro.build), estilizado con [TailwindCSS](https://tailwindcss.com) y [DaisyUI](https://daisyui.com).
+
+Diseñado para ser **simple, rápido y moderno**, usando la nueva sintaxis de **Tailwind v4** y sin configuración extra.
+
+---
+
+## 🚀 Requisitos previos
+
+Asegúrate de tener instalado:
+
+- [Node.js](https://nodejs.org/) **v18 o superior**
+- [npm](https://www.npmjs.com/) o [pnpm](https://pnpm.io/)
+
+Comprueba tus versiones:
+
+```bash
+node -v
+npm -v
+```
+
+## Instalación
 
 ```sh
-npm create astro@latest -- --template minimal
+npm install
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
+## Estructura del proyecto
 
 ```text
-/
-├── public/
+.
+├── public/                 # Archivos estáticos (favicon, imágenes, etc.)
 ├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── layouts/            # Plantillas reutilizables
+│   │   └── MainLayout.astro
+│   ├── pages/              # Páginas del sitio
+│   │   └── index.astro
+│   └── styles/             # Estilos globales
+│       └── global.css
+├── astro.config.mjs        # Configuración principal de Astro
+├── package.json
+└── README.md
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Configuración de Estilos
+```
+/* src/styles/global.css */
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: light --default, dark --prefersdark;
+}
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+```
 
-Any static assets, like images, can be placed in the `public/` directory.
+## Modo desarrollo
+Se puede iniciar el servidor local de desarrollo de dos maneras equivalentes:
+- Usando un script de npm:
+```
+npm run dev
+```
+- Usando un comando directo:
+```
+npx astro dev
+```
 
-## 🧞 Commands
+## Otros comandos
 
-All commands are run from the root of the project, from a terminal:
 
 | Command                   | Action                                           |
 | :------------------------ | :----------------------------------------------- |
@@ -41,3 +79,11 @@ All commands are run from the root of the project, from a terminal:
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+
+
+## Autor
+Creado por marckux-dev
+
+## Licencia
+Este proyecto está bajo la Licencia MIT
+
