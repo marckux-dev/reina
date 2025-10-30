@@ -1,0 +1,63 @@
+---
+import PhoneIcon from '../icons/PhoneIcon.svg';
+import MailIcon from '../icons/MailIcon.svg';
+import { company } from '../data/company';
+---
+
+<div class="bg-neutral text-neutral-content">
+  <footer
+    class="footer container mx-auto md:footer-horizontal p-10"
+  >
+    <nav>
+      <h6 class="footer-title">Información Legal</h6>
+      <a href="/legal/politica-privacidad" class="link link-hover"
+        >Politicas de privacidad</a
+      >
+      <a href="/legal/politica-cookies" class="link link-hover"
+        >Política de cookies</a
+      >
+      <a href="/legal/aviso-legal" class="link link-hover">Aviso legal</a>
+    </nav>
+    <nav>
+      <h6 class="footer-title">Contacto</h6>
+      <p class=" ">Dirección:</p>
+      <address>
+        <p class=" ">{ company.address }</p>
+        <p class=" ">{ company.city }</p>
+      </address>
+      {
+      company.phoneList.map(phone => (
+        <p class="flex items-center gap-2">
+          <PhoneIcon />
+          <a href={ phone.phoneLink} class="hover:text-primary hover:underline"
+          >{ phone.phoneNumber }</a
+          >
+        </p>
+      ))
+      }
+      {
+      company.mails.map(mail => (
+        <p class="flex items-center gap-2">
+          <MailIcon /><a
+            href={ 'mailto:' + mail }
+            class="hover:text-primary hover:underline"
+          >{ mail }</a
+          >
+        </p>
+      ))
+      }
+    </nav>
+    <div class="flex justify-center">
+      <div class="w-full max-w-md aspect-video">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3118.1114232298955!2d-0.1342416233807777!3d38.60030557178895!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMzjCsDM2JzAxLjEiTiAwwrAwNyc1NC4wIlc!5e0!3m2!1ses!2ses!4v1761205508272!5m2!1ses!2ses"
+          class="w-full h-full rounded-lg border-0"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        >
+        </iframe>
+      </div>
+    </div>
+  </footer>
+</div>

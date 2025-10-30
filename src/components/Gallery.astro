@@ -1,0 +1,38 @@
+---
+import 'photoswipe/style.css';
+
+interface Props {
+  images: string[];
+}
+
+const { images } = Astro.props;
+---
+
+<section id="gallery" class="container mx-auto px-6 py-12 grid grid-cols-2 md:grid-cols-3 gap-4">
+  {
+    images.map(image => (
+      <a href={image} target="_blank" class="block group">
+        <img 
+          src={image} 
+          class="rounded-lg shadow-sm hover:opacity-90 transition duration-300 object-cover w-full h-[20vh]"
+          loading="lazy"
+        />
+      </a>
+    ))
+  }
+</section>
+
+<script>
+  async function init() {
+    const { initGallery } = await import('../scripts/photoswipe-init.js');
+    initGallery('#gallery');
+  }
+
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    // Si el DOM ya está listo
+    init();
+  } else {
+    // Esperar a que se cargue
+    document.addEventListener('DOMContentLoaded', init);
+  }
+</script>

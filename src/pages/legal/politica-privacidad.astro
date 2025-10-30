@@ -1,8 +1,62 @@
 ---
 import MainLayout from '../../layouts/MainLayout.astro';
+import { company } from '../../data/company';
 ---
 
-<MainLayout>
+<MainLayout title="Privacidad">
+  <main class="main-container">
+    <h1 class="main-header">Política de Privacidad | Reina Multiservicios Costablanca</h1>
+    <div class="space-y-4">
+              <p>
+          En cumplimiento del Reglamento (UE) 2016/679 (RGPD) y la Ley Orgánica 3/2018 (LOPDGDD),
+          Reina Multiservicios Costablanca S.L. informa a los usuarios de su política de protección de datos personales.
+        </p>
+
+        <h2 class="text-xl font-semibold mt-6">Responsable del tratamiento</h2>
+        <p>
+        <strong>{ company.name }</strong>.  
+        CIF: { company.cif }.  
+        Dirección: { company.address }. { company.city }.
+        Correo electrónico: <a href={ 'mailto:' + company.mails[0] } class="link link-primary">{ company.mails[0] }</a>
+        </p>
+
+        <h2 class="text-xl font-semibold mt-6">Finalidad del tratamiento</h2>
+        <p>
+          Los datos proporcionados a través del formulario de contacto se utilizan únicamente para atender las consultas
+          o solicitudes de información que el usuario remita.
+        </p>
+
+        <h2 class="text-xl font-semibold mt-6">Legitimación</h2>
+        <p>La base legal para el tratamiento es el consentimiento del usuario al enviar el formulario.</p>
+
+        <h2 class="text-xl font-semibold mt-6">Datos tratados</h2>
+        <p>
+          Se podrán tratar los siguientes datos: dirección de correo electrónico, número de teléfono y cualquier información
+          personal o empresarial que el usuario incluya en el campo de texto libre.
+        </p>
+
+        <h2 class="text-xl font-semibold mt-6">Conservación de los datos</h2>
+        <p>
+          Los datos se conservarán durante el tiempo necesario para atender la solicitud y cumplir las obligaciones legales.
+        </p>
+
+        <h2 class="text-xl font-semibold mt-6">Destinatarios</h2>
+        <p>
+          No se cederán datos a terceros salvo obligación legal o cuando sea necesario para prestar el servicio solicitado.
+        </p>
+
+        <h2 class="text-xl font-semibold mt-6">Derechos</h2>
+        <p>
+          El usuario puede ejercer sus derechos de acceso, rectificación, supresión, oposición, limitación y portabilidad
+        enviando una solicitud a <a href={ 'mailto:' + company.mails[0] } class="link link-primary">{ company.mails[0] }</a>,
+          indicando claramente el derecho que desea ejercer.
+        </p>
+
+        <h2 class="text-xl font-semibold mt-6">Medidas de seguridad</h2>
+        <p>
+          Reina Multiservicios Costablanca S.L. adopta las medidas técnicas y organizativas necesarias para garantizar la seguridad y
+          confidencialidad de los datos personales tratados a través de este sitio web.
+        </p>
+    </div>
+  </main>
 </MainLayout>
-
-

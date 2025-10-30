@@ -1,4 +1,52 @@
 @import "tailwindcss";
 @plugin "daisyui" {
-  themes: light --default, dark --prefersdark;
+  themes: bumblebee --default, dracula --prefersdark;
+}
+
+
+/* Custom Styles */
+@layer components {
+  .main-header {
+    @apply bg-base-300 text-center text-primary text-3xl font-bold my-4 py-4;
+  }
+
+  .main-container {
+    @apply container mx-auto flex-grow px-4 py-10;
+  }
+
+  @keyframes fadeUp {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+  }
+  .fade-up {
+    animation: fadeUp 1.2s ease-out forwards;
+  }
+  .fade-up-delay {
+    opacity: 0;
+    animation: fadeUp 1.2s ease-out 0.4s forwards;
+  }
+
+  /* Efecto Key Burns */
+  @keyframes kenburns {
+    0% {
+      transform: scale(1.0) translate(0, 0);
+    }
+    100% {
+      transform: scale(1.1) translate(2%, -2%);
+    }
+  }
+
+  .kenburns {
+    animation: kenburns 15s ease-in-out infinite alternate;
+    will-change: transform;
+    transition: transform 1s ease-in-out;
+  }
+
 }

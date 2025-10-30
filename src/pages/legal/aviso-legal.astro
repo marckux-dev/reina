@@ -1,8 +1,51 @@
 ---
 import MainLayout from '../../layouts/MainLayout.astro';
+import { company } from '../../data/company';
 ---
 
-<MainLayout>
+<MainLayout title="Aviso Legal">
+  <main class="main-container">
+    <h1 class="main-header">
+      Aviso Legal y Condiciones de Uso
+    </h1>
+    <div class="space-y-4">
+      <p>
+        En cumplimiento con el deber de información establecido en la Ley
+        34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y
+        de Comercio Electrónico (LSSI-CE), se informa que el presente sitio web
+        es titularidad de <strong>{ company.name }</strong>, con
+        CIF <strong>{ company.cif }</strong> y domicilio en { company.address} { company.city }.
+        Correo electrónico de contacto:
+        <a href={ 'mailto:' + company.mails[0] } class="link link-primary">
+          { company.mails[0] }
+        </a>.
+      </p>
+
+      <p>
+        El presente sitio web tiene por objeto ofrecer información sobre los
+        servicios de mantenimiento, limpieza y multiservicios ofrecidos por
+        { company.name }.
+      </p>
+
+      <p>
+        Todos los contenidos del sitio web (textos, imágenes, logotipos, marcas,
+        etc.) están protegidos por derechos de propiedad intelectual e
+        industrial. Queda prohibida su reproducción, distribución o comunicación
+        pública sin la autorización expresa del titular.
+      </p>
+
+      <p>
+        { company.name } no se responsabiliza del mal uso que se haga
+        de los contenidos de su página web, ni de los daños o perjuicios que
+        pudieran derivarse del acceso o uso de la misma.
+      </p>
+
+      <p>
+        Este aviso legal se rige por la legislación española. Para la resolución
+        de cualquier controversia que pudiera derivarse del acceso o uso de este
+        sitio web, el usuario se somete expresamente a los juzgados y tribunales
+        de Alicante.
+      </p>
+    </div>
+  </main>
 </MainLayout>
-
-

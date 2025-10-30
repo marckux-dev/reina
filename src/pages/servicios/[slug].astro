@@ -1,0 +1,28 @@
+---
+import { services } from "../../data/services";
+import type { GetStaticPaths } from "astro";
+import MainLayout from "../../layouts/MainLayout.astro";
+import HeroService from "../../components/HeroService.astro";
+import FeaturesService from "../../components/FeaturesService.astro";
+import Gallery from "../../components/Gallery.astro";
+import ParallaxService from "../../components/ParallaxService.astro";
+import FaqService from "../../components/FaqService.astro";
+export const getStaticPaths = ( async () => 
+  services.map ( service => ({
+    params: { slug: service.slug },
+    props: { service },
+  }))
+) satisfies GetStaticPaths;
+
+const { service } = Astro.props;
+---
+
+<MainLayout title={ service.title }>
+  <main>
+    <HeroService title={ service.h1} subtitle={ service.subtitle } image={ service.headerImage } />
+    <FeaturesService features={ service.features } />
+    <Gallery images={ service.gallery }/>
+    <ParallaxService image={ service.parallaxImage } slogan={ service.slogan } />
+    <FaqService faqs={ service.faqs }/>
+  </main>
+</MainLayout>

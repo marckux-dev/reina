@@ -1,102 +1,139 @@
 ---
-import { SiteMap } from '../data/siteMap';
+import type { SiteMap } from '../data/siteMap';
+import LogoSinFondo from '../icons/LogoSinFondo.svg'; 
+
 interface Props {
-  siteMap: SiteMap;
+  siteMap: SiteMap
 }
-const {siteMap} = Astro.props;
+
+const { siteMap } = Astro.props
 const currentPath = Astro.url.pathname.replace(/\/$/, '')
 ---
 
-<div class="navbar bg-base-100 shadow-sm">
+<div class="drawer z-50">
+  <!-- Drawer toggle -->
+  <input id="nav-drawer" type="checkbox" class="drawer-toggle" />
 
-  <div class="navbar-start">
-    <a href="/inicio">
-      <img src="/logo.png.webp" alt="Logo de Reina Multiservicios" class="w-1/2">
-    </a>
-  </div>
- 
-  <div class="navbar-center hidden lg:flex">
-    <ul class="menu menu-horizontal px-1">
-      { Object.values(siteMap)
-        .filter( page => page.label )
-        .map ( page => {
-          if ( page.children ) {
-            return (
-              <li>
-                <details>
-                  <summary class="text-xl">{ page.label }</summary>
-                  <ul class="p-2">
-                    { page.children.map( child => (
-                        <li class="text-xl"><a href={ child.url }>{ child.label }</a></li>
-                      )
-                    )} 
-                  </ul>
-                </details>
-              </li>)
-          } else {
-            return (
-              <li class="text-xl">
-                <a href={ page.url }
-                  class:list={{
-                    'active text-primary font-semibold': currentPath === page.url,
-                  }} 
-                >
-                  { page.label }
-                </a>
-              </li>) 
-          }
-        })
-      }
-    </ul>
-  </div>
+  <!-- Navbar (main content) -->
+  <div class="drawer-content">
+    <div class="navbar bg-base-100 shadow-sm">
 
-  <div class="navbar-end">
-    <div class="dropdown">
-      <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-5 w-5"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M4 6h16M4 12h8m-8 6h16"
-          />
-        </svg>
+      <!-- Left: logo -->
+      <div class="navbar-start">
+        <a href="/inicio">
+          <LogoSinFondo class="w-24 h-auto md:w-36 xl:w-48" />
+          <!--          <img src="/logoSinFondo.svg" alt="Logo de Reina Multiservicios" class="w-1/2" /> -->
+        </a>
       </div>
-      <ul
-        tabindex="-1"
-        class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow right-0"
-      >
-        { Object.values(siteMap)
-          .filter(page => page.label)
-          .map( page => (
-            <li >
-              <a href={page.url} class="text-xl">{page.label}</a>
-                { page.children && (
-                  <ul class="p-2 bg-base-100">
-                  {
-                  page.children.map(child => (
-                  <li><a href={child.url} class="text-xl">{child.label}</a></li>
-                  ))
-                  }
-                  </ul>
+
+      <!-- Center: desktop nav -->
+      <div class="navbar-center hidden lg:flex">
+        <ul class="menu menu-horizontal px-1">
+          {Object.values(siteMap)
+            .filter(page => page.label)
+            .map(page => {
+              if (page.children) {
+                return (
+                  <li>
+                    <details>
+                      <summary
+                        class:list={{
+                          'text-xl': true,
+                          'active text-primary font-semibold': page.children.some(c => currentPath.startsWith(c.url)), 
+                        }}
+                      >{page.label}
+                      </summary>
+                      <ul class="p-2">
+                        {page.children.map(child => (
+                          <li class="text-xl">
+                            <a
+                              href={child.url}
+                              class:list={{
+                                'active text-primary font-semibold': currentPath === child.url,
+                              }}
+                            >
+                              {child.label}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </details>
+                  </li>
+                )
+              } else {
+                return (
+                  <li class="text-xl">
+                    <a
+                      href={page.url}
+                      class:list={{
+                        'active text-primary font-semibold': currentPath === page.url,
+                      }}
+                    >
+                      {page.label}
+                    </a>
+                  </li>
                 )
               }
-            </li>
-        )) }
-      </ul>
+            })}
+        </ul>
+      </div>
+
+      <!-- Right: mobile hamburger -->
+      <div class="navbar-end lg:hidden">
+        <label for="nav-drawer" class="btn btn-ghost">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" />
+          </svg>
+        </label>
+      </div>
     </div>
   </div>
 
-<!--
-  <div class="navbar-end">
-    <a class="btn">Button</a>
+  <!-- Drawer side (mobile fullscreen modal) -->
+  <div class="drawer-side bg-black/50 backdrop-blur-sm">
+    <label for="nav-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
+    <ul class="menu p-6 w-80 min-h-full bg-base-100 text-base-content">
+      {Object.values(siteMap)
+        .filter(page => page.label)
+        .map(page => (
+          <li>
+            <a
+              href={page.url}
+              class="text-xl"
+              class:list={{
+                'active text-primary font-semibold': currentPath === page.url,
+              }}
+            >
+              {page.label}
+            </a>
+            {page.children && (
+              <ul>
+                {page.children.map(child => (
+                  <li>
+                    <a
+                      href={child.url}
+                      class="text-lg"
+                      class:list={{
+                        'active text-primary font-semibold': currentPath === child.url,
+                      }}
+                    >
+                      {child.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))}
+    </ul>
   </div>
--->
-
 </div>
+
+<!-- 4️⃣ Small script to auto-close <details> after navigation -->
+<script>
+  // Close any open <details> when navigating
+  document.addEventListener('astro:page-load', () => {
+    document.querySelectorAll('details[open]').forEach(d => d.removeAttribute('open'))
+  })
+</script>
+

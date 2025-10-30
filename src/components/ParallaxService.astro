@@ -1,0 +1,37 @@
+---
+interface Props {
+  image: string;
+  slogan: string;
+  buttonText?: string;
+  buttonLink?: string;
+}
+
+const {
+  image,
+  slogan,
+  buttonText = "Contáctanos",
+  buttonLink = "/contacto",
+} = Astro.props;
+---
+
+<section
+  class="relative h-[40vh] bg-fixed bg-center bg-cover flex flex-col items-center justify-center text-center text-neutral-content"
+  style={`background-image: url('${image}')`}
+>
+  <!-- Capa oscura -->
+  <div class="absolute inset-0 bg-black/60"></div>
+
+  <!-- Contenido -->
+  <div class="relative z-10 px-6">
+    <h2 class="text-3xl md:text-5xl font-bold mb-4 drop-shadow-lg">
+      {slogan}
+    </h2>
+    <a
+      href={buttonLink}
+      class="btn btn-primary text-lg shadow-md hover:scale-105 transition-transform"
+    >
+      {buttonText}
+    </a>
+  </div>
+</section>
+

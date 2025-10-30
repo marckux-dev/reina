@@ -1,6 +1,100 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
+import HeroSlider from '../components/HeroSlider.astro';
+import Card from '../components/Card.astro';
+import { services } from '../data/services';
 ---
 
-<MainLayout>
+<MainLayout title="Inicio">
+
+  <header class="relative h-[90vh] overflow-hidden">
+    <HeroSlider folder="slider01" interval="6000" />
+    <!-- Oscurecimiento para mejorar contraste -->
+    <div
+      class="absolute z-1 inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent"
+    ></div>
+    <div
+      class="absolute inset-0 z-10 flex flex-col items-center justify-center h-full text-center text-neutral-content px-4"
+    >
+      <h1 class="fade-up text-4xl md:text-6xl font-bold drop-shadow-lg mb-4">
+        Empresa de limpieza y pulido profesional en Alicante
+      </h1>
+      <p
+        class="fade-up-delay text-lg md:text-2xl max-w-2xl font-semibold text-gray-200 leading-relaxed"
+      >
+        Dedicados a ofrecer una amplia gama de servicios de limpieza industrial,
+        mantenimiento y tratamientos específicos para todo tipo de superficies.
+      </p>
+    </div>
+  </header>
+
+  <main class="container mx-auto">
+
+    <section
+      class="container mx-auto px-6 py-12 leading-relaxed text-lg text-base "
+    >
+      <h2 class="text-3xl font-bold text-center mt-4 mb-4">
+        Bienvenido a Reina Multiservicios
+      </h2>
+      <h3 class="text-2xl font-bold italic text-primary text-center mb-6">
+        Profesionales en limpieza y mantenimiento en Alicante con más de 30 años
+        de experiencia
+      </h3>
+
+      <p class="mb-4">
+        Nuestra experiencia y compromiso nos consolidan como una
+        <strong
+          >empresa líder en servicios de limpieza y mantenimiento en la Costa
+          Blanca</strong
+        >. Con <strong>más de 30 años de trayectoria</strong>, ofrecemos
+        soluciones profesionales de <strong>limpieza industrial</strong>,
+        <strong>pulido y cristalizado de mármol y terrazo</strong>,
+        <strong>limpieza de cristales en altura</strong> y
+        <strong>tratamientos de superficies</strong>.
+      </p>
+      <p class="mb-4">
+        Cada proyecto se ejecuta con maquinaria especializada, productos de alta
+        calidad y estrictas medidas de seguridad, garantizando resultados
+        duraderos y seguros. Nuestro equipo de
+        <strong>técnicos cualificados</strong> atiende a
+        <strong
+          >comunidades, hoteles, empresas, particulares y organismos
+          públicos</strong
+        >, adaptando cada servicio a las necesidades específicas de nuestros
+        clientes.
+      </p>
+      <p>
+        La confianza de nuestros clientes y nuestro compromiso con la excelencia
+        avalan nuestra posición como
+        <strong>referente en limpieza y mantenimiento profesional</strong>.
+      </p>
+
+    </section>
+
+    <section
+      class="mb-16"
+    >
+
+      <h2 class="text-3xl font-bold text-center mt-4 mb-4">
+        Nuestros Servicios
+      </h2>
+
+      <div class="grid
+        grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6
+        gap-4"
+      >
+        {
+        services.map( service => (
+        <Card
+          image={ service.headerImage }
+          title={ service.navItem }
+          href={ `/servicios/${ service.slug }` }
+        />
+        ))
+        }
+      </div>
+
+    </section>
+
+  </main>
 </MainLayout>

@@ -1,0 +1,25 @@
+---
+interface Props {
+  title: string;
+  subtitle: string;
+  image: string;
+}
+const { title, subtitle, image } = Astro.props;
+---
+
+<header
+  class="relative h-[40vh] bg-cover bg-center flex flex-col items-center justify-center text-center"
+  style={`background-image: url(${ image })`}
+>
+  <div class="absolute inset-0 bg-black/40"></div>
+  <div class="relative z-10 px-4 text-gray-100">
+    <h1 class="text-4xl md:text-6xl font-bold mb-4 fade-up">{ title }</h1>
+    <h2 class="text-xl md:text-2xl fade-up-delay">{ subtitle }</h2>
+  </div>
+</header>
+
+<style>
+header {
+  background-image: url({ image });
+}
+</style>

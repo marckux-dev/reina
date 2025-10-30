@@ -9,9 +9,14 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/check": "^0.9.5",
     "@tailwindcss/vite": "^4.1.15",
-    "astro": "^5.14.7",
+    "astro": "^5.15.2",
+    "astro-lightgallery": "^2.0.1",
+    "astro-swiper": "^1.1.0",
     "daisyui": "^5.3.7",
-    "tailwindcss": "^4.1.15"
+    "photoswipe": "^5.4.4",
+    "tailwindcss": "^4.1.15",
+    "typescript": "^5.9.3"
   }
 }

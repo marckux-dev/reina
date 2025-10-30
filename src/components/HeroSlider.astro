@@ -1,0 +1,53 @@
+---
+import { Swiper, SwiperWrapper, SwiperSlide } from 'astro-swiper';
+import path from 'path';
+import fs from 'fs';
+import { fileURLToPath } from 'url';
+
+interface Props {
+  folder: string;
+  interval?: number;
+  showText?: boolean;
+}
+
+const { folder, interval = 3000, showText = true } = Astro.props;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const absoluteFolder = path.resolve(__dirname, '../../public',  folder);
+
+let slides: string[] = [];
+
+try {
+  slides = fs
+    .readdirSync(absoluteFolder)
+    .filter(f => /\.(webp|jpg|jpeg|png|avif)/i.test(f))
+    .sort()
+    .map(f => `/${folder}/${f}`);
+} catch (err) {
+  console.warn(`No se pudo leer el directorio ${absoluteFolder}`, err)
+}
+---
+<Swiper
+  class="absolute inset-0 w-full h-full"
+  options={{    // check options at https://swiperjs.com/swiper-api
+    autoplay: {
+      delay: interval,
+           disableOnInteraction: false,
+      //     waitForTransition: false,
+    },
+    loop: true,
+  }}>
+  <SwiperWrapper>
+    {
+    slides.map( slide => (
+    <SwiperSlide class="w-full h-full">
+      <img src={ slide } class="kenburns h-full w-full object-cover select-none" />
+    </SwiperSlide>
+      
+    ))
+    }
+  </SwiperWrapper>
+</Swiper>
+
+

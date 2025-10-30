@@ -1,6 +1,99 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
+import { company } from '../data/company';
+import WhatsappIcon from '../icons/WhatsappIcon.svg';
+import PhoneIcon from '../icons/PhoneIcon.svg';
+const phoneLink = company.phoneList[0].phoneLink;
+const phoneNumber = company.phoneList[0].phoneNumber;
 ---
 
-<MainLayout>
+<MainLayout title="Contacto | Reina Multiservicios">
+  <section class="container mx-auto px-4 py-16 space-y-16">
+
+    <!-- Botón de llamada directa -->
+    <div class="text-center">
+      <h2 class="text-3xl font-bold mb-4">¡Llámanos!</h2>
+      <p class=" mb-4">
+        Estamos disponibles para resolver tus dudas o darte un presupuesto al momento.
+      </p>
+      <a href={phoneLink} class="btn btn-primary gap-2 text-lg">
+        <img src={PhoneIcon.src} alt="Teléfono" class="w-5 h-5" />
+        {phoneNumber}
+      </a>
+    </div>
+
+    <!-- Formulario de contacto -->
+    <div class="max-w-2xl mx-auto">
+      <h2 class="text-2xl font-semibold text-center mb-6">Pide presupuesto sin compromiso</h2>
+
+      <form
+        name="contacto"
+        method="POST"
+        data-netlify="true"
+        data-netlify-recaptcha="true"
+        class="bg-base-200 p-8 rounded-2xl shadow-md space-y-5"
+      >
+        <!-- Campo oculto obligatorio -->
+        <input type="hidden" name="form-name" value="contacto" />
+
+        <div class="form-control">
+          <label class="label"><span class="label-text">Nombre</span></label>
+          <input type="text" name="nombre" placeholder="Tu nombre" class="input input-bordered w-full" required />
+        </div>
+
+        <div class="form-control">
+          <label class="label"><span class="label-text">Teléfono</span></label>
+          <input type="tel" name="telefono" placeholder="Ej. 612 345 678" class="input input-bordered w-full" required />
+        </div>
+
+        <div class="form-control">
+          <label class="label"><span class="label-text">Correo electrónico</span></label>
+          <input type="email" name="email" placeholder="tu@email.com" class="input input-bordered w-full" required />
+        </div>
+
+        <div class="form-control">
+          <label class="label"><span class="label-text">Mensaje</span></label>
+          <textarea
+            name="mensaje"
+            placeholder="Cuéntanos qué necesitas o el servicio que te interesa"
+            class="textarea textarea-bordered w-full h-32"
+            required
+          ></textarea>
+        </div>
+
+        <!-- Casilla de privacidad -->
+        <div class="form-control">
+          <label class="cursor-pointer flex items-start space-x-2">
+            <input type="checkbox" name="acepto" required class="checkbox checkbox-primary mt-1" />
+            <span class="label-text text-sm">
+              He leído y acepto la
+              <a href="/legal/politica-privacidad" class="link link-primary" target="_blank">política de protección de datos</a>.
+            </span>
+          </label>
+        </div>
+
+        <!-- Captcha de Netlify -->
+        <div data-netlify-recaptcha="true"></div>
+
+        <button type="submit" class="btn btn-primary w-full mt-4">Enviar mensaje</button>
+      </form>
+    </div>
+
+    <!-- Botón de WhatsApp -->
+    <div class="text-center">
+      <h2 class="text-2xl font-semibold mb-4">¿Prefieres WhatsApp?</h2>
+      <p class="mb-4">Envíanos un mensaje directo, ¡te responderemos enseguida!</p>
+
+      <a
+        href={`https://wa.me/${company.whatsapp}?text=Hola,%20quiero%20información%20sobre%20vuestros%20servicios`}
+        class="btn btn-success gap-2 text-lg"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img src={WhatsappIcon.src} alt="WhatsApp" class="w-5 h-5" />
+        Escríbenos por WhatsApp
+      </a>
+    </div>
+  </section>
 </MainLayout>
+
