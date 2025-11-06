@@ -1,9 +1,16 @@
 ---
-import MainLayout from '../../layouts/MainLayout.astro';
+const target = "/legal/aviso-legal"; 
 ---
 
-<MainLayout>
-</MainLayout>
-
-
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content={`0; url=${target}`} />
+    <link rel="canonical" href={target} />
+    <title>Redirigiendo a aviso legal...</title>
+  </head>
+  <body>
+    <p>Redirigiendo a <a href={target}>aviso legal</a>...</p>
+  </body>
+</html>
 

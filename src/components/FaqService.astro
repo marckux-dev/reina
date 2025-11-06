@@ -1,4 +1,5 @@
 ---
+import ContactButton from './ContactButton.astro';
 interface FaqItem {
   question: string;
   answer: string;
@@ -17,15 +18,18 @@ const { title = "Preguntas Frecuentes", faqs } = Astro.props;
 
   <div class="space-y-4 max-w-3xl mx-auto">
     {faqs.map(({ question, answer }) => (
-      <div tabindex="0" class="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box">
-        <div class="collapse-title text-lg font-medium">
+      <details class="collapse border border-base-300 bg-base-100 rounded-box">
+        <summary class="collapse-title text-lg font-semibold">
           {question}
-        </div>
+        </summary>
         <div class="collapse-content text-base leading-relaxed">
           <p>{answer}</p>
         </div>
-      </div>
+      </details>
     ))}
+  </div>
+  <div class="flex justify-center mt-8">
+    <ContactButton link="/contacto" text="Pregúntanos" />
   </div>
 </section>
 

@@ -1,4 +1,5 @@
 ---
+import ContactButton from '../components/ContactButton.astro';
 interface Props {
   image: string;
   slogan: string;
@@ -9,8 +10,6 @@ interface Props {
 const {
   image,
   slogan,
-  buttonText = "Contáctanos",
-  buttonLink = "/contacto",
 } = Astro.props;
 ---
 
@@ -23,15 +22,13 @@ const {
 
   <!-- Contenido -->
   <div class="relative z-10 px-6">
-    <h2 class="text-3xl md:text-5xl font-bold mb-4 drop-shadow-lg">
+    <h2 class="text-3xl md:text-5xl font-bold mb-8 drop-shadow-lg">
       {slogan}
     </h2>
-    <a
-      href={buttonLink}
-      class="btn btn-primary text-lg shadow-md hover:scale-105 transition-transform"
-    >
-      {buttonText}
-    </a>
+    <ContactButton
+      link="/contacto"
+      text="Contáctanos"
+    />
   </div>
 </section>
 
