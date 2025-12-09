@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import 'photoswipe/style.css';
 
 interface Props {
@@ -6,19 +7,34 @@ interface Props {
 }
 
 const { images } = Astro.props;
+const allImages = await Astro.glob('/src/assets/images/*.{png,jpg,jpeg,webp,avif}');
+const imagesMap = new Map(
+  allImages.map(mod => {
+    const img = mod.default;
+    const parts = img.src.split('/');
+    const filename = parts.pop().split('?')[0];
+    return [filename, img];
+  })
+);
+const imagesMeta = images
+  .map(name => imagesMap.get(name))
+  .filter(Boolean);
+
 ---
 
 <section id="gallery" class="container mx-auto px-6 py-12 grid grid-cols-2 md:grid-cols-3 gap-4">
   {
-    images.map(image => (
-      <a href={image} target="_blank" class="block group">
-        <img 
-          src={image} 
-          class="rounded-lg shadow-sm hover:opacity-90 transition duration-300 object-cover w-full h-[20vh]"
-          loading="lazy"
-        />
-      </a>
-    ))
+  imagesMeta.map(img => (
+  <a href={img.src} target="_blank" class="block group">
+    <Image 
+       src={img} 
+       alt={`Imagen de galería`}
+       format="webp"
+       loading="lazy"
+       class="rounded-lg shadow-sm hover:opacity-90 transition duration-300 object-cover w-full h-[20vh]"
+    />
+  </a>
+  ))
   }
 </section>
 

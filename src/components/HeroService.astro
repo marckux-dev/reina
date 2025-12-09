@@ -1,15 +1,23 @@
 ---
+import { getImage } from 'astro:assets';
 interface Props {
   title: string;
   subtitle: string;
   image: string;
 }
 const { title, subtitle, image } = Astro.props;
+const imgModule = await import(`../assets/images/${image}`);
+const originalImg = imgModule.default;
+const optimized = await getImage({
+  src: originalImg,
+  formats: ['webp'],
+  widths: [800, 1200, 1600, 2000],
+});
 ---
 
 <header
   class="relative h-[40vh] bg-cover bg-center flex flex-col items-center justify-center text-center"
-  style={`background-image: url(${ image })`}
+  style={`background-image: url(${ optimized.src })`}
 >
   <div class="absolute inset-0 bg-black/40"></div>
   <div class="relative z-10 px-4 text-gray-100">
@@ -18,8 +26,3 @@ const { title, subtitle, image } = Astro.props;
   </div>
 </header>
 
-<style>
-header {
-  background-image: url({ image });
-}
-</style>

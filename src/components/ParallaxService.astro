@@ -1,4 +1,5 @@
 ---
+import { getImage } from 'astro:assets';
 import ContactButton from '../components/ContactButton.astro';
 interface Props {
   image: string;
@@ -11,11 +12,19 @@ const {
   image,
   slogan,
 } = Astro.props;
+
+const imgModule = await import(`../assets/images/${image}`);
+const originalImg = imgModule.default;
+const optimized = await getImage({
+  src: originalImg,
+  formats: ['webp'],
+  widths: [800, 1200, 1600, 2000],
+});
 ---
 
 <section
   class="relative h-[40vh] bg-fixed bg-center bg-cover flex flex-col items-center justify-center text-center text-neutral-content"
-  style={`background-image: url('${image}')`}
+  style={`background-image: url( ${optimized.src} )`}
 >
   <!-- Capa oscura -->
   <div class="absolute inset-0 bg-black/60"></div>

@@ -21,7 +21,7 @@ export const services: ServiceData[] = [
     title: 'Pulido',
     h1: 'Pulido y Cristalizado de Superficies',
     subtitle: 'Recupera el brillo original de tu mármol y terrazo con acabado profesional',
-    headerImage: '/slider01/39-1-scaled-e1747082279507.png',
+    headerImage: '39-1-scaled-e1747082279507.png',
     features: [
       'Pulido y cristalizado de mármol, terrazo y granito.',
       'Restauración de suelos deteriorados por el uso.',
@@ -30,12 +30,12 @@ export const services: ServiceData[] = [
       'Uso de maquinaria profesional y productos respetuosos con el medio ambiente.',
     ],
     gallery: [
-      '/slider01/20-scaled-e1747245527838.png',
-      '/slider01/IMG_7837.jpg',
-      '/slider01/5-scaled-e1747085552234.png',
-      '/slider01/8-scaled-e1747243633304.png',
+      '20-scaled-e1747245527838.png',
+      'IMG_7837.jpg',
+      '5-scaled-e1747085552234.png',
+      '8-scaled-e1747243633304.png',
     ],
-    parallaxImage: '/slider01/39-1-scaled-e1747082279507.png',
+    parallaxImage: '39-1-scaled-e1747082279507.png',
     slogan: 'Brillo impecable, resultados duraderos',
     faqs: [
       {
@@ -55,7 +55,7 @@ export const services: ServiceData[] = [
     title: 'Limpieza Cristales',
     h1: 'Limpieza de Cristales y Ventanas',
     subtitle: 'Cristales impecables, sin marcas ni residuos, tanto en interior como exterior.',
-    headerImage: '/slider01/14-1-scaled-e1747087271960.png',
+    headerImage: '14-1-scaled-e1747087271960.png',
     features: [
       'Limpieza de cristales, escaparates y ventanales de gran tamaño.',
       'Trabajos en altura mediante pértigas o plataformas elevadoras.',
@@ -65,12 +65,12 @@ export const services: ServiceData[] = [
       'Mantenimiento periódico para empresas o comunidades.'
     ],
     gallery: [
-      '/slider01/20-scaled-e1747245527838.png',
-      '/slider01/IMG_7837.jpg',
-      '/slider01/5-scaled-e1747085552234.png',
-      '/slider01/8-scaled-e1747243633304.png',
+      '20-scaled-e1747245527838.png',
+      'IMG_7837.jpg',
+      '5-scaled-e1747085552234.png',
+      '8-scaled-e1747243633304.png',
     ],
-    parallaxImage: '/slider01/14-1-scaled-e1747087271960.png',
+    parallaxImage: '14-1-scaled-e1747087271960.png',
     slogan: 'Claridad total, sin esfuerzo',
     faqs: [
       {
@@ -94,7 +94,7 @@ export const services: ServiceData[] = [
     title: 'Limpieza Industrial',
     h1: 'Limpieza Industrial y Fin de Obra',
     subtitle: 'Servicios integrales de limpieza para naves, talleres, obras y grandes superficies.',
-    headerImage: '/slider01/LIMPIEZA-SUELO-e1747239650430.jpg',
+    headerImage: 'LIMPIEZA-SUELO-e1747239650430.jpg',
     features: [
       'Limpieza profunda de suelos, paredes y techos industriales.',
       'Eliminación de polvo, residuos y restos de materiales de obra.',
@@ -104,12 +104,12 @@ export const services: ServiceData[] = [
       'Cumplimiento estricto de normas de seguridad y prevención.'
     ],
     gallery: [
-      '/slider01/20-scaled-e1747245527838.png',
-      '/slider01/IMG_7837.jpg',
-      '/slider01/5-scaled-e1747085552234.png',
-      '/slider01/8-scaled-e1747243633304.png',
+      '20-scaled-e1747245527838.png',
+      'IMG_7837.jpg',
+      '5-scaled-e1747085552234.png',
+      '8-scaled-e1747243633304.png',
     ],
-    parallaxImage: '/slider01/LIMPIEZA-SUELO-e1747239650430.jpg',
+    parallaxImage: 'LIMPIEZA-SUELO-e1747239650430.jpg',
     slogan: 'Limpieza a fondo, sin interrupciones',
     faqs: [
       {
@@ -133,7 +133,7 @@ export const services: ServiceData[] = [
     title: 'Trabajos altura',
     h1: 'Trabajos en Altura y Fachadas',
     subtitle: 'Limpieza y mantenimiento en altura con total seguridad y resultados garantizados.',
-    headerImage: '/slider01/IMG_7837.jpg',
+    headerImage: 'IMG_7837.jpg',
     features: [
       'Limpieza de fachadas, cristales y paneles en altura.',
       'Uso de técnicas de acceso mediante cuerda o góndola.',
@@ -143,12 +143,12 @@ export const services: ServiceData[] = [
       'Seguros de responsabilidad civil y cumplimiento normativo.'
     ],
     gallery: [
-      '/slider01/20-scaled-e1747245527838.png',
-      '/slider01/IMG_7837.jpg',
-      '/slider01/5-scaled-e1747085552234.png',
-      '/slider01/8-scaled-e1747243633304.png',
+      '20-scaled-e1747245527838.png',
+      'IMG_7837.jpg',
+      '5-scaled-e1747085552234.png',
+      '8-scaled-e1747243633304.png',
     ],
-    parallaxImage: '/slider01/IMG_7837.jpg',
+    parallaxImage: 'IMG_7837.jpg',
     slogan: 'Altura y precisión, sin riesgos',
     faqs: [
       {
@@ -172,7 +172,7 @@ export const services: ServiceData[] = [
     title: 'Pulido Hormigón',
     h1: 'Pulido y Tratamiento de Hormigón',
     subtitle: 'Mejora la resistencia y el aspecto del pavimento con un acabado liso, brillante y fácil de mantener.',
-    headerImage: '/slider01/7-scaled-e1747087500155.png',
+    headerImage: '7-scaled-e1747087500155.png',
     features: [
       'Pulido y abrillantado de pavimentos de hormigón.',
       'Tratamientos antipolvo, endurecedores y selladores.',
@@ -182,12 +182,12 @@ export const services: ServiceData[] = [
       'Soluciones duraderas con bajo mantenimiento.'
     ],
     gallery: [
-      '/slider01/20-scaled-e1747245527838.png',
-      '/slider01/IMG_7837.jpg',
-      '/slider01/5-scaled-e1747085552234.png',
-      '/slider01/8-scaled-e1747243633304.png',
+      '20-scaled-e1747245527838.png',
+      'IMG_7837.jpg',
+      '5-scaled-e1747085552234.png',
+      '8-scaled-e1747243633304.png',
     ],
-    parallaxImage: '/slider01/7-scaled-e1747087500155.png',
+    parallaxImage: '7-scaled-e1747087500155.png',
     slogan: 'Suelo industrial, brillo profesional',
     faqs: [
       {
@@ -211,7 +211,7 @@ export const services: ServiceData[] = [
     title: 'Tratamientos Superficies',
     h1: 'Tratamientos Específicos de Superficies',
     subtitle: 'Protege y mejora la durabilidad de tus suelos y revestimientos con tratamientos profesionales.',
-    headerImage: '/slider01/20-scaled-e1747245527838.png',
+    headerImage: '20-scaled-e1747245527838.png',
     features: [
       'Aplicación de tratamientos hidrofugantes y oleofugantes.',
       'Soluciones antideslizantes para suelos resbaladizos.',
@@ -221,12 +221,12 @@ export const services: ServiceData[] = [
       'Ideal para piedra natural, cerámica, hormigón o madera.'
     ],
     gallery: [
-      '/slider01/20-scaled-e1747245527838.png',
-      '/slider01/IMG_7837.jpg',
-      '/slider01/5-scaled-e1747085552234.png',
-      '/slider01/8-scaled-e1747243633304.png',
+      '20-scaled-e1747245527838.png',
+      'IMG_7837.jpg',
+      '5-scaled-e1747085552234.png',
+      '8-scaled-e1747243633304.png',
     ],
-    parallaxImage: '/slider01/20-scaled-e1747245527838.png',
+    parallaxImage: '20-scaled-e1747245527838.png',
     slogan: 'Protege tus superficies, mejora su vida útil',
     faqs: [
       {

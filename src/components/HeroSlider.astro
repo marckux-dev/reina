@@ -1,33 +1,23 @@
 ---
 import { Swiper, SwiperWrapper, SwiperSlide } from 'astro-swiper';
-import path from 'path';
-import fs from 'fs';
-import { fileURLToPath } from 'url';
+import { Image } from 'astro:assets';
 
 interface Props {
-  folder: string;
+  images: string[];
   interval?: number;
   showText?: boolean;
 }
 
-const { folder, interval = 3000, showText = true } = Astro.props;
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const { images, interval = 3000, showText = true } = Astro.props;
 
-const absoluteFolder = path.resolve(__dirname, '../../public',  folder);
-
-let slides: string[] = [];
-
-try {
-  slides = fs
-    .readdirSync(absoluteFolder)
-    .filter(f => /\.(webp|jpg|jpeg|png|avif)/i.test(f))
-    .sort()
-    .map(f => `/${folder}/${f}`);
-} catch (err) {
-  console.warn(`No se pudo leer el directorio ${absoluteFolder}`, err)
-}
+const imageModules = await Promise.all(
+  images.map( async (image) => {
+    const mod = await import(`../assets/images/${image}`);
+    return mod.default;
+  })
+);
 ---
+
 <Swiper
   class="absolute inset-0 w-full h-full"
   options={{    // check options at https://swiperjs.com/swiper-api
@@ -40,9 +30,15 @@ try {
   }}>
   <SwiperWrapper>
     {
-    slides.map( slide => (
+    imageModules.map( image => (
     <SwiperSlide class="w-full h-full">
-      <img src={ slide } class="kenburns h-full w-full object-cover select-none" />
+      <Image
+        src={ image }
+        alt={`Imagen del Hero Slider`}
+        format="webp"
+        loading="lazy"
+        class="kenburns h-full w-full object-cover select-none"
+      />
     </SwiperSlide>
       
     ))
