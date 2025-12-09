@@ -13,10 +13,13 @@ const {
   slogan,
 } = Astro.props;
 
-const imgModule = await import(`../assets/images/${image}`);
-const originalImg = imgModule.default;
+const imagesMap = import.meta.glob('../assets/images/*.{png,jpg,jpeg,webp,avif}', {
+  eager: true,
+  import: 'default',
+});
+const original = imagesMap[`../assets/images/${image}`];
 const optimized = await getImage({
-  src: originalImg,
+  src: original,
   formats: ['webp'],
   widths: [800, 1200, 1600, 2000],
 });
@@ -24,7 +27,7 @@ const optimized = await getImage({
 
 <section
   class="relative h-[40vh] bg-fixed bg-center bg-cover flex flex-col items-center justify-center text-center text-neutral-content"
-  style={`background-image: url( ${optimized.src} )`}
+  style={`background-image: url( '${optimized.src}' )`}
 >
   <!-- Capa oscura -->
   <div class="absolute inset-0 bg-black/60"></div>

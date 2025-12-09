@@ -9,7 +9,12 @@ interface Props {
 }
 const { image, title, text, href = '' } = Astro.props;
 
-const optimizedImage = await import(`../assets/images/${image}`)
+const imagesMap = import.meta.glob('../assets/images/*.{png,jpg,jpeg,webp,avif}', {
+  eager: true,
+  import: 'default',
+});
+
+const img = imagesMap[`../assets/images/${image}`];
 
 ---
 
@@ -19,7 +24,7 @@ const optimizedImage = await import(`../assets/images/${image}`)
 >
   <figure class="overflow-hidden w-full">
     <Image 
-      src={optimizedImage.default}
+      src={img}
       alt={`Imagen de ${title}`}
       format="webp"
       loading="lazy"

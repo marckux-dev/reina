@@ -8,14 +8,16 @@ interface Props {
   showText?: boolean;
 }
 
-const { images, interval = 3000, showText = true } = Astro.props;
+const { images, interval = 3000 } = Astro.props;
 
-const imageModules = await Promise.all(
-  images.map( async (image) => {
-    const mod = await import(`../assets/images/${image}`);
-    return mod.default;
-  })
-);
+const imagesMap = import.meta.glob('../assets/images/*.{png,jpg,jpeg,webp,avif}', {
+  eager: true,
+  import: 'default',
+});
+
+const imageList = images
+  .map( image => imagesMap[`../assets/images/${image}`])
+  .filter(Boolean);
 ---
 
 <Swiper
@@ -30,7 +32,7 @@ const imageModules = await Promise.all(
   }}>
   <SwiperWrapper>
     {
-    imageModules.map( image => (
+    imageList.map( image => (
     <SwiperSlide class="w-full h-full">
       <Image
         src={ image }
