@@ -7,24 +7,20 @@ interface Props {
 }
 
 const { images } = Astro.props;
-const allImages = await Astro.glob('/src/assets/images/*.{png,jpg,jpeg,webp,avif}');
-const imagesMap = new Map(
-  allImages.map(mod => {
-    const img = mod.default;
-    const parts = img.src.split('/');
-    const filename = parts.pop().split('?')[0];
-    return [filename, img];
-  })
-);
-const imagesMeta = images
-  .map(name => imagesMap.get(name))
+
+const imagesMap = import.meta.glob('../assets/images/*.{png,jpg,jpeg,webp,avif}', {
+  eager: true,
+  import: 'default',
+});
+const resolvedImages = images
+  .map(image => imagesMap[`../assets/images/${image}`])
   .filter(Boolean);
 
 ---
 
 <section id="gallery" class="container mx-auto px-6 py-12 grid grid-cols-2 md:grid-cols-3 gap-4">
   {
-  imagesMeta.map(img => (
+  resolvedImages.map(img => (
   <a href={img.src} target="_blank" class="block group">
     <Image 
        src={img} 
