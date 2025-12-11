@@ -5,6 +5,8 @@ import Card from '../components/Card.astro';
 import ContactButton from '../components/ContactButton.astro';
 import { getCollection } from 'astro:content';
 const services = await getCollection('services');
+import { homeFaqs } from '../data/homeFaqs.ts'
+import FaqService from '../components/FaqService.astro';
 ---
 
 <MainLayout title="Inicio">
@@ -58,7 +60,7 @@ const services = await getCollection('services');
       </h3>
 
       <div class="flex justify-center my-8">
-        <ContactButton link="/contacto" text="Pide presupuesto" />
+        <ContactButton link="/contacto" text="Contacta con Nosotros" />
       </div>
 
       <p class="mb-4">
@@ -110,9 +112,13 @@ const services = await getCollection('services');
         }
       </div>
 
-      <div class="flex justify-center mt-8">
+      <div class="flex justify-center my-8">
         <ContactButton link="/contacto" text="Pide presupuesto" />
       </div>
+
+
+    <FaqService faqs={ homeFaqs }/>
+
 
     </section>
 
