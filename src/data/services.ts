@@ -23,11 +23,14 @@ export const services: ServiceData[] = [
     subtitle: 'Recupera el brillo original de tu mármol y terrazo con acabado profesional',
     headerImage: '39-1-scaled-e1747082279507.png',
     features: [
-      'Pulido y cristalizado de mármol, terrazo y granito.',
+      'Pulidos, Diamantados y Cristalizados de pavimentos de mármol y terrazo.',
       'Restauración de suelos deteriorados por el uso.',
-      'Eliminación de manchas, arañazos, desgaste superficial.',
+      'Desbaste, Rejuntado y Abrillantado de suelos recién puestos.',
+      'Eliminación de manchas, arañazos y desgaste.',
+      'Servicios para hoteles, locales comerciales y oficinas.',
       'Brillo duradero sin necesidad de ceras ni productos.',
-      'Uso de maquinaria profesional y productos respetuosos con el medio ambiente.',
+      'Uso de maquinaria profesional y productos profesionales',
+      'Mantenimiento periódico para empresas, hoteles y comunidades en zonas de alta transitabilidad.',
     ],
     gallery: [
       '20-scaled-e1747245527838.png',
@@ -39,12 +42,26 @@ export const services: ServiceData[] = [
     slogan: 'Brillo impecable, resultados duraderos',
     faqs: [
       {
-        question: '¿Cada cuanto tiempo se debe pulir o cristalizar un suelo?',
-        answer: 'Depende del tránsito y del tipo de superficie. En zonas de mucho uso se recomienda cada 6 - 12 meses.',
+        question: '¿Qué diferencia hay entre pulido, abrillantado y cristalizado?',
+        answer: '- Pulido: elimina imperfecciones, arañazos y desniveles para recuperar el aspecto' 
+          + ' original del suelo, tanto suelo recién colocado como suelo ya deteriorado con el tiempo.<br />'
+          + ' - Abrillantado: aporta brillo mediante máquinas rotativas de velocidad y' 
+          + ' cristalizadores químicos de alta durabilidad, ya sea para mantenimiento o renovación' 
+          + ' del acabado cristalizado.',
       },
       {
-        question: '¿Se puede pulir un suelo sin retirar los muebles?',
-        answer: 'En la mayoría de los casos sí. Aunque para obtener resultados óptimos se recomienda retirar los muebles antes de realizar el trabajo.',
+        question: '¿Cada cuánto tiempo es recomendable pulir o abrillantar un suelo?',
+        answer: 'Depende del uso. En entornos comerciales o de alto tránsito, puede ser necesario'
+          + ' cada 6–12 meses; en viviendas, cada 1–2 años sería lo recomendable. Todo dependerá'
+          + ' del desgaste y uso que se le dé a la zona a tratar. El acabado final no tiene'
+          + ' caducidad. El deterioro o reducción de brillo del suelo se verá afectado por el'
+          + ' tránsito, limpieza o la exposición a condiciones meteorológicas que puedan afectarle.',
+      },
+      {
+        question: '¿Qué tipo de superficies se pueden limpiar o tratar?',
+        answer: 'Trabajamos sobre una amplia variedad de superficies: mármol, terrazo, granito,' 
+          + ' hormigón, cerámica, barro cocido, PVC, suelos industriales, resinas, superficies' 
+          + ' metálicas y más. Adaptamos cada proceso y tratamiento al material y al nivel de desgaste.',
       }
     ]
   },
@@ -57,12 +74,14 @@ export const services: ServiceData[] = [
     subtitle: 'Cristales impecables, sin marcas ni residuos, tanto en interior como exterior.',
     headerImage: '14-1-scaled-e1747087271960.png',
     features: [
-      'Limpieza de cristales, escaparates y ventanales de gran tamaño.',
-      'Trabajos en altura mediante pértigas o plataformas elevadoras.',
+      'Limpieza de cristales, cristaleras y ventanales de gran tamaño.',
+      'Limpieza profesional de ventanales, espejos y cristalería en zonas comunes, espacios de alta transitabilida',
+      'Limpieza de todo tipo de superficies vitradas.',
+      'Trabajos en altura mediante maquinaria elevadora.',
       'Uso de agua osmotizada para un acabado sin marcas.',
       'Limpieza de marcos, guías y superficies metálicas.',
-      'Servicios para viviendas, locales comerciales y oficinas.',
-      'Mantenimiento periódico para empresas o comunidades.'
+      'Servicios para hoteles, locales comerciales y oficinas.',
+      'Mantenimiento periódico para empresas y comunidades.',
     ],
     gallery: [
       '20-scaled-e1747245527838.png',
@@ -97,11 +116,16 @@ export const services: ServiceData[] = [
     headerImage: 'LIMPIEZA-SUELO-e1747239650430.jpg',
     features: [
       'Limpieza profunda de suelos, paredes y techos industriales.',
-      'Eliminación de polvo, residuos y restos de materiales de obra.',
+      'Limpieza de grandes superficies y parkings.',
+      'Eliminación de polvo, residuos y restos de materiales de fin de obra.',
+      'Servicios de limpieza de moquetas, alfombras modulares y tapices vinílicos.',
       'Desinfección y limpieza de maquinaria y zonas técnicas.',
-      'Tratamientos específicos para superficies porosas o grasas.',
-      'Uso de productos desengrasantes y maquinaria industrial.',
-      'Cumplimiento estricto de normas de seguridad y prevención.'
+      'Limpieza osmotizada de placas solares.',
+      'Limpiezas técnicas y de alta complejidad.',
+      'Uso de productos desengrasantes y desincrustantes.',
+      'Uso de maquinaria profesional y productos profesionales.',
+      'Realizamos limpieza de riesgo entre otros servicios especializados.',
+      'Cumplimiento estricto de normas de seguridad y prevención.',
     ],
     gallery: [
       '20-scaled-e1747245527838.png',
@@ -136,11 +160,10 @@ export const services: ServiceData[] = [
     headerImage: 'IMG_7837.jpg',
     features: [
       'Limpieza de fachadas, cristales y paneles en altura.',
-      'Uso de técnicas de acceso mediante cuerda o góndola.',
-      'Reparación de juntas, sellados y pequeñas restauraciones.',
-      'Aplicación de tratamientos hidrofugantes o anti-moho.',
+      'Trabajos de altura con maquinaria elevadora especializada.',
+      'Plataformas, elevadores de tijera y minigrúas articuladas para intervenciones en zonas de difícil acceso.',
       'Personal con formación y certificación en trabajos verticales.',
-      'Seguros de responsabilidad civil y cumplimiento normativo.'
+      'Seguros de responsabilidad civil y cumplimiento normativo.',
     ],
     gallery: [
       '20-scaled-e1747245527838.png',
@@ -174,12 +197,11 @@ export const services: ServiceData[] = [
     subtitle: 'Mejora la resistencia y el aspecto del pavimento con un acabado liso, brillante y fácil de mantener.',
     headerImage: '7-scaled-e1747087500155.png',
     features: [
-      'Pulido y abrillantado de pavimentos de hormigón.',
+      'Pulido, lijado, restauración y tratamiento de superficies de hormigón.',
       'Tratamientos antipolvo, endurecedores y selladores.',
-      'Superficies lisas y reflectantes con alto rendimiento.',
-      'Aplicación de resinas o recubrimientos protectores.',
-      'Adecuado para naves, garajes, centros logísticos y talleres.',
-      'Soluciones duraderas con bajo mantenimiento.'
+      'Superficies lisas y antideslizantes de alto rendimiento.',
+      'Aplicación de tratamientos hidrofugantes y oleofugantes.',
+      'Adecuado para naves, parkings, centros logísticos y talleres.',
     ],
     gallery: [
       '20-scaled-e1747245527838.png',
@@ -213,12 +235,12 @@ export const services: ServiceData[] = [
     subtitle: 'Protege y mejora la durabilidad de tus suelos y revestimientos con tratamientos profesionales.',
     headerImage: '20-scaled-e1747245527838.png',
     features: [
-      'Aplicación de tratamientos hidrofugantes y oleofugantes.',
+      'Tratamientos hidrofugantes y oleofugantes para piedras calizas.',
+      'Procesos de limpieza, conservación y protección de baldosas de barro y terracota.',
       'Soluciones antideslizantes para suelos resbaladizos.',
       'Protección contra manchas, humedad y desgaste.',
-      'Aumenta la durabilidad y reduce el mantenimiento.',
-      'Productos ecológicos y compatibles con cualquier material.',
-      'Ideal para piedra natural, cerámica, hormigón o madera.'
+      'Tratamientos específicos para superficies porosas o grasas.',
+      'Aumento de la durabilidad ante el desgaste por el uso o las condiciones meteorológicas.',
     ],
     gallery: [
       '20-scaled-e1747245527838.png',
