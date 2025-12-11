@@ -1,5 +1,5 @@
 ---
-import { services } from "../../data/services";
+import { getCollection, render } from "astro:content";
 import type { GetStaticPaths } from "astro";
 import MainLayout from "../../layouts/MainLayout.astro";
 import HeroService from "../../components/HeroService.astro";
@@ -7,22 +7,31 @@ import FeaturesService from "../../components/FeaturesService.astro";
 import Gallery from "../../components/Gallery.astro";
 import ParallaxService from "../../components/ParallaxService.astro";
 import FaqService from "../../components/FaqService.astro";
-export const getStaticPaths = ( async () => 
-  services.map ( service => ({
-    params: { slug: service.slug },
-    props: { service },
-  }))
-) satisfies GetStaticPaths;
-
-const { service } = Astro.props;
+export const getStaticPaths = ( async () => {
+  const services = await getCollection('services');
+  return services.map( entry => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}) satisfies GetStaticPaths;
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const data = entry.data;
 ---
 
-<MainLayout title={ service.title }>
+<MainLayout title={ data.title }>
   <main>
-    <HeroService title={ service.h1} subtitle={ service.subtitle } image={ service.headerImage } />
-    <FeaturesService features={ service.features } />
-    <Gallery images={ service.gallery }/>
-    <ParallaxService image={ service.parallaxImage } slogan={ service.slogan } />
-    <FaqService faqs={ service.faqs }/>
+    <HeroService 
+      title={ data.h1} 
+      subtitle={ data.subtitle } 
+      image={ data.headerImage } 
+    />
+    <FeaturesService features={ data.features } />
+    <Gallery images={ data.gallery }/>
+    <ParallaxService 
+      image={ data.parallaxImage } 
+      slogan={ data.slogan } 
+    />
+    <FaqService faqs={ data.faqs }/>
   </main>
 </MainLayout>

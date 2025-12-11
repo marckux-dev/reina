@@ -3,7 +3,8 @@ import MainLayout from '../layouts/MainLayout.astro';
 import HeroSlider from '../components/HeroSlider.astro';
 import Card from '../components/Card.astro';
 import ContactButton from '../components/ContactButton.astro';
-import { services } from '../data/services';
+import { getCollection } from 'astro:content';
+const services = await getCollection('services');
 ---
 
 <MainLayout title="Inicio">
@@ -101,8 +102,8 @@ import { services } from '../data/services';
         {
         services.map( service => (
         <Card
-          image={ service.headerImage }
-          title={ service.navItem }
+          image={ service.data.headerImage }
+          title={ service.data.navItem }
           href={ `/servicios/${ service.slug }` }
         />
         ))

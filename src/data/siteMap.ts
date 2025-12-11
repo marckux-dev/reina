@@ -1,5 +1,3 @@
-import { services } from "./services";
-
 export interface SitePage {
   url: string;
   label?: string;
@@ -9,12 +7,6 @@ export interface SitePage {
 export interface SiteMap {
   [key: string]: SitePage;
 }
-
-const servicesMap = Object.values(services)
-  .map( (service) => ({
-    url: `/servicios/${service.slug}`,
-    label: service.navItem,
-  }));
 
 export const siteMap: SiteMap = {
   home: {
@@ -28,7 +20,7 @@ export const siteMap: SiteMap = {
   services: {
     url: '/servicios',
     label: 'Servicios',
-    children: servicesMap,
+    children: [],
   },
   contact: {
     url: '/contacto',

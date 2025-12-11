@@ -1,6 +1,7 @@
 ---
 import type { SiteMap } from '../data/siteMap';
 import LogoSinFondo from '../icons/LogoSinFondo.svg'; 
+import { getCollection } from 'astro:content';
 
 interface Props {
   siteMap: SiteMap
@@ -8,6 +9,16 @@ interface Props {
 
 const { siteMap } = Astro.props
 const currentPath = Astro.url.pathname.replace(/\/$/, '')
+
+const servicesCollection = await getCollection('services');
+
+const servicesChildren = servicesCollection.map( service => ({
+  url: `/servicios/${service.slug}`,
+  label: service.data.navItem,
+}));
+if (siteMap.services) {
+  siteMap.services.children = servicesChildren;
+}
 ---
 
 <div class="drawer z-50">
