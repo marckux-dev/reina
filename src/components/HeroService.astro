@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import { getImage } from 'astro:assets';
 interface Props {
   title: string;
@@ -11,15 +12,34 @@ const imagesMap = import.meta.glob('../assets/images/*.{png,jpg,jpeg,webp,avif}'
   import: 'default',
 });
 const original = imagesMap[`../assets/images/${image}`];
-const optimized = await getImage({
-  src: original,
-  formats: ['webp'],
-  widths: [800, 1600],
-  quality: 70,
-})
 
 ---
+<header class="relative h-[40vh] overflow-hidden flex items-center justify-center text-center text-neutral-content bg-base-100">
+  <!-- Imagen de Fondo -->
+  <Image 
+    src={original}
+    alt={`Imagen de ${title}`}
+    widths={[800, 1600]}
+    sizes="100vw"
+    quality={70}
+    data-fade
+    class="absolute inset-0 w-full h-full object-cover bg-transparent"
+  />
+  <!-- Capa Oscura -->
+  <div class="absolute inset-0 bg-black/40"></div>
+  <!-- Contenido -->
+  <div class="relative z-10 px-4">
+    <h1 class="text-4xl md:text-6xl font-bold mb-4 fade-up">
+      { title }
+    </h1>
+    <h2 class="text-xl md:text-2xl fade-up-delay">
+      { subtitle }
+    </h2>
+  </div>
+</header>
 
+
+<!--
 <header
   class="relative h-[40vh] bg-cover bg-center flex flex-col items-center justify-center text-center"
   style={`background-image: url('${ optimized.src }')`}
@@ -30,4 +50,5 @@ const optimized = await getImage({
     <h2 class="text-xl md:text-2xl fade-up-delay">{ subtitle }</h2>
   </div>
 </header>
+-->
 

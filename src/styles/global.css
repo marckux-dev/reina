@@ -3,6 +3,14 @@
   themes: bumblebee --default, dracula --prefersdark;
 }
 
+img[data-fade] {
+  opacity: 0;
+  transition: opacity 0.9s ease-out;
+}
+
+img[data-fade].is-loaded {
+  opacity: 1;
+}
 
 /* Custom Styles */
 @layer components {
@@ -50,3 +58,5 @@
   }
 
 }
+
+
