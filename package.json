@@ -16,6 +16,7 @@
     "astro-lightgallery": "^2.0.1",
     "astro-swiper": "^1.1.0",
     "daisyui": "^5.3.7",
+    "marked": "^17.0.1",
     "photoswipe": "^5.4.4",
     "tailwindcss": "^4.1.15",
     "typescript": "^5.9.3"
