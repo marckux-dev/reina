@@ -37,8 +37,11 @@ const imageList = images
       <Image
         src={ image }
         alt={`Imagen del Hero Slider`}
+        widths={[768, 1024, 1440, 1920]}
+        sizes="100vw"
+        quality={70}
         format="webp"
-        loading="lazy"
+        priority={true}
         class="kenburns h-full w-full object-cover select-none"
       />
     </SwiperSlide>

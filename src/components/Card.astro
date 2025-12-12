@@ -26,6 +26,9 @@ const img = imagesMap[`../assets/images/${image}`];
     <Image 
       src={img}
       alt={`Imagen de ${title}`}
+      widths={[320, 480, 640]}
+      sizes="(max-width: 640px) 100vw, 33vw"
+      quality={65}
       format="webp"
       loading="lazy"
       class="kenburns h-full w-full object-cover"

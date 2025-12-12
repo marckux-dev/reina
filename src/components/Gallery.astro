@@ -22,12 +22,15 @@ const resolvedImages = images
   {
   resolvedImages.map(img => (
   <a href={img.src} target="_blank" class="block group">
-    <Image 
-       src={img} 
-       alt={`Imagen de galería`}
-       format="webp"
-       loading="lazy"
-       class="rounded-lg shadow-sm hover:opacity-90 transition duration-300 object-cover w-full h-[20vh]"
+    <Image
+        src={img} 
+        alt={`Imagen de galería`}
+        widths={[300, 450, 600]}
+        sizes="(max-width: 768px) 50vw, 33vw"
+        quality={60}
+        format="webp"
+        loading="lazy"
+        class="rounded-lg shadow-sm hover:opacity-90 transition duration-300 object-cover w-full h-[20vh]"
     />
   </a>
   ))
