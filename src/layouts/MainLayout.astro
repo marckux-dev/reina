@@ -48,20 +48,23 @@ const { title, description } = Astro.props;
         "priceRange": "€€" 
     })} 
     </script>
-	</head>
-  <script>
-    document.addEventListener('DOMContentLoaded', ()=>{
-      document.querySelectorAll('img[data-fade]').forEach(img => {
-        if (img.complete) {
-          img.classList.add('is-loaded');
-        } else {
-          img.addEventListener('load', () => {
+    <script>
+      document.addEventListener('DOMContentLoaded', ()=>{
+        document.querySelectorAll('img[data-fade]').forEach(img => {
+          if (img.complete) {
             img.classList.add('is-loaded');
-          });
-        }
+          } else {
+            img.addEventListener('load', () => {
+              img.classList.add('is-loaded');
+            });
+          }
+        });
       });
-    });
-  </script>
+    </script>
+	</head>
+
+  <!-- Fin del Head. Inicio del body -->
+
 	<body>
     <Navbar siteMap={ siteMap } />
     <slot />
