@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://reinamultiservicios.es/sitemap-index.xml
