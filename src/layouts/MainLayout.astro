@@ -3,10 +3,13 @@ import '../styles/global.css';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import { siteMap } from '../data/siteMap';
+import { company } from '../data/company';
 interface Props {
   title: string;
+  description?: string;
 }
-const { title } = Astro.props;
+const { title, description } = Astro.props;
+
 ---
 
 <html lang="es">
@@ -16,6 +19,35 @@ const { title } = Astro.props;
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
     <title>{ title } | Reina Multiservicios</title>
+    {
+      description &&
+      (<meta name="description" content={description} />)
+    }
+    <script type="application/ld+json">
+    { JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "@id": "https://reinamultiservicios.es/#localbusiness",
+        "name": company.name,
+        "legalName": company.name,
+        "url": "https://reinamultiservicios.es",
+        "telephone": company.phoneList[0].phoneLink.replace('tel:', ''),
+        "email": company.mails[0],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": company.address,
+          "addressLocality": "La Nucia",
+          "addressRegion": "Alicante",
+          "postalCode": "03530",
+          "addressCountry": "ES"
+        },
+        "areaServed": {
+          "@type": "AdministrativeArea",
+          "name": "Alicante"
+        },
+        "priceRange": "€€" 
+    })} 
+    </script>
 	</head>
   <script>
     document.addEventListener('DOMContentLoaded', ()=>{

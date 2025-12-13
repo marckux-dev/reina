@@ -25,12 +25,7 @@ const { title = "Preguntas Frecuentes", faqs } = Astro.props;
           {question}
         </summary>
         <div class="collapse-content text-base leading-relaxed">
-          <!--
-          <p>{answer}</p>
-          -->
-        <div class="markdown-content" set:html={marked.parse(answer)}/>
-
-
+          <div class="markdown-content" set:html={marked.parse(answer)}/>
         </div>
       </details>
     ))}
@@ -38,6 +33,20 @@ const { title = "Preguntas Frecuentes", faqs } = Astro.props;
   <div class="flex justify-center mt-8">
     <ContactButton link="/contacto" text="Pregúntanos" />
   </div>
+    <script type="application/ld+json">
+      {JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": faqs.map(faq => ({
+          "@type": "Question",
+          "name": faq.question,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": faq.answer.replace(/<\/?[^>]+>/g, "")
+          }
+        }))
+      })}
+    </script>
 </section>
 
 <style is:global>

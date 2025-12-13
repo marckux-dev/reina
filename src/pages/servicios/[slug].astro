@@ -19,13 +19,58 @@ const { Content } = await render(entry);
 const data = entry.data;
 ---
 
-<MainLayout title={ data.title }>
+<MainLayout 
+  title={ data.title }
+  description={`Servicio profesional de ${data.h1} en Alicante y Costa Blanca. Presupuesto sin compromiso.`}
+>
   <main>
     <HeroService 
       title={ data.h1} 
       subtitle={ data.subtitle } 
       image={ data.headerImage } 
     />
+
+    <script type="application/ld+json">
+      {JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "@id": `https://reinamultiservicios.es/servicios/${entry.slug}#service`,
+        "name": data.h1,
+        "description": data.subtitle,
+        "provider": {
+          "@type": "LocalBusiness",
+          "@id": "https://reinamultiservicios.es/#localbusiness"
+        },
+        "areaServed": {
+          "@type": "AdministrativeArea",
+          "name": "Alicante"
+        },
+        "availableChannel": {
+          "@type": "ServiceChannel",
+          "serviceLocation": {
+            "@type": "Place",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "La Nucia",
+              "addressRegion": "Alicante",
+              "addressCountry": "ES"
+            }
+          }
+        },
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": data.h1,
+          "itemListElement": data.features.map(feature => ({
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": feature
+            }
+          }))
+        }
+      })}
+    </script>
+
     <FeaturesService features={ data.features } />
     <Gallery images={ data.gallery }/>
     <ParallaxService 

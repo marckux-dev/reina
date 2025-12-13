@@ -2,62 +2,83 @@
 import PhoneIcon from '../icons/PhoneIcon.svg';
 import MailIcon from '../icons/MailIcon.svg';
 import { company } from '../data/company';
+import { getCollection } from 'astro:content';
+const services = await getCollection('services');
 ---
 
 <div class="bg-neutral text-neutral-content">
   <footer
-    class="footer container mx-auto md:footer-horizontal p-10"
+    class="footer container mx-auto p-10"
   >
-    <nav>
-      <h6 class="footer-title"><a href="/legal">Información Legal</a></h6>
-      <a href="/legal/politica-privacidad" class="link link-hover"
-        >Politicas de privacidad</a
-      >
-      <a href="/legal/politica-cookies" class="link link-hover"
-        >Política de cookies</a
-      >
-      <a href="/legal/aviso-legal" class="link link-hover">Aviso legal</a>
-    </nav>
-    <nav>
-      <h6 class="footer-title"><a href="/contacto">Contacto</a></h6>
-      <p class=" ">Dirección:</p>
-      <address>
-        <p class=" ">{ company.address }</p>
-        <p class=" ">{ company.city }</p>
-      </address>
-      {
-      company.phoneList.map(phone => (
-        <p class="flex items-center gap-2">
-          <PhoneIcon />
-        <a href={ phone.phoneLink} class="hover:text-primary hover:underline">
-          { phone.phoneNumber }
-        </a>
-        </p>
-      ))
-      }
-      {
-      company.mails.map(mail => (
-        <p class="flex items-center gap-2">
-          <MailIcon /><a
-            href={ 'mailto:' + mail }
-            class="hover:text-primary hover:underline"
-          >{ mail }</a
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+      <nav>
+        <h6 class="footer-title">Servicios</h6>
+        <div class="flex flex-col">
+          {
+          services.map( service => (
+          <a href={`/servicios/${service.slug}`} class="link link-hover">
+            { service.data.title }
+          </a>
+          ))
+          }
+        </div>
+      </nav>
+      
+      <nav>
+        <h6 class="footer-title"><a href="/legal">Información Legal</a></h6>
+        <div class="flex flex-col">
+          <a href="/legal/politica-privacidad" class="link link-hover"
+            >Politicas de privacidad</a
           >
-        </p>
-      ))
-      }
-    </nav>
-    <div class="flex justify-center">
-      <div class="w-full max-w-md aspect-video">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d618.7106604106074!2d-0.13172895148461938!3d38.60042357957572!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd62038cb02e8f9f%3A0xd21af1c4fadd67f!2sReina%20Multiservicios%20Costablanca!5e0!3m2!1ses!2ses!4v1764847937291!5m2!1ses!2ses"
-          class="w-full h-full rounded-lg border-0"
-          allowfullscreen
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-        >
-        </iframe>
+          <a href="/legal/politica-cookies" class="link link-hover"
+            >Política de cookies</a
+          >
+          <a href="/legal/aviso-legal" class="link link-hover">Aviso legal</a>
+        </div>
+      </nav>
+      <nav>
+        <h6 class="footer-title"><a href="/contacto">Contacto</a></h6>
+        <p class=" ">Dirección:</p>
+        <address>
+          <p class=" ">{ company.address }</p>
+          <p class=" ">{ company.city }</p>
+        </address>
+        {
+        company.phoneList.map(phone => (
+          <p class="flex items-center gap-2">
+            <PhoneIcon />
+          <a href={ phone.phoneLink} class="hover:text-primary hover:underline">
+            { phone.phoneNumber }
+          </a>
+          </p>
+        ))
+        }
+        {
+        company.mails.map(mail => (
+          <p class="flex items-center gap-2">
+            <MailIcon /><a
+              href={ 'mailto:' + mail }
+              class="hover:text-primary hover:underline"
+            >{ mail }</a
+            >
+          </p>
+        ))
+        }
+      </nav>
+      <div class="flex justify-center">
+        <div class="w-full max-w-md aspect-video">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d618.7106604106074!2d-0.13172895148461938!3d38.60042357957572!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd62038cb02e8f9f%3A0xd21af1c4fadd67f!2sReina%20Multiservicios%20Costablanca!5e0!3m2!1ses!2ses!4v1764847937291!5m2!1ses!2ses"
+            class="w-full h-full rounded-lg border-0"
+            allowfullscreen
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          >
+          </iframe>
+        </div>
       </div>
     </div>
+      
   </footer>
 </div>
