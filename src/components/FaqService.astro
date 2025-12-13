@@ -33,8 +33,9 @@ const { title = "Preguntas Frecuentes", faqs } = Astro.props;
   <div class="flex justify-center mt-8">
     <ContactButton link="/contacto" text="Pregúntanos" />
   </div>
-    <script type="application/ld+json">
-      {JSON.stringify({
+  <script 
+    type="application/ld+json"
+    set:html={ JSON.stringify({
         "@context": "https://schema.org",
         "@type": "FAQPage",
         "mainEntity": faqs.map(faq => ({
@@ -45,8 +46,8 @@ const { title = "Preguntas Frecuentes", faqs } = Astro.props;
             "text": faq.answer.replace(/<\/?[^>]+>/g, "")
           }
         }))
-      })}
-    </script>
+    })}
+  />
 </section>
 
 <style is:global>

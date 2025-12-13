@@ -23,31 +23,32 @@ const { title, description } = Astro.props;
       description &&
       (<meta name="description" content={description} />)
     }
-    <script type="application/ld+json">
-    { JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "@id": "https://reinamultiservicios.es/#localbusiness",
-        "name": company.name,
-        "legalName": company.name,
-        "url": "https://reinamultiservicios.es",
-        "telephone": company.phoneList[0].phoneLink.replace('tel:', ''),
-        "email": company.mails[0],
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": company.address,
-          "addressLocality": "La Nucia",
-          "addressRegion": "Alicante",
-          "postalCode": "03530",
-          "addressCountry": "ES"
-        },
-        "areaServed": {
-          "@type": "AdministrativeArea",
-          "name": "Alicante"
-        },
-        "priceRange": "€€" 
-    })} 
-    </script>
+    <script 
+      type="application/ld+json"
+      set:html={ JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          "@id": "https://reinamultiservicios.es/#localbusiness",
+          "name": company.name,
+          "legalName": company.name,
+          "url": "https://reinamultiservicios.es",
+          "telephone": company.phoneList[0].phoneLink.replace('tel:', ''),
+          "email": company.mails[0],
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": company.address,
+            "addressLocality": "La Nucia",
+            "addressRegion": "Alicante",
+            "postalCode": "03530",
+            "addressCountry": "ES"
+          },
+          "areaServed": {
+            "@type": "AdministrativeArea",
+            "name": "Alicante"
+          },
+          "priceRange": "€€" 
+      })} 
+    />
     <script>
       document.addEventListener('DOMContentLoaded', ()=>{
         document.querySelectorAll('img[data-fade]').forEach(img => {
