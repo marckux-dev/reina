@@ -6,6 +6,11 @@ import MainLayout from '../layouts/MainLayout.astro';
   title="Gracias por contactar"
   description="Hemos recibido tu mensaje. En breve nos pondremos en contacto contigo."
 >
+  <script>
+    if (window.history.replaceState) {
+      window.history.replaceState(null, '', window.location.pathname)
+    }
+  </script>
   <main class="min-h-[60vh] flex items-center justify-center px-6 py-16">
     <section class="max-w-xl text-center space-y-6">
       <h1 class="text-4xl font-bold text-primary">

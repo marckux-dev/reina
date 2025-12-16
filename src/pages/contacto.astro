@@ -31,11 +31,19 @@ const phoneNumber = company.phoneList[0].phoneNumber;
         method="POST"
         data-netlify="true"
         data-netlify-recaptcha="true"
+        data-netlify-honeypot="bot-field"
         action="/gracias"
         class="bg-base-200 p-8 rounded-2xl shadow-md space-y-5"
       >
         <!-- Campo oculto obligatorio -->
         <input type="hidden" name="form-name" value="contacto" />
+
+        <p class="hidden">
+          <label>
+            No rellenar este Campo
+            <input name="bot-field" />
+          </label>
+        </p>
 
         <div class="form-control">
           <label class="label"><span class="label-text">Nombre</span></label>
