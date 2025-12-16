@@ -31,38 +31,30 @@ const phoneNumber = company.phoneList[0].phoneNumber;
         method="POST"
         data-netlify="true"
         data-netlify-recaptcha="true"
-        data-netlify-honeypot="bot-field"
-        action="/gracias"
         class="bg-base-200 p-8 rounded-2xl shadow-md space-y-5"
       >
         <!-- Campo oculto obligatorio -->
         <input type="hidden" name="form-name" value="contacto" />
 
-        <p class="hidden">
-          <label>
-            No rellenar este Campo
-            <input name="bot-field" />
-          </label>
-        </p>
-
         <div class="form-control">
-          <label class="label"><span class="label-text">Nombre</span></label>
-          <input type="text" name="nombre" placeholder="Tu nombre" class="input input-bordered w-full" required />
+          <label class="label" for="nombre"><span class="label-text">Nombre</span></label>
+          <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" class="input input-bordered w-full" required />
         </div>
 
         <div class="form-control">
-          <label class="label"><span class="label-text">Teléfono</span></label>
-          <input type="tel" name="telefono" placeholder="Ej. 612 345 678" class="input input-bordered w-full" required />
+          <label class="label" for="telefono" ><span class="label-text">Teléfono</span></label>
+          <input type="tel" id="telefono" name="telefono" placeholder="Ej. 612 345 678" class="input input-bordered w-full" required />
         </div>
 
         <div class="form-control">
-          <label class="label"><span class="label-text">Correo electrónico</span></label>
-          <input type="email" name="email" placeholder="tu@email.com" class="input input-bordered w-full" required />
+          <label class="label" for="email"><span class="label-text">Correo electrónico</span></label>
+          <input type="email" id="email" name="email" placeholder="tu@email.com" class="input input-bordered w-full" required />
         </div>
 
         <div class="form-control">
-          <label class="label"><span class="label-text">Mensaje</span></label>
+          <label class="label" for="mensaje"><span class="label-text">Mensaje</span></label>
           <textarea
+            id="mensaje"
             name="mensaje"
             placeholder="Cuéntanos qué necesitas o el servicio que te interesa"
             class="textarea textarea-bordered w-full h-32"
