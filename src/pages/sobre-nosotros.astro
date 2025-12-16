@@ -1,7 +1,103 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
+import HeroService from '../components/HeroService.astro';
+import FeaturesService from '../components/FeaturesService.astro';
+import ContactButton from '../components/ContactButton.astro';
 ---
 
-<MainLayout title="Nosotros">
+<MainLayout
+  title="Sobre Nosotros"
+  description="Conoce Reina Multiservicios Costablanca: más de 30 años de experiencia en limpieza industrial, pulidos y tratamientos de superficies en Alicante."
+>
+  <main>
+
+    <!-- HERO -->
+    <HeroService
+      title="Sobre Nosotros"
+      subtitle="Profesionales en limpieza industrial y tratamientos de superficies con más de 30 años de experiencia"
+      image="generada_limpieza.webp"
+    />
+
+    <!-- QUIÉNES SOMOS -->
+    <section class="container mx-auto px-6 py-16 max-w-4xl text-lg leading-relaxed">
+      <h2 class="text-3xl font-bold text-center mb-8">
+        Reina Multiservicios Costablanca
+      </h2>
+
+      <p class="mb-6">
+        En <strong>Reina Multiservicios Costablanca S.L.</strong> somos una empresa
+        especializada en <strong>limpieza industrial, pulidos, cristalizados y
+        tratamientos técnicos de superficies</strong>, con una trayectoria
+        consolidada de más de <strong>30 años de experiencia</strong> en el sector.
+      </p>
+
+      <p class="mb-6">
+        A lo largo de estos años hemos trabajado para <strong>industrias,
+        hoteles, comunidades, empresas, comercios y clientes particulares</strong>,
+        ofreciendo soluciones eficaces, seguras y adaptadas a cada entorno.
+      </p>
+
+      <p>
+        Nuestra filosofía se basa en la <strong>calidad del trabajo bien hecho</strong>,
+        el uso de <strong>maquinaria profesional</strong> y la aplicación rigurosa de
+        las <strong>normas de seguridad y prevención</strong> en cada intervención.
+      </p>
+    </section>
+
+    <!-- CÓMO TRABAJAMOS / VALORES -->
+    <section class="bg-base-200 py-16">
+      <div class="container mx-auto px-6 max-w-4xl text-lg leading-relaxed">
+        <h2 class="text-3xl font-bold text-center mb-8">
+          Nuestra forma de trabajar
+        </h2>
+
+        <p class="mb-6">
+          Cada proyecto comienza con un <strong>análisis previo</strong> de la
+          superficie, el estado del material y las necesidades reales del cliente.
+          A partir de ahí, seleccionamos los <strong>procesos, productos y maquinaria</strong>
+          más adecuados para garantizar resultados óptimos y duraderos.
+        </p>
+
+        <p class="mb-6">
+          Nos adaptamos a instalaciones en funcionamiento, planificando los trabajos
+          por fases, zonas u horarios especiales para <strong>minimizar
+          interrupciones</strong> en la actividad diaria.
+        </p>
+
+        <p>
+          Ofrecemos tanto <strong>servicios puntuales</strong> como
+          <strong>planes de mantenimiento periódico</strong>, ajustados a las
+          necesidades de cada cliente.
+        </p>
+      </div>
+    </section>
+
+    <!-- POR QUÉ CONFIAR EN NOSOTROS -->
+    <FeaturesService
+      features={[
+        'Más de 30 años de experiencia en el sector.',
+        'Especialistas en limpieza industrial y tratamientos técnicos.',
+        'Maquinaria profesional y productos específicos para cada superficie.',
+        'Cumplimiento estricto de normativas de seguridad.',
+        'Adaptación a entornos operativos sin interrumpir la actividad.',
+        'Presupuestos y visitas técnicas gratuitas.',
+        'Resultados duraderos y garantía de calidad.'
+      ]}
+    />
+
+    <!-- CTA FINAL -->
+    <section class="container mx-auto px-6 py-16 text-center">
+      <h2 class="text-3xl font-bold mb-6">
+        ¿Hablamos de tu proyecto?
+      </h2>
+      <p class="text-lg mb-8 max-w-2xl mx-auto">
+        Estaremos encantados de asesorarte y ofrecerte un presupuesto
+        personalizado sin compromiso.
+      </p>
+
+      <ContactButton link="/contacto" text="Contacta con nosotros" />
+    </section>
+
+  </main>
 </MainLayout>
 

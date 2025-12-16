@@ -1,0 +1,37 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import Card from "../../components/Card.astro";
+import ContactButton from "../../components/ContactButton.astro";
+import { getCollection } from 'astro:content';
+const services = await getCollection('services');
+---
+
+<MainLayout 
+  title="Servicios"
+  description="Catálogo de servicios de Reina Multiservicios Costablanca"
+>
+  <main class="container mx-auto my-8">
+    <h1 class="text-3xl font-bold text-center mt-4 mb-4">
+      Nuestros Servicios
+    </h1>
+
+    <div class="grid
+      grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6
+      gap-4"
+    >
+      {
+      services.map( service => (
+      <Card
+        image={ service.data.headerImage }
+        title={ service.data.navItem }
+        href={ `/servicios/${ service.slug }` }
+      />
+      ))
+      }
+    </div>
+
+    <div class="flex justify-center my-8">
+      <ContactButton link="/contacto" text="Pide presupuesto" />
+    </div>
+  </main>
+</MainLayout>
