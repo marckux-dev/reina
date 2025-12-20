@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+import CookieBanner from '../components/CookieBanner.astro';
 import { siteMap } from '../data/siteMap';
 import { company } from '../data/company';
 interface Props {
@@ -65,14 +66,6 @@ const { title, description } = Astro.props;
 	</head>
   
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-B6KSK9JMB5"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-B6KSK9JMB5');
-  </script>
 
 
   <!-- Fin del Head. Inicio del body -->
@@ -81,6 +74,6 @@ const { title, description } = Astro.props;
     <Navbar siteMap={ siteMap } />
     <slot />
     <Footer />
-
+  <CookieBanner />
 	</body>
 </html>

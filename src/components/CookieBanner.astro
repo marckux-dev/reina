@@ -1,0 +1,67 @@
+---
+---
+
+<div
+  id="cookie-banner"
+  class="fixed bottom-4 left-1/2 -translate-x-1/2 max-w-3xl w-[95%] flex flex-col md:flex-row
+  items-start md:items-center gap-4 bg-base-100 border border-base-300 rounded-l-2xl
+  shadow-xl p-6 text-sm z-50"
+  hidden
+>
+  <p class="flex-1 text-base-content leading-relaxed">
+    Utilizamos cookies analíticas para mejorar nuestro servicio y analizar el uso del sitio
+    web. Puedes aceptarlas o rechazarlas.
+    <a href="/legal/politica-cookies" class="link link-primary ml-1">Más información</a>
+  </p>
+  <div class="flex gap-2 shrink-0">
+    <button id="cookie-reject" class="btn btn-outline btn-sm">Rechazar</button>
+    <button id="cookie-accept" class="btn btn-primary btn-sm">Aceptar</button>
+  </div>
+</div>
+
+<script>
+  const banner = document.getElementById('cookie-banner');
+  const acceptBtn = document.getElementById('cookie-accept');
+  const rejectBtn = document.getElementById('cookie-reject');
+  const CONSENT_KEY = 'cookie-consent';
+  const hasGACookies = () => document.cookie.split(';').some(c => c.trim().startsWith('_ga'));
+
+  const consent = localStorage.getItem(CONSENT_KEY);
+
+  // TO DELETE
+  console.log(`consent: ${consent}`);
+  console.log(`hasGACookies: ${hasGACookies()}`);
+  console.log('COOKIES');
+  console.log(document.cookie.split(';').filter( c => c.trim().startsWith('_ga')));
+  //
+
+  if (!consent) {
+    banner.hidden = false;
+  }
+
+  if (consent === 'accepted' && !hasGACookies()) {
+    // TO DELETE
+    console.log('Se detectó accepted en localStorage pero no hay cookies');
+    localStorage.removeItem(CONSENT_KEY);
+    banner.hidden = false;
+    //
+  }
+
+  if (consent === 'accepted' && hasGACookies()) {
+    import('../scripts/load-ga.js').then( m => m.loadGoogleAnalytics());
+  }
+
+
+  acceptBtn?.addEventListener('click', async () => {
+    localStorage.setItem(CONSENT_KEY, 'accepted');
+    const { loadGoogleAnalytics } = await import('../scripts/load-ga.js');
+    loadGoogleAnalytics();
+    banner.hidden = true;
+  });
+
+  rejectBtn?.addEventListener('click', () => {
+    localStorage.setItem(CONSENT_KEY, 'rejected');
+    banner.hidden = true;
+  });
+
+</script>
