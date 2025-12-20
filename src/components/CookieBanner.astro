@@ -28,13 +28,6 @@
 
   const consent = localStorage.getItem(CONSENT_KEY);
 
-  // TO DELETE
-  console.log(`consent: ${consent}`);
-  console.log(`hasGACookies: ${hasGACookies()}`);
-  console.log('COOKIES');
-  console.log(document.cookie.split(';').filter( c => c.trim().startsWith('_ga')));
-  //
-
   if (!consent) {
     banner.hidden = false;
   }

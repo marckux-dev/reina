@@ -30,11 +30,18 @@ const phoneNumber = company.phoneList[0].phoneNumber;
         name="contacto"
         method="POST"
         data-netlify="true"
+        netlify-honeypot="bot-field"
         data-netlify-recaptcha="true"
+        action="/gracias"
+        onsubmit="return markSubmitted()"
         class="bg-base-200 p-8 rounded-2xl shadow-md space-y-5"
       >
         <!-- Campo oculto obligatorio -->
         <input type="hidden" name="form-name" value="contacto" />
+
+        <p hidden>
+          <label>Miel: <input name="bot-field" /></label>
+        </p>
 
         <div class="form-control">
           <label class="label" for="nombre"><span class="label-text">Nombre</span></label>
@@ -96,5 +103,11 @@ const phoneNumber = company.phoneList[0].phoneNumber;
       </a>
     </div>
   </section>
+  <script is:inline>
+  function markSubmitted() {
+    sessionStorage.setItem('contactSubmitted', 'true')
+    return true;
+  }
+  </script>
 </MainLayout>
 

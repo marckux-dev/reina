@@ -36,5 +36,12 @@ import MainLayout from '../layouts/MainLayout.astro';
       </div>
     </section>
   </main>
+  <script is:inline>
+    if (sessionStorage.getItem('contactSubmitted') !== 'true') {
+      window.location.href = '/';
+    } else {
+      sessionStorage.removeItem('contactSubmitted');
+    }
+  </script>
 </MainLayout>
 
