@@ -1,16 +1,126 @@
 ---
-const target = "/inicio/"; 
+import MainLayout from '../layouts/MainLayout.astro';
+import HeroSlider from '../components/HeroSlider.astro';
+import Card from '../components/Card.astro';
+import ContactButton from '../components/ContactButton.astro';
+import { getCollection } from 'astro:content';
+const services = await getCollection('services');
+import { homeFaqs } from '../data/homeFaqs.ts'
+import FaqService from '../components/FaqService.astro';
 ---
 
-<html lang="es">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="refresh" content={`0; url=${target}`} />
-    <link rel="canonical" href={target} />
-    <title>Redirigiendo a Inicio...</title>
-  </head>
-  <body>
-    <p>Redirigiendo a <a href={target}>Inicio</a>...</p>
-  </body>
-</html>
+<MainLayout 
+  title="Inicio"
+  description="Empresa de limpieza industrial, pulidos y tratamientos de superficies en Alicante y Costa Blanca. Más de 30 años de experiencia. Presupuesto gratuito."
+>
 
+  <header class="relative h-[90vh] overflow-hidden">
+    <HeroSlider
+      images={[
+        "generada_paneles.webp",
+        "generada_suelo_exterior.webp",
+        "generada_recibidor.webp",
+        "generada_hormigon.webp",
+        "altura.webp",
+      ]}
+      interval={6000}
+    />
+    <!-- Oscurecimiento para mejorar contraste -->
+    <div
+      class="absolute z-1 inset-0 bg-linear-to-t from-black/80 via-black/50 to-transparent"
+    ></div>
+    <div
+      class="absolute inset-0 z-10 flex flex-col items-center justify-center h-full text-center text-neutral-content px-4"
+    >
+      <h1 class="fade-up text-4xl md:text-6xl font-bold drop-shadow-lg mb-4 flex-col justify-center items-center">
+        <span>Servicios Profesionales de Limpieza Industrial,</span> <br/> <span>Pulidos y Cristalizados de Superficies</span>
+      </h1>
+      <p
+        class="fade-up-delay text-lg md:text-2xl max-w-2xl font-semibold text-gray-200 leading-relaxed"
+      >
+        Expertos en limpieza, mantenimiento integral y
+        una amplia gama de tratamientos especializados para todo tipo de superficies.
+      </p>
+    </div>
+  </header>
+
+  <main class="container mx-auto">
+
+    <section
+      class="container mx-auto px-6 py-12 leading-relaxed text-lg text-base "
+    >
+      <h2 class="text-3xl font-bold text-center mt-4 mb-4">
+        Bienvenido a Reina Multiservicios Costablanca
+      </h2>
+
+      <h3 class="text-2xl font-bold italic text-primary text-center mb-6">
+        Profesionales en Alicante con más de 30 años de experiencia.
+        Soluciones profesionales de limpieza, mantenimiento, pulidos, cristalizados y tratamientos 
+        específicos en todo tipo de superficies.
+      </h3>
+
+      <div class="flex justify-center my-8">
+        <ContactButton link="/contacto" text="Contacta con Nosotros" />
+      </div>
+
+      <p class="mb-4">
+        <strong>
+          Nuestra experiencia y seriedad nos consolidan como una empresa de referencia en la
+          Costa Blanca
+        </strong>
+      </p>
+
+      <p class="mb-4">
+        Contamos con una sólida trayectoria en el sector, lo que nos permite ofrecer un servicio 
+        caracterizado por la <strong> calidad y el compromiso en cada trabajo que realizamos</strong>.
+        Disponemos de un equipo de profesionales capacitados para dar respuesta a los requerimientos 
+        de cada cliente con eficacia y responsabilidad. Utilizamos <strong> maquinaria 
+        especializada, productos específicos</strong> para cada necesidad y aplicamos las 
+        <strong> normas de seguridad pertinentes para cada proceso de trabajo</strong>. Atendemos a 
+        hoteles, comunidades, empresas, particulares y otros sectores del ámbito público y privado.
+        Prestamos servicio en toda la Costa Blanca, en todo el territorio nacional y a nivel 
+        internacional.
+      </p>
+
+      <p class="mb-4">
+        Con más de 30 años de experiencia en el sector, nos avala la confianza de nuestros clientes 
+        y nuestro compromiso con <strong> los más altos estándares de calidad</strong>.
+      </p>
+
+    </section>
+
+    <section
+      class="mb-8"
+    >
+
+      <h2 class="text-3xl font-bold text-center mt-4 mb-4">
+        Nuestros Servicios
+      </h2>
+
+      <div class="grid
+        grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6
+        gap-4"
+      >
+        {
+        services.map( service => (
+        <Card
+          image={ service.data.headerImage }
+          title={ service.data.navItem }
+          href={ `/servicios/${ service.slug }` }
+        />
+        ))
+        }
+      </div>
+
+      <div class="flex justify-center my-8">
+        <ContactButton link="/contacto" text="Pide presupuesto" />
+      </div>
+
+
+    <FaqService faqs={ homeFaqs }/>
+
+
+    </section>
+
+  </main>
+</MainLayout>

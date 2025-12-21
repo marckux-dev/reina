@@ -10,7 +10,7 @@ export interface SiteMap {
 
 export const siteMap: SiteMap = {
   home: {
-    url: '/inicio',
+    url: '/',
     label: 'Inicio',
   },
   about: {
