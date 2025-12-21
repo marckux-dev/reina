@@ -13,5 +13,10 @@ export default defineConfig({
     plugins: [tailwindcss()]
   },
   site: 'https://reinamultiservicios.es',
-  integrations: [mdx(), sitemap()]
+  integrations: [
+    mdx(), 
+    sitemap({
+      entryLimit: 50000,
+    }),
+  ]
 });
