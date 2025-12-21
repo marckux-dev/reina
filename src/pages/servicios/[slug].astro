@@ -76,7 +76,7 @@ const data = entry.data;
       type="application/ld+json"
       set:html={JSON.stringify({
         "@context": "https://schema.org",
-        "@type": "Breadcrumblist",
+        "@type": "BreadcrumbList",
         "itemListElement": [
           {
             "@type": "ListItem",
@@ -94,7 +94,7 @@ const data = entry.data;
             "@type": "ListItem",
             "position": 3,
             "name": data.h1,
-            "item": `https://reinamultiservicios.es/${entry.slug}`,
+            "item": `https://reinamultiservicios.es/servicios/${entry.slug}`,
           },
         ]
       })}
