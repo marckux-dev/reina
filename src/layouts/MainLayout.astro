@@ -29,10 +29,10 @@ const { title, description } = Astro.props;
       type="application/ld+json"
       set:html={ JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "LocalBusiness",
+          "@type": ["LocalBusiness", "CleaningService"],
           "@id": "https://reinamultiservicios.es/#localbusiness",
           "name": company.name,
-          "legalName": company.name,
+          "legalName": `${company.name} S.L.`,
           "url": "https://reinamultiservicios.es",
           "telephone": company.phoneList[0].phoneLink.replace('tel:', ''),
           "email": company.mails[0],
@@ -44,11 +44,46 @@ const { title, description } = Astro.props;
             "postalCode": "03530",
             "addressCountry": "ES"
           },
-          "areaServed": {
-            "@type": "AdministrativeArea",
-            "name": "Alicante"
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 38.60037,
+            "longitude": -0.13152
           },
-          "priceRange": "€€" 
+          "areaServed": [
+            {
+              "@type": "Country",
+              "name": "España"
+            },
+            {
+              "@type": "AdministrativeArea",
+              "name": "Comunitat Valenciana"
+            },
+            {
+              "@type": "AdministrativeArea",
+              "name": "Alicante"
+            },
+            {
+              "@type": "Place",
+              "name": "Benidorm",
+            },
+            {
+              "@type": "Place",
+              "name": "Calp"
+            },
+            {
+              "@type": "Place",
+              "name": "La Vila Joiosa"
+            },
+            {
+              "@type": "Place",
+              "name": "Altea"
+            }
+          ],
+          "priceRange": "€€",
+          "hasMap": "https://maps.app.goo.gl/gBPjTHSERKmAVCoK7",
+          "sameAs": [
+            "https://maps.app.goo.gl/gBPjTHSERKmAVCoK7"
+          ]
       })} 
     />
     <script>

@@ -1,5 +1,5 @@
 export const company = {
-  name: 'Reina Multiservicios Costablanca S.L',
+  name: 'Reina Multiservicios Costablanca',
   cif: 'B54991807',
   phoneList: [
     {
