@@ -14,32 +14,32 @@ export const siteMap: SiteMap = {
     label: 'Inicio',
   },
   about: {
-    url: '/sobre-nosotros',
+    url: '/sobre-nosotros/',
     label: 'Sobre Nosotros',
   },
   services: {
-    url: '/servicios',
+    url: '/servicios/',
     label: 'Servicios',
     children: [],
   },
   contact: {
-    url: '/contacto',
+    url: '/contacto/',
     label: 'Contacto',
   },
   // Esta sección no se mostrará en el NavBar:
   legal: {
-    url: '/legal',
+    url: '/legal/',
     children: [
       {
-        url: '/legal/aviso-legal',
+        url: '/legal/aviso-legal/',
         label: 'Aviso Legal',
       },
       {
-        url: '/legal/politica-privacidad',
+        url: '/legal/politica-privacidad/',
         label: 'Política de Privacidad',
       },
       {
-        url: '/legal/politica-cookies',
+        url: '/legal/politica-cookies/',
         label: 'Política de Cookies',
       },
     ],
