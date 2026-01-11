@@ -9,16 +9,36 @@ const servicesCollection = defineCollection({
     title: z.string(), // The title of the Service webpage
     h1: z.string(),
     subtitle: z.string(),
-    headerImage: z.string(),
+    headerImage: z.union([
+      z.string(),
+      z.object({
+        src: z.string(),
+        alt: z.string().optional(),
+      }),
+    ]),
     features: z.array(z.string()),
-    gallery: z.array(z.string()),
-    parallaxImage: z.string(),
+    gallery: z.array(
+      z.union([
+        z.string(),
+        z.object({
+          src: z.string(),
+          alt: z.string().optional(),
+        }),
+      ]),
+    ),
+    parallaxImage: z.union([
+      z.string(),
+      z.object({
+        src: z.string(),
+        alt: z.string().optional(),
+      }),
+    ]),
     slogan: z.string(),
     faqs: z.array(
       z.object({
         question: z.string(),
         answer: z.string(),
-      })
+      }),
     ),
   }),
 });

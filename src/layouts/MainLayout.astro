@@ -8,8 +8,9 @@ import { company } from '../data/company';
 interface Props {
   title: string;
   description?: string;
+  noindex?: boolean;
 }
-const { title, description } = Astro.props;
+const { title, description, noindex = false } = Astro.props;
 
 ---
 
@@ -21,6 +22,13 @@ const { title, description } = Astro.props;
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
     <title>{ title } | Reina Multiservicios</title>
+    {
+      noindex? (
+        <meta name="robots" content="noidex, nofollow" />
+      ):(
+        <meta name="robots" content="index, follow" />
+      )
+    }
     {
       description &&
       (<meta name="description" content={description} />)

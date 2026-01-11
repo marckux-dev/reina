@@ -17,6 +17,7 @@ export default defineConfig({
     mdx(), 
     sitemap({
       entryLimit: 50000,
+      filter: p => !p.includes('/legal/') && !p.includes('/gracias'),
     }),
   ]
 });

@@ -9,11 +9,11 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.5",
+    "@astrojs/check": "^0.9.6",
     "@astrojs/mdx": "^4.3.13",
-    "@astrojs/sitemap": "^3.6.0",
+    "@astrojs/sitemap": "^3.6.1",
     "@tailwindcss/vite": "^4.1.15",
-    "astro": "^5.15.2",
+    "astro": "^5.16.8",
     "astro-lightgallery": "^2.0.1",
     "astro-swiper": "^1.1.0",
     "daisyui": "^5.3.7",

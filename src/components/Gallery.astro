@@ -3,28 +3,38 @@ import { Image } from 'astro:assets';
 import 'photoswipe/style.css';
 
 interface Props {
-  images: string[];
+  images: (string | { src: string; alt?: string} )[];
+  serviceTitle?: string; // Prop opcional para mejorar el alt genérico
 }
 
-const { images } = Astro.props;
+const { images, serviceTitle = 'servicio' } = Astro.props;
 
 const imagesMap = import.meta.glob('../assets/images/*.{png,jpg,jpeg,webp,avif}', {
   eager: true,
   import: 'default',
 });
 const resolvedImages = images
-  .map(image => imagesMap[`../assets/images/${image}`])
+  .map(item => {
+    const imageObj = typeof item === 'string'? { src: item, alt: undefined } : item;
+    const asset = imagesMap[`../assets/images/${imageObj.src}`];
+    if (asset) {
+      return {
+        asset,
+        alt: imageObj.alt || `Galería de ${serviceTitle}`,
+      }
+    }
+    return null;
+  }) 
   .filter(Boolean);
-
 ---
 
 <section id="gallery" class="container mx-auto px-6 py-12 grid grid-cols-2 md:grid-cols-3 gap-4">
   {
   resolvedImages.map(img => (
-  <a href={img.src} target="_blank" class="block group">
+  <a href={img?.asset.src} target="_blank" class="block group">
     <Image
-        src={img} 
-        alt={`Imagen de galería`}
+        src={img?.asset} 
+        alt={img?.alt}
         widths={[300, 450, 600]}
         sizes="(max-width: 768px) 50vw, 33vw"
         quality={60}
