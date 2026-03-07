@@ -1,6 +1,7 @@
 ---
 import PhoneIcon from '../icons/PhoneIcon.svg';
 import MailIcon from '../icons/MailIcon.svg';
+import InstagramIcon from '../icons/InstagramIcon.svg';
 import { company } from '../data/company';
 import { getCollection } from 'astro:content';
 const services = await getCollection('services');
@@ -67,6 +68,15 @@ const services = await getCollection('services');
           </p>
         ))
         }
+        <p class='flex items-center gap-2 mt-2'>
+          <InstagramIcon class='w-5 h-5' /><a
+            href='https://www.instagram.com/reinamultiservicios/'
+            target='_blank'
+            rel='noopener noreferrer'
+            class='hover:text-primary hover:underline'
+          >@reinamultiservicios</a
+          >
+        </p>
       </nav>
       <div class="flex justify-center">
         <div class="w-full max-w-md aspect-video">

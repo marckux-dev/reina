@@ -13,5 +13,5 @@ export const company = {
   address: 'Calle Sella, 3. Polígono Alberca, Nave 2.',
   city: '03530 La Nucia (Alicante)',
   country: 'España',
-  whatsapp: '+34627825619'
+  whatsapp: '+34627825619',
 }

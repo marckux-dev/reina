@@ -1,6 +1,4 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
-
 import tailwindcss from '@tailwindcss/vite';
 
 import mdx from '@astrojs/mdx';
@@ -8,7 +6,7 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
-export default defineConfig({
+export default {
   vite: {
     plugins: [tailwindcss()]
   },
@@ -20,4 +18,4 @@ export default defineConfig({
       filter: p => !p.includes('/legal/') && !p.includes('/gracias'),
     }),
   ]
-});
+};

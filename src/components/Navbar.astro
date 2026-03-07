@@ -1,6 +1,7 @@
 ---
 import type { SiteMap } from '../data/siteMap';
-import LogoSinFondo from '../icons/LogoSinFondo.svg'; 
+import LogoSinFondo from '../icons/LogoSinFondo.svg';
+import InstagramIcon from '../icons/InstagramIcon.svg'; 
 import { getCollection } from 'astro:content';
 
 interface Props {
@@ -89,11 +90,24 @@ if (siteMap.services) {
         </ul>
       </div>
 
+      <!-- Right: desktop Instagram -->
+      <div class='navbar-end hidden lg:flex mr-8'>
+        <a
+          href='https://www.instagram.com/reinamultiservicios/'
+          target='_blank'
+          rel='noopener noreferrer'
+          aria-label='Instagram de Reina Multiservicios'
+          class='btn btn-ghost btn-circle text-base-content hover:text-primary'
+        >
+          <InstagramIcon class='w-6 h-6' />
+        </a>
+      </div>
+
       <!-- Right: mobile hamburger -->
-      <div class="navbar-end lg:hidden">
-        <label for="nav-drawer" class="btn btn-ghost">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" />
+      <div class='navbar-end lg:hidden'>
+        <label for='nav-drawer' class='btn btn-ghost'>
+          <svg xmlns='http://www.w3.org/2000/svg' class='h-6 w-6' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 6h16M4 12h8m-8 6h16' />
           </svg>
         </label>
       </div>
@@ -136,6 +150,17 @@ if (siteMap.services) {
             )}
           </li>
         ))}
+          <li class='mt-4'>
+        <a
+          href='https://www.instagram.com/reinamultiservicios/'
+          target='_blank'
+          rel='noopener noreferrer'
+          class='text-xl font-semibold text-primary flex items-center gap-2'
+          aria-label='Instagram de Reina Multiservicios'
+        >
+          <InstagramIcon class='w-5 h-5' /> Instagram
+        </a>
+      </li>
     </ul>
   </div>
 </div>
@@ -147,4 +172,3 @@ if (siteMap.services) {
     document.querySelectorAll('details[open]').forEach(d => d.removeAttribute('open'))
   })
 </script>
-
