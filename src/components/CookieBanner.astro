@@ -28,16 +28,13 @@
 
   const consent = localStorage.getItem(CONSENT_KEY);
 
-  if (!consent) {
+  if (!consent && !!banner) {
     banner.hidden = false;
   }
 
   if (consent === 'accepted' && !hasGACookies()) {
-    // TO DELETE
-    console.log('Se detectó accepted en localStorage pero no hay cookies');
     localStorage.removeItem(CONSENT_KEY);
-    banner.hidden = false;
-    //
+    if (!!banner) banner.hidden = false;
   }
 
   if (consent === 'accepted' && hasGACookies()) {
@@ -49,12 +46,12 @@
     localStorage.setItem(CONSENT_KEY, 'accepted');
     const { loadGoogleAnalytics } = await import('../scripts/load-ga.js');
     loadGoogleAnalytics();
-    banner.hidden = true;
+    if (!!banner) banner.hidden = true;
   });
 
   rejectBtn?.addEventListener('click', () => {
     localStorage.setItem(CONSENT_KEY, 'rejected');
-    banner.hidden = true;
+    if (!!banner) banner.hidden = true;
   });
 
 </script>
