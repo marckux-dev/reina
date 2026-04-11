@@ -3,12 +3,13 @@ import MainLayout from "../../layouts/MainLayout.astro";
 import Card from "../../components/Card.astro";
 import ContactButton from "../../components/ContactButton.astro";
 import { getCollection } from 'astro:content';
-const services = await getCollection('services');
+const services = (await getCollection('services'))
+  .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
 ---
 
 <MainLayout 
-  title="Servicios"
-  description="Catálogo de servicios de Reina Multiservicios Costablanca"
+  title="Servicios de Limpieza Industrial y Tratamiento de Suelos"
+  description="Servicios de limpieza industrial, pulido de suelos y tratamientos de superficies en Alicante y Costa Blanca. Empresas, hoteles, comunidades y particulares. Presupuesto gratuito."
 >
   <main class="container mx-auto my-8">
     <h1 class="text-3xl font-bold text-center mt-4 mb-4">

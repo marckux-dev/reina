@@ -5,10 +5,12 @@ const servicesCollection = defineCollection({
   // loader: glob({ pattern: "services/**/*.{md,mdx}", base: "./src/content" }),
   type: "content",
   schema: z.object({
+    order: z.number().optional(),
     navItem: z.string(), // The text in the top menu
     title: z.string(), // The title of the Service webpage
     h1: z.string(),
     subtitle: z.string(),
+    description: z.string().optional(),
     headerImage: z.union([
       z.string(),
       z.object({

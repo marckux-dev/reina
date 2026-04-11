@@ -22,3 +22,9 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# SEO working files
+seo-keywords.txt
+
+# Claude Code project settings
+.claude/

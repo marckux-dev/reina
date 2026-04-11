@@ -19,9 +19,9 @@ const { Content } = await render(entry);
 const data = entry.data;
 ---
 
-<MainLayout 
+<MainLayout
   title={ data.title }
-  description={`Servicio profesional de ${data.h1} en Alicante y Costa Blanca. Presupuesto sin compromiso.`}
+  description={ data.description }
 >
   <main>
     <HeroService 
@@ -103,6 +103,9 @@ const data = entry.data;
 
     <FeaturesService features={ data.features } />
     <Gallery images={ data.gallery } serviceTitle={data.h1}/>
+    <section class="service-content">
+      <Content />
+    </section>
     <ParallaxService 
       image={ data.parallaxImage } 
       slogan={ data.slogan } 

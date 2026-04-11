@@ -4,7 +4,8 @@ import HeroSlider from '../components/HeroSlider.astro';
 import Card from '../components/Card.astro';
 import ContactButton from '../components/ContactButton.astro';
 import { getCollection } from 'astro:content';
-const services = await getCollection('services');
+const services = (await getCollection('services'))
+  .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
 import { homeFaqs } from '../data/homeFaqs.ts'
 import FaqService from '../components/FaqService.astro';
 ---

@@ -11,7 +11,8 @@ interface Props {
 const { siteMap } = Astro.props
 const currentPath = Astro.url.pathname.replace(/\/$/, '')
 
-const servicesCollection = await getCollection('services');
+const servicesCollection = (await getCollection('services'))
+  .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
 
 const servicesChildren = servicesCollection.map( service => ({
   url: `/servicios/${service.slug}/`,
