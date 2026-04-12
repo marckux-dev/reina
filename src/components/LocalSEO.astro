@@ -1,0 +1,70 @@
+---
+import { company } from '../data/company';
+---
+
+<script
+  type="application/ld+json"
+  set:html={ JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": ["LocalBusiness", "CleaningService"],
+    "@id": "https://reinamultiservicios.es/#localbusiness",
+    "name": company.name,
+    "foundingDate": "2017",
+    "legalName": `${company.name} S.L.`,
+    "url": "https://reinamultiservicios.es",
+    "telephone": company.phoneList[0].phoneLink.replace('tel:', ''),
+    "email": company.mails[0],
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": company.address,
+      "addressLocality": "La Nucia",
+      "addressRegion": "Alicante",
+      "postalCode": "03530",
+      "addressCountry": "ES"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 38.60037,
+      "longitude": -0.13152
+    },
+    "areaServed": [
+      {
+        "@type": "Country",
+        "name": "España"
+      },
+      {
+        "@type": "AdministrativeArea",
+        "name": "Comunitat Valenciana"
+      },
+      {
+        "@type": "AdministrativeArea",
+        "name": "Alicante"
+      },
+      {
+        "@type": "Place",
+        "name": "Benidorm"
+      },
+      {
+        "@type": "Place",
+        "name": "Calp"
+      },
+      {
+        "@type": "Place",
+        "name": "La Vila Joiosa"
+      },
+      {
+        "@type": "Place",
+        "name": "Altea"
+      }
+    ],
+    "openingHours": [
+      "Mo-Fr 08:00-20:00",
+      "Sa 08:00-16:00"
+    ],
+    "priceRange": "€€",
+    "hasMap": "https://maps.app.goo.gl/gBPjTHSERKmAVCoK7",
+    "sameAs": [
+      "https://maps.app.goo.gl/gBPjTHSERKmAVCoK7"
+    ]
+  })}
+/>
