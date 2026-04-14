@@ -1,0 +1,24 @@
+---
+interface Props {
+  url: string;
+}
+
+const { url } = Astro.props;
+
+const cleanUrl = url.split('?')[0];
+const embedUrl = cleanUrl.endsWith('/') ? `${cleanUrl}embed/` : `${cleanUrl}/embed/`;
+---
+
+<div class="flex justify-center px-6 py-10">
+  <iframe
+    src={embedUrl}
+    width="400"
+    height="710"
+    frameborder="0"
+    scrolling="no"
+    allowtransparency="true"
+    loading="lazy"
+    title="Instagram Reel de Reina Multiservicios"
+    class="rounded-xl shadow-lg max-w-full"
+  />
+</div>

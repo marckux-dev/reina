@@ -30,6 +30,10 @@ img[data-fade].is-loaded {
     @apply mb-5 leading-relaxed text-lg;
   }
 
+  .trabajo-content h2 {
+    @apply text-2xl font-bold mb-8;
+  }
+
   @keyframes fadeUp {
     0% {
       opacity: 0;

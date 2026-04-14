@@ -22,6 +22,10 @@ export const siteMap: SiteMap = {
     label: 'Servicios',
     children: [],
   },
+  trabajos: {
+    url: '/trabajos/',
+    label: 'Trabajos',
+  },
   contact: {
     url: '/contacto/',
     label: 'Contacto',

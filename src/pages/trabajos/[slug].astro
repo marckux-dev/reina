@@ -1,0 +1,115 @@
+---
+import { getCollection, render } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+import MainLayout from '../../layouts/MainLayout.astro';
+import HeroService from '../../components/HeroService.astro';
+import Gallery from '../../components/Gallery.astro';
+import InstagramReel from '../../components/InstagramReel.astro';
+
+export const getStaticPaths = (async () => {
+  const trabajos = await getCollection('trabajos');
+  return trabajos.map(entry => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}) satisfies GetStaticPaths;
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const data = entry.data;
+
+const siteUrl = 'https://reinamultiservicios.es';
+const pageUrl = `${siteUrl}/trabajos/${entry.slug}/`;
+---
+
+<MainLayout
+  title={data.title}
+  description={data.description}
+>
+  <main>
+    <HeroService
+      title={data.h1}
+      subtitle={data.location ? `${data.location} · ${data.city}` : data.city}
+      image={data.coverImage.src}
+    />
+
+    <!-- JSON-LD: Service con GeoCoordinates -->
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": data.h1,
+        "description": data.description,
+        "provider": {
+          "@type": "LocalBusiness",
+          "@id": `${siteUrl}/#localbusiness`,
+        },
+        "areaServed": {
+          "@type": "City",
+          "name": data.city,
+          "containedInPlace": {
+            "@type": "AdministrativeArea",
+            "name": "Alicante",
+          },
+        },
+        ...(data.lat && data.lng ? {
+          "serviceDeliveryLocation": {
+            "@type": "Place",
+            "name": data.location ?? data.city,
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": data.lat,
+              "longitude": data.lng,
+            },
+          },
+        } : {}),
+        "url": pageUrl,
+      })}
+    />
+
+    <!-- JSON-LD: BreadcrumbList -->
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Inicio", "item": `${siteUrl}/` },
+          { "@type": "ListItem", "position": 2, "name": "Trabajos", "item": `${siteUrl}/trabajos/` },
+          { "@type": "ListItem", "position": 3, "name": data.h1, "item": pageUrl },
+        ],
+      })}
+    />
+
+
+    <!-- Contenido MDX -->
+    <section class="service-content trabajo-content">
+      <Content />
+    </section>
+
+    <!-- Vídeo (Instagram Reel) -->
+    {data.video && <InstagramReel url={data.video.url} />}
+
+    <!-- Galería -->
+    {data.gallery && data.gallery.length > 0 && (
+      <Gallery images={data.gallery} serviceTitle={data.h1} />
+    )}
+
+    <!-- CTA -->
+    <section class="bg-base-200 py-14 px-6 text-center mb-4">
+      <h2 class="text-2xl md:text-3xl font-bold mb-4">
+        ¿Necesitas este servicio en {data.city} o alrededores?
+      </h2>
+      <p class="text-base-content/70 mb-8 max-w-xl mx-auto">
+        Realizamos visitas técnicas sin compromiso. Cuéntanos tu proyecto y te enviamos presupuesto.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="/contacto/" class="btn btn-primary">Solicitar presupuesto</a>
+        <a href={`/servicios/${data.service}/`} class="btn btn-outline">
+          Ver servicio: {data.serviceLabel}
+        </a>
+      </div>
+    </section>
+  </main>
+</MainLayout>
