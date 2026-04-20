@@ -89,6 +89,23 @@ const pageUrl = `${siteUrl}/trabajos/${entry.slug}/`;
       })}
     />
 
+    <!-- JSON-LD: VideoObject (solo si hay Reel) -->
+    {data.videoUrl && (
+      <script
+        type="application/ld+json"
+        set:html={JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "VideoObject",
+          "name": data.h1,
+          "description": data.description,
+          "thumbnailUrl": coverImageMeta ? `${siteUrl}${coverImageMeta.src}` : `${siteUrl}/og-image.webp`,
+          "uploadDate": data.date.toISOString().split('T')[0],
+          "embedUrl": `${data.videoUrl}embed/`,
+          "url": data.videoUrl,
+        })}
+      />
+    )}
+
     <!-- JSON-LD: BreadcrumbList -->
     <script
       type="application/ld+json"

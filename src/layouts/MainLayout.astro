@@ -15,7 +15,7 @@ const { title, description, noindex = false, ogImage } = Astro.props;
 
 const siteUrl = 'https://reinamultiservicios.es';
 const canonicalUrl = `${siteUrl}${Astro.url.pathname}`;
-const fullTitle = `${title} | Reina Multiservicios`;
+const fullTitle = title.includes('| Reina Multiservicios') ? title : `${title} | Reina Multiservicios`;
 const ogImageUrl = ogImage ? `${siteUrl}${ogImage}` : `${siteUrl}/og-image.webp`;
 const metaDescription = description ?? 'Empresa de limpieza industrial, pulidos y tratamientos de superficies en Alicante y Costa Blanca. Más de 30 años de experiencia. Presupuesto gratuito.';
 

@@ -7,6 +7,8 @@ import MainLayout from '../../layouts/MainLayout.astro';
 const trabajos = (await getCollection('trabajos'))
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
+const siteUrl = 'https://reinamultiservicios.es';
+
 const imagesMap = import.meta.glob<ImageMetadata>('../../assets/images/**/*.{png,jpg,jpeg,webp,avif}', {
   eager: true,
   import: 'default',
@@ -17,6 +19,19 @@ const imagesMap = import.meta.glob<ImageMetadata>('../../assets/images/**/*.{png
   title="Trabajos Realizados — Limpieza y Tratamientos en la Costa Blanca"
   description="Ejemplos reales de trabajos de limpieza industrial, pulidos y tratamientos de superficies realizados por Reina Multiservicios en hoteles y empresas de la Costa Blanca."
 >
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Trabajos realizados por Reina Multiservicios",
+    "url": `${siteUrl}/trabajos/`,
+    "itemListElement": trabajos.map((t, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": t.data.h1,
+      "url": `${siteUrl}/trabajos/${t.slug}/`,
+    })),
+  })} />
+
   <main>
     <header class="bg-base-200 py-16 px-6 text-center">
       <h1 class="text-4xl md:text-5xl font-bold mb-4">Trabajos Realizados</h1>
