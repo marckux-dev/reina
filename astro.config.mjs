@@ -1,3 +1,4 @@
+import { defineConfig } from 'astro/config';
 // @ts-check
 import tailwindcss from '@tailwindcss/vite';
 
@@ -5,17 +6,28 @@ import mdx from '@astrojs/mdx';
 
 import sitemap from '@astrojs/sitemap';
 
+import react from '@astrojs/react';
+import markdoc from '@astrojs/markdoc';
+import keystatic from '@keystatic/astro';
+
+const isDev = process.env.NODE_ENV !== 'production';
+
 // https://astro.build/config
-export default {
+export default defineConfig({
   vite: {
     plugins: [tailwindcss()]
   },
+
   site: 'https://reinamultiservicios.es',
+
   integrations: [
-    mdx(), 
+    mdx(),
+    markdoc(),
     sitemap({
       entryLimit: 50000,
       filter: p => !p.includes('/legal/') && !p.includes('/gracias'),
     }),
-  ]
-};
+    react(),
+    ...(isDev ? [keystatic()] : []),
+  ],
+});

@@ -66,12 +66,10 @@ const trabajosCollection = defineCollection({
       z.object({
         src: z.string(),
         alt: z.string(),
-        phase: z.enum(["antes", "durante", "después"]).optional(),
+        phase: z.string().optional(),
       })
     ).optional(),
-    video: z.object({
-      url: z.string(), // URL completa del Reel de Instagram, ej: "https://www.instagram.com/p/DVbWHw-jMFa/"
-    }).optional(),
+    videoUrl: z.string().optional(), // URL completa del Reel de Instagram, ej: "https://www.instagram.com/p/DVbWHw-jMFa/"
     tags: z.array(z.string()).optional(),
   }),
 });
