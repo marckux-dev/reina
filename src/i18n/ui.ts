@@ -36,6 +36,9 @@ export const ui = {
     'faq.title':  'Preguntas Frecuentes',
     'faq.button': 'Pregúntanos',
 
+    // Open Graph
+    'og.imageAlt': 'Reina Multiservicios — Limpieza industrial y tratamientos de suelos en Alicante',
+
     // Cookie banner
     'cookie.text':     'Utilizamos cookies analíticas para mejorar nuestro servicio y analizar el uso del sitio web. Puedes aceptarlas o rechazarlas.',
     'cookie.moreInfo': 'Más información',
@@ -65,6 +68,8 @@ export const ui = {
     'faq.title':  'Frequently Asked Questions',
     'faq.button': 'Ask us',
 
+    'og.imageAlt': 'Reina Multiservicios — Industrial cleaning and floor treatments in Alicante',
+
     'cookie.text':     'We use analytical cookies to improve our service and analyse website usage. You can accept or reject them.',
     'cookie.moreInfo': 'More information',
     'cookie.reject':   'Reject',
@@ -92,6 +97,8 @@ export const ui = {
 
     'faq.title':  'Часто задаваемые вопросы',
     'faq.button': 'Задать вопрос',
+
+    'og.imageAlt': 'Reina Multiservicios — Промышленная уборка и обработка полов в Аликанте',
 
     'cookie.text':     'Мы используем аналитические файлы cookie для улучшения нашего сервиса и анализа использования сайта. Вы можете принять или отклонить их.',
     'cookie.moreInfo': 'Подробнее',

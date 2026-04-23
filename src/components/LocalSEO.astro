@@ -1,5 +1,9 @@
 ---
 import { company } from '../data/company';
+import { defaultLang, type Language } from '../i18n/ui';
+
+const lang = (Astro.currentLocale ?? defaultLang) as Language;
+const inLanguage = lang === 'en' ? 'en' : lang === 'ru' ? 'ru' : 'es';
 ---
 
 <script
@@ -9,6 +13,7 @@ import { company } from '../data/company';
     "@type": ["LocalBusiness", "CleaningService"],
     "@id": "https://reinamultiservicios.es/#localbusiness",
     "name": company.name,
+    "inLanguage": inLanguage,
     "foundingDate": "2017",
     "legalName": `${company.name} S.L.`,
     "url": "https://reinamultiservicios.es",
