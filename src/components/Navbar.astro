@@ -1,8 +1,10 @@
 ---
 import type { SiteMap } from '../data/siteMap';
 import LogoSinFondo from '../icons/LogoSinFondo.svg';
-import InstagramIcon from '../icons/InstagramIcon.svg'; 
+import InstagramIcon from '../icons/InstagramIcon.svg';
+import LangSelector from './LangSelector.astro';
 import { getCollection } from 'astro:content';
+import { defaultLang, type Language } from '../i18n/ui';
 
 interface Props {
   siteMap: SiteMap
@@ -10,12 +12,16 @@ interface Props {
 
 const { siteMap } = Astro.props
 const currentPath = Astro.url.pathname.replace(/\/$/, '')
+const lang = (Astro.currentLocale ?? defaultLang) as Language;
 
-const servicesCollection = (await getCollection('services'))
+const collectionName = lang === 'ru' ? 'services-ru' : lang === 'en' ? 'services-en' : 'services';
+const urlPrefix = lang === defaultLang ? '' : `/${lang}`;
+
+const servicesCollection = (await getCollection(collectionName))
   .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
 
-const servicesChildren = servicesCollection.map( service => ({
-  url: `/servicios/${service.slug}/`,
+const servicesChildren = servicesCollection.map(service => ({
+  url: `${urlPrefix}/servicios/${service.slug}/`,
   label: service.data.navItem,
 }));
 if (siteMap.services) {
@@ -91,8 +97,9 @@ if (siteMap.services) {
         </ul>
       </div>
 
-      <!-- Right: desktop Instagram -->
-      <div class='navbar-end hidden lg:flex mr-8'>
+      <!-- Right: desktop Instagram + lang selector -->
+      <div class='navbar-end hidden lg:flex items-center gap-2 mr-8'>
+        <LangSelector />
         <a
           href='https://www.instagram.com/reinamultiservicios/'
           target='_blank'
@@ -104,8 +111,9 @@ if (siteMap.services) {
         </a>
       </div>
 
-      <!-- Right: mobile hamburger -->
-      <div class='navbar-end lg:hidden'>
+      <!-- Right: mobile lang selector + hamburger -->
+      <div class='navbar-end lg:hidden flex items-center gap-1'>
+        <LangSelector />
         <label for='nav-drawer' class='btn btn-ghost' aria-label="Cerrar menú desplegable">
           <svg xmlns='http://www.w3.org/2000/svg' class='h-6 w-6' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
             <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 6h16M4 12h8m-8 6h16' />

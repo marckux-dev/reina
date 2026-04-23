@@ -1,0 +1,106 @@
+---
+import type { GetStaticPaths } from 'astro';
+import MainLayout from '../../layouts/MainLayout.astro';
+import HeroService from '../../components/HeroService.astro';
+import FeaturesService from '../../components/FeaturesService.astro';
+import ContactButton from '../../components/ContactButton.astro';
+
+export const getStaticPaths = (() => [
+  { params: { lang: 'en' } },
+  { params: { lang: 'ru' } },
+]) satisfies GetStaticPaths;
+
+const { lang } = Astro.params;
+
+const t = {
+  en: {
+    metaTitle: 'About Us — Industrial Cleaning Company in Alicante',
+    metaDesc: 'Reina Multiservicios: industrial cleaning and surface treatment company in Alicante with over 30 years of experience. Professional machinery and guaranteed results.',
+    heroTitle: 'About Us',
+    heroSubtitle: 'Professionals in industrial cleaning and surface treatments with over 30 years of experience',
+    h2: 'Reina Multiservicios Costablanca',
+    p1: 'Reina Multiservicios Costablanca S.L. is a company specialised in industrial cleaning, polishing, crystallising and technical surface treatments, with a consolidated track record of over 30 years of experience in the sector.',
+    p2: 'We provide services to industries, hotels, homeowner communities, companies, shops and private clients, approaching each project with a personalised and professional focus.',
+    p3: 'Our philosophy is based on quality craftsmanship, the use of state-of-the-art professional machinery and the rigorous application of safety and occupational risk prevention standards.',
+    p4: 'At Reina Multiservicios Costablanca S.L. we believe in closeness, seriousness and trust as fundamental pillars of our client relationships. We are always available to advise you, answer your questions and offer you a no-obligation quote.',
+    howWeWork: 'How We Work',
+    w1: 'Each project begins with a preliminary analysis of the surface, the material condition and the client\'s actual needs. From there, we select the most appropriate processes, products and machinery.',
+    w2: 'We adapt to operating facilities, planning work in phases, zones or special hours to minimise disruptions to daily activity.',
+    w3: 'We offer both one-off services and periodic maintenance plans, tailored to each client\'s needs.',
+    features: [
+      'Over 30 years of experience in the sector.',
+      'Specialists in industrial cleaning and technical treatments.',
+      'Professional machinery and specific products for every surface.',
+      'Strict compliance with safety regulations.',
+      'Adaptation to operational environments without interrupting activity.',
+      'Free quotes and technical visits.',
+      'Lasting results and quality guarantee.',
+    ],
+    ctaTitle: 'Shall we talk about your project?',
+    ctaDesc: 'We would be delighted to advise you and offer you a personalised no-obligation quote.',
+    ctaBtn: 'Contact us',
+  },
+  ru: {
+    metaTitle: 'О нас — Компания промышленной уборки в Аликанте',
+    metaDesc: 'Reina Multiservicios: компания промышленной уборки и обработки поверхностей в Аликанте с более чем 30-летним опытом. Профессиональное оборудование и гарантированные результаты.',
+    heroTitle: 'О нас',
+    heroSubtitle: 'Профессионалы в области промышленной уборки и обработки поверхностей с более чем 30-летним опытом',
+    h2: 'Reina Multiservicios Costablanca',
+    p1: 'Reina Multiservicios Costablanca S.L. — компания, специализирующаяся на промышленной уборке, полировке, кристаллизации и технической обработке поверхностей, с более чем 30-летним опытом работы в отрасли.',
+    p2: 'Мы оказываем услуги промышленным предприятиям, отелям, ТСЖ, компаниям, магазинам и частным клиентам, подходя к каждому проекту индивидуально и профессионально.',
+    p3: 'Наша философия основана на качественном выполнении работ, использовании современного профессионального оборудования и строгом соблюдении норм охраны труда и техники безопасности.',
+    p4: 'В Reina Multiservicios мы ценим близость, серьёзность и доверие как основу отношений с клиентами. Мы всегда готовы проконсультировать вас, ответить на вопросы и предложить смету без каких-либо обязательств.',
+    howWeWork: 'Как мы работаем',
+    w1: 'Каждый проект начинается с предварительного анализа поверхности, состояния материала и реальных потребностей клиента. На основе этого мы подбираем оптимальные процессы, продукты и оборудование.',
+    w2: 'Мы адаптируемся к действующим объектам, планируя работы поэтапно, по зонам или в особые часы, чтобы минимизировать помехи для повседневной деятельности.',
+    w3: 'Мы предлагаем как разовые услуги, так и планы периодического технического обслуживания, адаптированные к потребностям каждого клиента.',
+    features: [
+      'Более 30 лет опыта в отрасли.',
+      'Специалисты по промышленной уборке и технической обработке.',
+      'Профессиональное оборудование и специфические продукты для каждой поверхности.',
+      'Строгое соблюдение норм безопасности.',
+      'Адаптация к работающим объектам без остановки деятельности.',
+      'Бесплатные сметы и технические визиты.',
+      'Долговременные результаты и гарантия качества.',
+    ],
+    ctaTitle: 'Обсудим ваш проект?',
+    ctaDesc: 'Мы будем рады проконсультировать вас и предложить индивидуальную смету без обязательств.',
+    ctaBtn: 'Связаться с нами',
+  },
+}[lang];
+---
+
+<MainLayout title={t.metaTitle} description={t.metaDesc}>
+  <main>
+    <HeroService
+      title={t.heroTitle}
+      subtitle={t.heroSubtitle}
+      image="limpieza-industrial-nave-alicante.webp"
+    />
+
+    <section class="container mx-auto px-6 py-16 max-w-4xl text-lg leading-relaxed">
+      <h2 class="text-3xl font-bold text-center mb-8">{t.h2}</h2>
+      <p class="mb-6">{t.p1}</p>
+      <p class="mb-6">{t.p2}</p>
+      <p class="mb-6">{t.p3}</p>
+      <p class="mb-6">{t.p4}</p>
+    </section>
+
+    <section class="bg-base-200 py-16">
+      <div class="container mx-auto px-6 max-w-4xl text-lg leading-relaxed">
+        <h2 class="text-3xl font-bold text-center mb-8">{t.howWeWork}</h2>
+        <p class="mb-6">{t.w1}</p>
+        <p class="mb-6">{t.w2}</p>
+        <p>{t.w3}</p>
+      </div>
+    </section>
+
+    <FeaturesService features={t.features} />
+
+    <section class="container mx-auto px-6 py-16 text-center">
+      <h2 class="text-3xl font-bold mb-6">{t.ctaTitle}</h2>
+      <p class="text-lg mb-8 max-w-2xl mx-auto">{t.ctaDesc}</p>
+      <ContactButton link={`/${lang}/contacto`} text={t.ctaBtn} />
+    </section>
+  </main>
+</MainLayout>

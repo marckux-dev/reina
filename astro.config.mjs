@@ -20,6 +20,14 @@ export default defineConfig({
 
   site: 'https://reinamultiservicios.es',
 
+  i18n: {
+    defaultLocale: 'es',
+    locales: ['es', 'en', 'ru'],
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
+
   integrations: [
     mdx(),
     markdoc(),

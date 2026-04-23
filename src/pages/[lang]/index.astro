@@ -1,0 +1,113 @@
+---
+import type { GetStaticPaths } from 'astro';
+import MainLayout from '../../layouts/MainLayout.astro';
+import HeroSlider from '../../components/HeroSlider.astro';
+import Card from '../../components/Card.astro';
+import ContactButton from '../../components/ContactButton.astro';
+import { getCollection } from 'astro:content';
+import { homeFaqsEn, homeFaqsRu } from '../../data/homeFaqs.ts';
+import FaqService from '../../components/FaqService.astro';
+
+export const getStaticPaths = (() => [
+  { params: { lang: 'en' } },
+  { params: { lang: 'ru' } },
+]) satisfies GetStaticPaths;
+
+const { lang } = Astro.params;
+const homeFaqs = lang === 'ru' ? homeFaqsRu : homeFaqsEn;
+
+const t = {
+  en: {
+    metaTitle: 'Industrial Cleaning & Floor Treatment in Alicante',
+    metaDesc: 'Industrial cleaning, floor polishing and surface treatments in Alicante and Costa Blanca. Over 30 years of experience. Free quote.',
+    h1a: 'Professional Industrial Cleaning,',
+    h1b: 'Polishing and Surface Treatments',
+    hero: 'Experts in cleaning, comprehensive maintenance and a wide range of specialised treatments for all types of surfaces.',
+    welcome: 'Welcome to Reina Multiservicios Costablanca',
+    tagline: 'Professionals in Alicante with over 30 years of experience.',
+    cta: 'Contact Us',
+    quote: 'Request a quote',
+    p1: 'Our experience and reliability consolidate us as a leading company on the Costa Blanca.',
+    p2: 'We have a solid track record in the industry, which allows us to offer a service characterised by quality and commitment in every job we carry out. We use specialised machinery and specific products for each need, applying the relevant safety standards for each work process. We serve hotels, communities, companies, private clients and other public and private sector organisations.',
+    p3: 'We are based in La Nucia (Alicante), near tourist towns such as Benidorm, Altea and Calp. We provide services throughout the Costa Blanca, the Valencian Community, across Spain and internationally.',
+    p4: 'With over 30 years of experience, we are backed by the trust of our clients and our commitment to the highest quality standards.',
+    ourServices: 'Our Services',
+  },
+  ru: {
+    metaTitle: 'Промышленная уборка и обработка полов в Аликанте',
+    metaDesc: 'Промышленная уборка, полировка полов и обработка поверхностей в Аликанте и Коста-Бланке. Более 30 лет опыта. Бесплатная смета.',
+    h1a: 'Профессиональная промышленная уборка,',
+    h1b: 'Полировка и обработка поверхностей',
+    hero: 'Эксперты в области уборки, комплексного обслуживания и широкого спектра специализированных обработок для всех типов поверхностей.',
+    welcome: 'Добро пожаловать в Reina Multiservicios Costablanca',
+    tagline: 'Профессионалы в Аликанте с более чем 30-летним опытом.',
+    cta: 'Связаться с нами',
+    quote: 'Запросить смету',
+    p1: 'Наш опыт и надёжность закрепляют нас как ведущую компанию на Коста-Бланке.',
+    p2: 'Мы имеем солидный опыт работы в отрасли, что позволяет нам предлагать услуги, отличающиеся качеством и ответственностью в каждом выполняемом заказе. Мы используем специализированное оборудование и специфические продукты для каждой нужды, применяя соответствующие стандарты безопасности. Мы обслуживаем отели, сообщества, компании, частных клиентов и другие организации.',
+    p3: 'Мы находимся в Ла-Нусия (Аликанте), вблизи туристических городов Бенидорм, Альтея и Кальп. Оказываем услуги по всей Коста-Бланке, Валенсийскому сообществу, по всей Испании и на международном уровне.',
+    p4: 'Более чем 30-летний опыт подтверждается доверием наших клиентов и нашей приверженностью самым высоким стандартам качества.',
+    ourServices: 'Наши услуги',
+  },
+}[lang];
+
+const collectionName = lang === 'ru' ? 'services-ru' : 'services-en';
+const services = (await getCollection(collectionName))
+  .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
+---
+
+<MainLayout title={t.metaTitle} description={t.metaDesc}>
+
+  <header class="relative h-[90vh] overflow-hidden">
+    <HeroSlider
+      images={[
+        "paneles-solares-limpieza-industrial.webp",
+        "tratamiento-suelo-exterior-alicante.webp",
+        "suelo-marmol-pulido-recibidor-lujo.webp",
+        "suelo-hormigon-pulido-garaje-alicante.webp",
+        "limpieza-cristales-edificio-altura.webp",
+      ]}
+      interval={6000}
+    />
+    <div class="absolute z-1 inset-0 bg-linear-to-t from-black/80 via-black/50 to-transparent"></div>
+    <div class="absolute inset-0 z-10 flex flex-col items-center justify-center h-full text-center text-neutral-content px-4">
+      <h1 class="fade-up text-4xl md:text-6xl font-bold drop-shadow-lg mb-4">
+        <span>{t.h1a}</span> <br/> <span>{t.h1b}</span>
+      </h1>
+      <p class="fade-up-delay text-lg md:text-2xl max-w-2xl font-semibold text-gray-200 leading-relaxed">
+        {t.hero}
+      </p>
+    </div>
+  </header>
+
+  <main class="container mx-auto">
+    <section class="container mx-auto px-6 py-12 leading-relaxed text-lg text-base">
+      <h2 class="text-3xl font-bold text-center mt-4 mb-4">{t.welcome}</h2>
+      <h3 class="text-2xl font-bold italic text-primary text-center mb-6">{t.tagline}</h3>
+      <div class="flex justify-center my-8">
+        <ContactButton link={`/${lang}/contacto`} text={t.cta} />
+      </div>
+      <p class="mb-4"><strong>{t.p1}</strong></p>
+      <p class="mb-4">{t.p2}</p>
+      <p class="mb-4">{t.p3}</p>
+      <p class="mb-4">{t.p4}</p>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="text-3xl font-bold text-center mt-4 mb-4">{t.ourServices}</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
+        {services.map(service => (
+          <Card
+            image={service.data.headerImage}
+            title={service.data.navItem}
+            href={`/${lang}/servicios/${service.slug}`}
+          />
+        ))}
+      </div>
+      <div class="flex justify-center my-8">
+        <ContactButton link={`/${lang}/contacto`} text={t.quote} />
+      </div>
+      <FaqService faqs={homeFaqs} />
+    </section>
+  </main>
+</MainLayout>

@@ -1,6 +1,7 @@
 ---
 import ContactButton from './ContactButton.astro';
 import { marked } from 'marked';
+import { useTranslations, defaultLang, type Language } from '../i18n/ui';
 
 interface FaqItem {
   question: string;
@@ -8,11 +9,15 @@ interface FaqItem {
 }
 
 interface Props {
-  title?: string;
   faqs: FaqItem[];
+  title?: string;
 }
 
-const { title = "Preguntas Frecuentes", faqs } = Astro.props;
+const lang = (Astro.currentLocale ?? defaultLang) as Language;
+const t = useTranslations(lang);
+const urlPrefix = lang === defaultLang ? '' : `/${lang}`;
+
+const { faqs, title = t('faq.title') } = Astro.props;
 ---
 
 <section class="container mx-auto px-6 py-16">
@@ -31,21 +36,21 @@ const { title = "Preguntas Frecuentes", faqs } = Astro.props;
     ))}
   </div>
   <div class="flex justify-center mt-8">
-    <ContactButton link="/contacto" text="Pregúntanos" />
+    <ContactButton link={`${urlPrefix}/contacto`} text={t('faq.button')} />
   </div>
-  <script 
+  <script
     type="application/ld+json"
-    set:html={ JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": faqs.map(faq => ({
-          "@type": "Question",
-          "name": faq.question,
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": faq.answer.replace(/<\/?[^>]+>/g, "")
-          }
-        }))
+    set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": faqs.map(faq => ({
+        "@type": "Question",
+        "name": faq.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": faq.answer.replace(/<\/?[^>]+>/g, "")
+        }
+      }))
     })}
   />
 </section>
@@ -57,24 +62,13 @@ const { title = "Preguntas Frecuentes", faqs } = Astro.props;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
   }
-  
   .markdown-content ol {
     list-style-type: decimal;
     padding-left: 1.5rem;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
   }
-
-  .markdown-content strong {
-    font-weight: 700;
-  }
-
-  .markdown-content p {
-    margin-bottom: 0.75rem;
-  }
-  
-  .markdown-content p:last-child {
-    margin-bottom: 0;
-  }
-</style> 
-
+  .markdown-content strong { font-weight: 700; }
+  .markdown-content p { margin-bottom: 0.75rem; }
+  .markdown-content p:last-child { margin-bottom: 0; }
+</style>

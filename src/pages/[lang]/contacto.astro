@@ -1,0 +1,140 @@
+---
+import type { GetStaticPaths } from 'astro';
+import MainLayout from '../../layouts/MainLayout.astro';
+import { company } from '../../data/company';
+import WhatsappIcon from '../../icons/WhatsappIcon.svg';
+import PhoneIcon from '../../icons/PhoneIcon.svg';
+
+export const getStaticPaths = (() => [
+  { params: { lang: 'en' } },
+  { params: { lang: 'ru' } },
+]) satisfies GetStaticPaths;
+
+const { lang } = Astro.params;
+
+const t = {
+  en: {
+    metaTitle: 'Contact',
+    metaDesc: 'Contact Reina Multiservicios to request a quote for industrial cleaning, floor polishing or surface treatments in Alicante and Costa Blanca.',
+    h1: 'Contact us',
+    callTitle: 'Call us!',
+    callDesc: 'We are available to answer your questions or give you a quote right away.',
+    formTitle: 'Request information or a no-obligation quote',
+    name: 'Name', namePlaceholder: 'Your name',
+    phone: 'Phone', phonePlaceholder: 'e.g. +44 7700 900000',
+    email: 'Email', emailPlaceholder: 'you@email.com',
+    message: 'Message', messagePlaceholder: 'Tell us what you need or the service you are interested in',
+    privacy: 'I have read and accept the',
+    privacyLink: 'data protection policy',
+    send: 'Send message',
+    waTitle: 'Prefer WhatsApp?',
+    waDesc: "Send us a direct message — we'll reply straight away!",
+    waBtn: 'Message us on WhatsApp',
+    waText: 'Hello,%20I%20would%20like%20information%20about%20your%20services',
+  },
+  ru: {
+    metaTitle: 'Контакт',
+    metaDesc: 'Свяжитесь с Reina Multiservicios для запроса сметы на промышленную уборку, полировку полов или обработку поверхностей в Аликанте и Коста-Бланке.',
+    h1: 'Свяжитесь с нами',
+    callTitle: 'Позвоните нам!',
+    callDesc: 'Мы готовы ответить на ваши вопросы или предоставить смету прямо сейчас.',
+    formTitle: 'Запросите информацию или смету без обязательств',
+    name: 'Имя', namePlaceholder: 'Ваше имя',
+    phone: 'Телефон', phonePlaceholder: 'напр. +7 900 000 00 00',
+    email: 'Эл. почта', emailPlaceholder: 'вы@email.com',
+    message: 'Сообщение', messagePlaceholder: 'Расскажите, что вам нужно или какая услуга вас интересует',
+    privacy: 'Я прочитал(а) и принимаю',
+    privacyLink: 'политику защиты данных',
+    send: 'Отправить сообщение',
+    waTitle: 'Предпочитаете WhatsApp?',
+    waDesc: 'Напишите нам напрямую — ответим сразу!',
+    waBtn: 'Написать в WhatsApp',
+    waText: 'Здравствуйте,%20хочу%20узнать%20о%20ваших%20услугах',
+  },
+}[lang];
+
+const phoneLink = company.phoneList[0].phoneLink;
+const phoneNumber = company.phoneList[0].phoneNumber;
+---
+
+<MainLayout title={t.metaTitle} description={t.metaDesc}>
+  <section class="container mx-auto px-4 py-16 space-y-16">
+    <div class="text-center">
+      <h1 class="text-4xl font-bold text-primary">{t.h1}</h1>
+    </div>
+
+    <div class="text-center">
+      <h2 class="text-3xl font-bold mb-4">{t.callTitle}</h2>
+      <p class="mb-4">{t.callDesc}</p>
+      <a href={phoneLink} class="btn btn-primary gap-2 text-lg">
+        <img src={PhoneIcon.src} alt="Phone" class="w-5 h-5" />
+        {phoneNumber}
+      </a>
+    </div>
+
+    <div class="max-w-2xl mx-auto">
+      <h2 class="text-2xl font-semibold text-center mb-6">{t.formTitle}</h2>
+      <form
+        name="contacto"
+        method="POST"
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+        data-netlify-recaptcha="true"
+        action="/gracias"
+        onsubmit="return markSubmitted()"
+        class="bg-base-200 p-8 rounded-2xl shadow-md space-y-5"
+      >
+        <input type="hidden" name="form-name" value="contacto" />
+        <p hidden><label>Honey: <input name="bot-field" /></label></p>
+
+        <div class="form-control">
+          <label class="label" for="nombre"><span class="label-text">{t.name}</span></label>
+          <input type="text" id="nombre" name="nombre" placeholder={t.namePlaceholder} class="input input-bordered w-full" required />
+        </div>
+        <div class="form-control">
+          <label class="label" for="telefono"><span class="label-text">{t.phone}</span></label>
+          <input type="tel" id="telefono" name="telefono" placeholder={t.phonePlaceholder} class="input input-bordered w-full" required />
+        </div>
+        <div class="form-control">
+          <label class="label" for="email"><span class="label-text">{t.email}</span></label>
+          <input type="email" id="email" name="email" placeholder={t.emailPlaceholder} class="input input-bordered w-full" required />
+        </div>
+        <div class="form-control">
+          <label class="label" for="mensaje"><span class="label-text">{t.message}</span></label>
+          <textarea id="mensaje" name="mensaje" placeholder={t.messagePlaceholder} class="textarea textarea-bordered w-full h-32" required></textarea>
+        </div>
+        <div class="form-control">
+          <label class="cursor-pointer flex items-start space-x-2">
+            <input type="checkbox" name="acepto" required class="checkbox checkbox-primary mt-1" />
+            <span class="label-text text-sm">
+              {t.privacy}
+              <a href="/legal/politica-privacidad" class="link link-primary" target="_blank">{t.privacyLink}</a>.
+            </span>
+          </label>
+        </div>
+        <div data-netlify-recaptcha="true"></div>
+        <button type="submit" class="btn btn-primary w-full mt-4">{t.send}</button>
+      </form>
+    </div>
+
+    <div class="text-center">
+      <h2 class="text-2xl font-semibold mb-4">{t.waTitle}</h2>
+      <p class="mb-4">{t.waDesc}</p>
+      <a
+        href={`https://wa.me/${company.whatsapp}?text=${t.waText}`}
+        class="btn btn-success gap-2 text-lg"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img src={WhatsappIcon.src} alt="WhatsApp" class="w-5 h-5" />
+        {t.waBtn}
+      </a>
+    </div>
+  </section>
+  <script is:inline>
+  function markSubmitted() {
+    sessionStorage.setItem('contactSubmitted', 'true')
+    return true;
+  }
+  </script>
+</MainLayout>

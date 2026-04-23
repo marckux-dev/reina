@@ -1,0 +1,51 @@
+---
+import type { GetStaticPaths } from 'astro';
+import MainLayout from '../../../layouts/MainLayout.astro';
+import Card from '../../../components/Card.astro';
+import ContactButton from '../../../components/ContactButton.astro';
+import { getCollection } from 'astro:content';
+
+export const getStaticPaths = (() => [
+  { params: { lang: 'en' } },
+  { params: { lang: 'ru' } },
+]) satisfies GetStaticPaths;
+
+const { lang } = Astro.params;
+
+const t = {
+  en: {
+    metaTitle: 'Industrial Cleaning & Surface Treatment Services',
+    metaDesc: 'Industrial cleaning, floor polishing and surface treatment services in Alicante and Costa Blanca. Hotels, companies, communities and private clients. Free quote.',
+    h1: 'Our Services',
+    quote: 'Request a quote',
+  },
+  ru: {
+    metaTitle: 'Услуги промышленной уборки и обработки поверхностей',
+    metaDesc: 'Услуги промышленной уборки, полировки полов и обработки поверхностей в Аликанте и Коста-Бланке. Отели, компании, ТСЖ и частные клиенты. Бесплатная смета.',
+    h1: 'Наши услуги',
+    quote: 'Запросить смету',
+  },
+}[lang];
+
+const collectionName = lang === 'ru' ? 'services-ru' : 'services-en';
+const services = (await getCollection(collectionName))
+  .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
+---
+
+<MainLayout title={t.metaTitle} description={t.metaDesc}>
+  <main class="container mx-auto my-8">
+    <h1 class="text-3xl font-bold text-center mt-4 mb-4">{t.h1}</h1>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
+      {services.map(service => (
+        <Card
+          image={service.data.headerImage}
+          title={service.data.navItem}
+          href={`/${lang}/servicios/${service.slug}`}
+        />
+      ))}
+    </div>
+    <div class="flex justify-center my-8">
+      <ContactButton link={`/${lang}/contacto`} text={t.quote} />
+    </div>
+  </main>
+</MainLayout>

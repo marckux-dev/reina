@@ -1,15 +1,20 @@
 ---
 import ContactButton from './ContactButton.astro';
 import CheckIcon from '../icons/CheckIcon.svg';
+import { useTranslations, defaultLang, type Language } from '../i18n/ui';
+
 interface Props {
   features: string[];
 }
 
 const { features } = Astro.props;
+const lang = (Astro.currentLocale ?? defaultLang) as Language;
+const t = useTranslations(lang);
+const urlPrefix = lang === defaultLang ? '' : `/${lang}`;
 ---
 
 <section class="container mx-auto px-6 py-8">
-  <h2 class="text-3xl font-bold text-center mb-8">Ofrecemos</h2>
+  <h2 class="text-3xl font-bold text-center mb-8">{t('features.title')}</h2>
   <ul class="grid grid-cols-1 lg:grid-cols-2 mb-8 gap-2">
     {
     features.map( feature => (
@@ -21,6 +26,6 @@ const { features } = Astro.props;
     }
   </ul>
   <div class="flex justify-center">
-    <ContactButton link="/contacto" text="Pide presupuesto" />
+    <ContactButton link={`${urlPrefix}/contacto`} text={t('features.cta')} />
   </div>
 </section>

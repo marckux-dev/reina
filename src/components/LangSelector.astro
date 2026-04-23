@@ -1,0 +1,31 @@
+---
+import { languages, defaultLang, type Language } from '../i18n/ui';
+
+const currentLocale = (Astro.currentLocale ?? defaultLang) as Language;
+const currentPath = Astro.url.pathname;
+
+function getLocalizedPath(targetLang: Language): string {
+  // Strip existing locale prefix if present
+  const withoutLocale = currentPath.replace(/^\/(en|ru)\//, '/');
+  if (targetLang === defaultLang) return withoutLocale;
+  return `/${targetLang}${withoutLocale}`;
+}
+---
+
+<div class="flex items-center gap-1">
+  {Object.entries(languages).map(([lang, { flag, label }]) => {
+    const isActive = lang === currentLocale;
+    return (
+      <a
+        href={getLocalizedPath(lang as Language)}
+        aria-label={label}
+        class:list={[
+          'text-xl leading-none transition-opacity',
+          isActive ? 'opacity-100' : 'opacity-40 hover:opacity-80',
+        ]}
+      >
+        {flag}
+      </a>
+    );
+  })}
+</div>

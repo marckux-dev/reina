@@ -1,6 +1,8 @@
 ---
 import { getImage } from 'astro:assets';
 import ContactButton from '../components/ContactButton.astro';
+import { useTranslations, defaultLang, type Language } from '../i18n/ui';
+
 interface Props {
   image: string;
   slogan: string;
@@ -12,6 +14,9 @@ const {
   image,
   slogan,
 } = Astro.props;
+const lang = (Astro.currentLocale ?? defaultLang) as Language;
+const t = useTranslations(lang);
+const urlPrefix = lang === defaultLang ? '' : `/${lang}`;
 
 const imagesMap = import.meta.glob('../assets/images/*.{png,jpg,jpeg,webp,avif}', {
   eager: true,
@@ -38,8 +43,8 @@ const optimized = await getImage({
       {slogan}
     </h2>
     <ContactButton
-      link="/contacto"
-      text="Contáctanos"
+      link={`${urlPrefix}/contacto`}
+      text={t('parallax.cta')}
     />
   </div>
 </section>

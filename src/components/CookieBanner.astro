@@ -1,4 +1,9 @@
 ---
+import { useTranslations, defaultLang, type Language } from '../i18n/ui';
+
+const lang = (Astro.currentLocale ?? defaultLang) as Language;
+const t = useTranslations(lang);
+const cookiePolicyUrl = '/legal/politica-cookies';
 ---
 
 <div
@@ -9,13 +14,12 @@
   hidden
 >
   <p class="flex-1 text-base-content leading-relaxed">
-    Utilizamos cookies analíticas para mejorar nuestro servicio y analizar el uso del sitio
-    web. Puedes aceptarlas o rechazarlas.
-    <a href="/legal/politica-cookies" class="link link-primary ml-1">Más información</a>
+    {t('cookie.text')}
+    <a href={cookiePolicyUrl} class="link link-primary ml-1">{t('cookie.moreInfo')}</a>
   </p>
   <div class="flex gap-2 shrink-0">
-    <button id="cookie-reject" class="btn btn-outline btn-sm">Rechazar</button>
-    <button id="cookie-accept" class="btn btn-primary btn-sm">Aceptar</button>
+    <button id="cookie-reject" class="btn btn-outline btn-sm">{t('cookie.reject')}</button>
+    <button id="cookie-accept" class="btn btn-primary btn-sm">{t('cookie.accept')}</button>
   </div>
 </div>
 
@@ -38,9 +42,8 @@
   }
 
   if (consent === 'accepted' && hasGACookies()) {
-    import('../scripts/load-ga.js').then( m => m.loadGoogleAnalytics());
+    import('../scripts/load-ga.js').then(m => m.loadGoogleAnalytics());
   }
-
 
   acceptBtn?.addEventListener('click', async () => {
     localStorage.setItem(CONSENT_KEY, 'accepted');
@@ -53,5 +56,4 @@
     localStorage.setItem(CONSENT_KEY, 'rejected');
     if (!!banner) banner.hidden = true;
   });
-
 </script>

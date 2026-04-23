@@ -1,0 +1,55 @@
+---
+import { getCollection, render } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+import type { ImageMetadata } from 'astro';
+import MainLayout from '../../../layouts/MainLayout.astro';
+import HeroService from '../../../components/HeroService.astro';
+import Breadcrumb from '../../../components/Breadcrumb.astro';
+import FeaturesService from '../../../components/FeaturesService.astro';
+import Gallery from '../../../components/Gallery.astro';
+import ParallaxService from '../../../components/ParallaxService.astro';
+import FaqService from '../../../components/FaqService.astro';
+
+export const getStaticPaths = (async () => {
+  const [servicesEn, servicesRu] = await Promise.all([
+    getCollection('services-en'),
+    getCollection('services-ru'),
+  ]);
+  return [
+    ...servicesEn.map(entry => ({ params: { lang: 'en', slug: entry.slug }, props: { entry } })),
+    ...servicesRu.map(entry => ({ params: { lang: 'ru', slug: entry.slug }, props: { entry } })),
+  ];
+}) satisfies GetStaticPaths;
+
+const { lang } = Astro.params;
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const data = entry.data;
+
+const crumbs = {
+  en: { home: 'Home', services: 'Services' },
+  ru: { home: 'Главная', services: 'Услуги' },
+}[lang];
+
+const imagesMap = import.meta.glob<ImageMetadata>('../../../assets/images/*.{png,jpg,jpeg,webp,avif}', { eager: true, import: 'default' });
+const headerImageSrc = typeof data.headerImage === 'string' ? data.headerImage : data.headerImage?.src;
+const headerImageMeta = headerImageSrc ? imagesMap[`../../../assets/images/${headerImageSrc}`] : undefined;
+---
+
+<MainLayout title={data.title} description={data.description} ogImage={headerImageMeta?.src}>
+  <main>
+    <HeroService title={data.h1} subtitle={data.subtitle} image={data.headerImage} />
+
+    <Breadcrumb crumbs={[
+      { name: crumbs.home, href: `/${lang}/` },
+      { name: crumbs.services, href: `/${lang}/servicios/` },
+      { name: data.h1 },
+    ]} />
+
+    <FeaturesService features={data.features} />
+    <Gallery images={data.gallery} serviceTitle={data.h1} />
+    <section class="service-content"><Content /></section>
+    <ParallaxService image={data.parallaxImage} slogan={data.slogan} />
+    <FaqService faqs={data.faqs} />
+  </main>
+</MainLayout>
