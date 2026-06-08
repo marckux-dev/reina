@@ -6,7 +6,7 @@ const servicesSchema = z.object({
   title: z.string(),
   h1: z.string(),
   subtitle: z.string(),
-  description: z.string().optional(),
+  description: z.string(),
   headerImage: z.union([
     z.string(),
     z.object({ src: z.string(), alt: z.string().optional() }),
