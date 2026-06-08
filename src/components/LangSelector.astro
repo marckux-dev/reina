@@ -5,8 +5,11 @@ const currentLocale = (Astro.currentLocale ?? defaultLang) as Language;
 const currentPath = Astro.url.pathname;
 
 function getLocalizedPath(targetLang: Language): string {
-  // Strip existing locale prefix if present
   const withoutLocale = currentPath.replace(/^\/(en|ru)\//, '/');
+  // Paths with no i18n equivalent: keep ES version or redirect to target lang home
+  if (withoutLocale.startsWith('/legal') || withoutLocale.startsWith('/gracias')) {
+    return targetLang === defaultLang ? withoutLocale : `/${targetLang}/`;
+  }
   if (targetLang === defaultLang) return withoutLocale;
   return `/${targetLang}${withoutLocale}`;
 }
