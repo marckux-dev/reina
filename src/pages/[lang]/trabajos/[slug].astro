@@ -1,5 +1,6 @@
 ---
 import { getCollection, render } from 'astro:content';
+import { getImage } from 'astro:assets';
 import type { GetStaticPaths } from 'astro';
 import type { ImageMetadata } from 'astro';
 import MainLayout from '../../../layouts/MainLayout.astro';
@@ -47,13 +48,16 @@ function resolveImg(src: string): ImageMetadata | undefined {
   return allImages[`../../../assets/images/${normalized}`];
 }
 const coverImageMeta = resolveImg(data.coverImage.src);
+const ogImageOptimized = coverImageMeta
+  ? await getImage({ src: coverImageMeta, format: 'webp', quality: 75, width: 1200 })
+  : undefined;
 const galleryMeta = (data.gallery ?? []).map(img => ({
   ...img,
   src: resolveImg(img.src) ?? img.src,
 }));
 ---
 
-<MainLayout title={data.title} description={data.description} ogImage={coverImageMeta?.src}>
+<MainLayout title={data.title} description={data.description} ogImage={ogImageOptimized?.src}>
   <main>
     <HeroService
       title={data.h1}

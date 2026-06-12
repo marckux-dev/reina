@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import 'photoswipe/style.css';
 
@@ -10,29 +10,43 @@ interface Props {
 
 const { images, serviceTitle = 'servicio' } = Astro.props;
 
-const imagesMap = import.meta.glob<ImageMetadata>('../assets/images/*.{png,jpg,jpeg,webp,avif}', { eager: true, import: 'default' });
+const imagesMap = import.meta.glob<ImageMetadata>('../assets/images/**/*.{png,jpg,jpeg,webp,avif}', { eager: true, import: 'default' });
 
-const resolvedImages = images
-  .map(item => {
+const resolvedImages = (await Promise.all(
+  images.map(async item => {
     const imageObj = typeof item === 'string' ? { src: item, alt: undefined } : item;
-    const asset: ImageMetadata | undefined =
-      typeof imageObj.src === 'string'
-        ? imagesMap[`../assets/images/${imageObj.src}`]
-        : imageObj.src;
-    if (asset) {
-      return { asset, alt: imageObj.alt || `Galería de ${serviceTitle}` };
+    let asset: ImageMetadata | undefined;
+    if (typeof imageObj.src === 'string') {
+      const normalized = imageObj.src.startsWith('/') ? imageObj.src.slice(1) : imageObj.src;
+      asset = imagesMap[`../assets/images/${normalized}`];
+    } else {
+      asset = imageObj.src;
     }
-    return null;
+    if (!asset) return null;
+    // Versión optimizada para el lightbox: evita servir el original de varios MB
+    const full = await getImage({
+      src: asset,
+      format: 'webp',
+      quality: 75,
+      width: Math.min(asset.width, 1600),
+    });
+    return { asset, full, alt: imageObj.alt || `Galería de ${serviceTitle}` };
   })
-  .filter(Boolean);
+)).filter(Boolean);
 ---
 
 <section id="gallery" class="container mx-auto px-6 py-12 grid grid-cols-2 md:grid-cols-3 gap-4">
   {
   resolvedImages.map(img => (
-  <a href={img?.asset.src} target="_blank" class="block group">
+  <a
+    href={img?.full.src}
+    target="_blank"
+    data-pswp-width={img?.full.attributes.width}
+    data-pswp-height={img?.full.attributes.height}
+    class="block group"
+  >
     <Image
-        src={img?.asset} 
+        src={img?.asset}
         alt={img?.alt}
         widths={[300, 450, 600]}
         sizes="(max-width: 768px) 50vw, 33vw"

@@ -200,4 +200,4 @@ npm run build   # Genera ./dist/ listo para desplegar
 
 ## Autor
 
-Desarrollado por [marckux-dev](https://github.com/marckux)
+Desarrollado por [marckux-dev](https://github.com/marckux-dev)

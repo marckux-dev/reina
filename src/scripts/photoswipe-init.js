@@ -5,22 +5,16 @@ export async function initGallery(selector = '#gallery') {
   const links = document.querySelectorAll(`${selector} a`);
   if (!links.length) return;
 
-  await Promise.allSettled([...links].map(async (link) => {
-    try {
-      const img = new Image();
-      img.src = link.href;
-      await img.decode();
-      link.dataset.pswpWidth = img.naturalWidth;
-      link.dataset.pswpHeight = img.naturalHeight;
-    } catch {
-      // Fallback: leer dimensiones del <img> ya renderizado
-      const rendered = link.querySelector('img');
-      if (rendered) {
-        link.dataset.pswpWidth = rendered.naturalWidth || rendered.width || 800;
-        link.dataset.pswpHeight = rendered.naturalHeight || rendered.height || 600;
-      }
+  // Las dimensiones vienen en data-pswp-width/height desde el build.
+  // Fallback para enlaces antiguos sin esos atributos, sin descargar el original.
+  links.forEach((link) => {
+    if (link.dataset.pswpWidth && link.dataset.pswpHeight) return;
+    const rendered = link.querySelector('img');
+    if (rendered) {
+      link.dataset.pswpWidth = rendered.naturalWidth || rendered.width || 800;
+      link.dataset.pswpHeight = rendered.naturalHeight || rendered.height || 600;
     }
-  }));
+  });
 
   const lightbox = new PhotoSwipeLightbox({
     gallery: selector,

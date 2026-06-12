@@ -13,8 +13,9 @@ const lang = (Astro.currentLocale ?? defaultLang) as Language;
 const t = useTranslations(lang);
 let original: ImageMetadata | undefined;
 if (typeof image === 'string') {
-  const imagesMap = import.meta.glob<ImageMetadata>('../assets/images/*.{png,jpg,jpeg,webp,avif}', { eager: true, import: 'default' });
-  original = imagesMap[`../assets/images/${image}`];
+  const imagesMap = import.meta.glob<ImageMetadata>('../assets/images/**/*.{png,jpg,jpeg,webp,avif}', { eager: true, import: 'default' });
+  const normalized = image.startsWith('/') ? image.slice(1) : image;
+  original = imagesMap[`../assets/images/${normalized}`];
 } else {
   original = image;
 }
@@ -22,11 +23,12 @@ if (typeof image === 'string') {
 ---
 <header class="relative h-[40vh] overflow-hidden flex items-center justify-center text-center text-neutral-content bg-base-100">
   <!-- Imagen de Fondo -->
-  <Image 
+  <Image
     src={original}
     alt={`${t('image.of')} ${title}`}
     widths={[800, 1600]}
     sizes="100vw"
+    format="webp"
     quality={70}
     priority={true}
     data-fade
