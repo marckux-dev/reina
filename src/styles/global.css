@@ -34,6 +34,10 @@ img[data-fade].is-loaded {
     @apply text-2xl font-bold mb-8;
   }
 
+  .trabajo-content h3 {
+    @apply text-xl font-bold italic mb-4 mt-6;
+  }
+
   .trabajo-content ul {
     @apply my-6 space-y-2;
   }
