@@ -1,0 +1,202 @@
+---
+import type { ImageMetadata } from "astro";
+import MainLayout from "../layouts/MainLayout.astro";
+import HeroService from "../components/HeroService.astro";
+import Breadcrumb from "../components/Breadcrumb.astro";
+import TrabajosCiudad from "../components/TrabajosCiudad.astro";
+import ParallaxService from "../components/ParallaxService.astro";
+import FaqService from "../components/FaqService.astro";
+import ContactButton from "../components/ContactButton.astro";
+
+const siteUrl = "https://reinamultiservicios.es";
+const pageUrl = `${siteUrl}/pulido-suelos-altea/`;
+
+const title = "Pulido de Suelos en Altea | Mármol, Travertino y Piedra Natural";
+const description =
+  "Pulido, cristalizado y restauración de suelos en Altea: mármol, travertino y piedra natural en viviendas, chalets de Altea Hills y comunidades. Visita técnica gratuita.";
+const h1 = "Pulido y Restauración de Suelos en Altea";
+const subtitle =
+  "Pulimos, cristalizamos y restauramos mármol, travertino y piedra natural en viviendas y comunidades de Altea.";
+
+const heroImage = "pulido-suelo-marmol-altea/coverImage/src.jpg";
+const ogImageName = "suelo-marmol-blanco-pulido-tras-reforma.webp";
+const imagesMap = import.meta.glob<ImageMetadata>(
+  "../assets/images/*.{png,jpg,jpeg,webp,avif}",
+  { eager: true, import: "default" },
+);
+const ogImageMeta = imagesMap[`../assets/images/${ogImageName}`];
+
+const faqs = [
+  {
+    question: "¿Podéis restaurar un suelo de travertino o piedra natural en Altea?",
+    answer:
+      "Sí. En el casco antiguo de Altea y en villas de la zona son frecuentes los suelos de travertino, piedra caliza y piedra natural, materiales más porosos y delicados que el mármol convencional. Hacemos desbaste, colado y rejuntado de juntas y poros, pulido progresivo y tratamiento hidrofugante de protección, respetando el carácter original del pavimento.",
+  },
+  {
+    question: "¿Se puede conseguir un acabado mate en lugar de brillo?",
+    answer:
+      "Sí. Ajustamos la granulometría del pulido y el tipo de tratamiento final para lograr desde un acabado mate o satinado, que encaja bien con viviendas históricas y de estilo rústico, hasta un cristalizado de alto brillo con efecto espejo. Lo decidimos contigo en la visita técnica según el material y el estilo de la casa.",
+  },
+  {
+    question: "¿Trabajáis en chalets y villas de Altea Hills?",
+    answer:
+      "Sí. Pulimos y cristalizamos grandes superficies de mármol y piedra en chalets de Altea Hills, Sierra de Altea y La Vella, y coordinamos el trabajo con el servicio doméstico o con la empresa de mantenimiento de la finca para minimizar molestias.",
+  },
+  {
+    question: "¿Cuánto cuesta pulir un suelo en Altea?",
+    answer:
+      "Depende de los metros cuadrados, del material, del estado del suelo y del proceso necesario. Hacemos una visita técnica gratuita en Altea para evaluar el pavimento y entregar un presupuesto cerrado y sin compromiso.",
+  },
+  {
+    question: "¿El pulido genera mucho polvo dentro de la vivienda?",
+    answer:
+      "Trabajamos con máquinas dotadas de sistema de aspiración que captan la mayor parte del polvo durante el desbaste y el pulido. Protegemos además muebles y accesos, de modo que la intervención se realiza con la máxima limpieza posible.",
+  },
+];
+---
+
+<MainLayout title={title} description={description} ogImage={ogImageMeta?.src} monolingual>
+  <main>
+    <HeroService title={h1} subtitle={subtitle} image={heroImage} />
+
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "@id": `${pageUrl}#service`,
+        "name": "Pulido y restauración de suelos en Altea",
+        "serviceType": "Pulido de suelos",
+        "description": description,
+        "provider": {
+          "@type": "LocalBusiness",
+          "@id": `${siteUrl}/#localbusiness`,
+        },
+        "areaServed": {
+          "@type": "City",
+          "name": "Altea",
+          "containedInPlace": {
+            "@type": "AdministrativeArea",
+            "name": "Alicante",
+          },
+        },
+        "url": pageUrl,
+      })}
+    />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Inicio", "item": `${siteUrl}/` },
+          { "@type": "ListItem", "position": 2, "name": "Servicios", "item": `${siteUrl}/servicios/` },
+          { "@type": "ListItem", "position": 3, "name": "Pulido de suelos en Altea", "item": pageUrl },
+        ],
+      })}
+    />
+
+    <Breadcrumb
+      crumbs={[
+        { name: "Inicio", href: "/" },
+        { name: "Servicios", href: "/servicios/" },
+        { name: "Pulido de suelos en Altea" },
+      ]}
+    />
+
+    <div class="service-content trabajo-content">
+      <p>
+        En <strong>Reina Multiservicios</strong> realizamos
+        <strong>pulido, cristalizado y restauración de suelos en Altea</strong>.
+        Trabajamos sobre mármol, travertino, piedra caliza, terrazo y piedra
+        natural, recuperando la uniformidad y el aspecto original de cada pavimento
+        mediante desbaste, rejuntado, diamantado y tratamientos de protección.
+        Estamos en La Nucía, muy cerca de Altea, y damos servicio tanto al casco
+        antiguo como a las urbanizaciones de la sierra.
+      </p>
+      <p>
+        Con más de 30 años de experiencia, adaptamos cada intervención al material
+        y al estilo de la vivienda: desde un acabado mate que respeta el carácter de
+        una casa histórica hasta un cristalizado de alto brillo en una villa
+        contemporánea.
+      </p>
+
+      <h2>Pulido de mármol y piedra natural en Altea</h2>
+      <p>
+        El <strong>pulido de mármol en Altea</strong> devuelve la superficie lisa y
+        continua a suelos marcados por arañazos, roces y desgaste. En pavimentos de
+        <strong>piedra natural y caliza</strong>, muy presentes en la arquitectura
+        de Altea, empleamos abrasivos y productos específicos, ya que se comportan de
+        forma distinta al mármol y requieren un tratamiento más cuidadoso.
+      </p>
+
+      <h2>Restauración de suelos de travertino en el casco antiguo</h2>
+      <p>
+        En el <strong>casco antiguo de Altea</strong> hemos restaurado suelos de
+        <strong>mármol travertino</strong> con juntas abiertas, poros y manchas
+        acumuladas durante décadas. El proceso incluye desbaste, colado y rejuntado
+        de agujeros y juntas, pulido progresivo y
+        <strong>tratamiento hidrofugante</strong> que protege frente a la humedad y
+        facilita la limpieza diaria, sin alterar la textura ni las vetas naturales
+        de la piedra.
+      </p>
+
+      <h2>Cristalizado y abrillantado: brillo o acabado mate</h2>
+      <p>
+        Según el resultado que buscas, aplicamos un <strong>cristalizado</strong> que
+        aporta una capa de protección brillante y resistente, o un
+        <strong>abrillantado</strong> más ligero para mantenimiento. También podemos
+        dejar un acabado <strong>mate o satinado</strong>, la opción que mejor encaja
+        con viviendas de piedra y estilo mediterráneo tradicional.
+      </p>
+
+      <h2>Pulido de suelos en chalets y villas de Altea Hills</h2>
+      <p>
+        En <strong>Altea Hills</strong>, Sierra de Altea y La Vella pulimos y
+        cristalizamos grandes superficies de mármol y piedra en viviendas de alto
+        standing. Coordinamos el trabajo por fases para que las estancias sigan
+        siendo utilizables durante la intervención y entregamos el suelo listo para
+        pisar el mismo día.
+      </p>
+
+      <h2>Comunidades de propietarios y apartamentos</h2>
+      <p>
+        En portales, rellanos y zonas comunes de comunidades de Altea recuperamos
+        suelos de mármol y terrazo desgastados por el tránsito y proponemos un plan
+        de mantenimiento periódico, con presupuesto desglosado para la junta o el
+        administrador.
+      </p>
+
+      <h2>Zonas donde trabajamos en Altea</h2>
+      <p>
+        Damos servicio en todo el municipio: casco antiguo, Altea la Vella, Altea
+        Hills, Sierra de Altea, la zona del puerto y Bellaguarda. También trabajamos
+        de forma habitual en <a href="/pulido-suelos-benidorm/">Benidorm</a>, La
+        Nucía, Calpe, l'Alfàs del Pi, Callosa d'en Sarrià y Alicante capital.
+      </p>
+
+      <div class="not-prose my-8 flex justify-center">
+        <ContactButton link="/contacto/" text="Pedir presupuesto de pulido en Altea" />
+      </div>
+    </div>
+
+    <TrabajosCiudad city="Altea" />
+
+    <ParallaxService
+      image="suelo-marmol-blanco-pulido-tras-reforma.webp"
+      slogan="Suelos de Altea restaurados con precisión"
+    />
+
+    <section class="service-content">
+      <p>
+        ¿Buscas otro tratamiento? Consulta nuestro servicio general de
+        <a href="/servicios/pulido-cristalizado-superficies/">pulido y cristalizado de superficies</a>,
+        o los servicios de
+        <a href="/servicios/tratamientos-superficies/">tratamientos de suelos y superficies</a> y
+        <a href="/servicios/limpieza-cristales/">limpieza de cristales</a> en Altea y la Costa Blanca.
+      </p>
+    </section>
+
+    <FaqService faqs={faqs} title="Preguntas frecuentes sobre pulido de suelos en Altea" />
+  </main>
+</MainLayout>

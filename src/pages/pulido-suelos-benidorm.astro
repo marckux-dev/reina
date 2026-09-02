@@ -1,0 +1,197 @@
+---
+import type { ImageMetadata } from "astro";
+import MainLayout from "../layouts/MainLayout.astro";
+import HeroService from "../components/HeroService.astro";
+import Breadcrumb from "../components/Breadcrumb.astro";
+import TrabajosCiudad from "../components/TrabajosCiudad.astro";
+import ParallaxService from "../components/ParallaxService.astro";
+import FaqService from "../components/FaqService.astro";
+import ContactButton from "../components/ContactButton.astro";
+
+const siteUrl = "https://reinamultiservicios.es";
+const pageUrl = `${siteUrl}/pulido-suelos-benidorm/`;
+
+const title = "Pulido de Suelos en Benidorm | Mármol, Terrazo y Cristalizado";
+const description =
+  "Pulido y cristalizado de suelos en Benidorm: mármol, terrazo y granito para hoteles, comunidades, apartamentos turísticos y viviendas. Visita técnica gratuita.";
+const h1 = "Pulido y Cristalizado de Suelos en Benidorm";
+const subtitle =
+  "Recuperamos el brillo del mármol, el terrazo y el granito en hoteles, comunidades y viviendas de Benidorm.";
+const heroImage = "suelo-marmol-efecto-espejo-chalet-benidorm.webp";
+const imagesMap = import.meta.glob<ImageMetadata>(
+  "../assets/images/*.{png,jpg,jpeg,webp,avif}",
+  { eager: true, import: "default" },
+);
+const heroImageMeta = imagesMap[`../assets/images/${heroImage}`];
+
+const faqs = [
+  {
+    question: "¿Cuánto cuesta pulir un suelo de mármol en Benidorm?",
+    answer:
+      "El precio depende de los metros cuadrados, del estado del pavimento y del proceso necesario (solo abrillantado, pulido completo o pulido con rejuntado y cristalizado). Realizamos una visita técnica gratuita en Benidorm para ver el suelo, medir la superficie y entregar un presupuesto cerrado sin compromiso.",
+  },
+  {
+    question: "¿Trabajáis con hoteles y apartamentos turísticos de Benidorm?",
+    answer:
+      "Sí. Una buena parte de nuestro trabajo en Benidorm son halls, pasillos y zonas comunes de hoteles y edificios de apartamentos turísticos. Organizamos la intervención por fases y en horarios de baja ocupación para no interferir con la actividad, y ofrecemos planes de mantenimiento periódico del cristalizado.",
+  },
+  {
+    question: "¿Hace falta levantar el suelo o sustituir las piezas?",
+    answer:
+      "No. El pulido y el cristalizado se realizan sobre el pavimento existente. Se elimina el desgaste, los arañazos y las manchas enquistadas, se rejuntan las piezas cuando es necesario y se recupera el brillo original. Solo en casos de piezas rotas o levantadas se valora una reparación puntual previa.",
+  },
+  {
+    question: "¿Qué diferencia hay entre abrillantado y cristalizado?",
+    answer:
+      "El abrillantado devuelve brillo mediante máquina rotativa y es adecuado para un mantenimiento o una renovación ligera. El cristalizado genera además una capa de protección química sobre la piedra, más resistente al tránsito y más duradera, ideal para hoteles y comunidades de Benidorm con mucho paso.",
+  },
+  {
+    question: "¿En cuánto tiempo se puede pisar el suelo después del tratamiento?",
+    answer:
+      "El suelo se puede pisar de forma normal el mismo día en que se termina el cristalizado. Durante las primeras horas conviene evitar mojarlo y colocar felpudos en los accesos. El acabado alcanza su dureza completa en las 24-48 horas siguientes.",
+  },
+];
+---
+
+<MainLayout title={title} description={description} ogImage={heroImageMeta?.src} monolingual>
+  <main>
+    <HeroService title={h1} subtitle={subtitle} image={heroImage} />
+
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "@id": `${pageUrl}#service`,
+        "name": "Pulido y cristalizado de suelos en Benidorm",
+        "serviceType": "Pulido de suelos",
+        "description": description,
+        "provider": {
+          "@type": "LocalBusiness",
+          "@id": `${siteUrl}/#localbusiness`,
+        },
+        "areaServed": {
+          "@type": "City",
+          "name": "Benidorm",
+          "containedInPlace": {
+            "@type": "AdministrativeArea",
+            "name": "Alicante",
+          },
+        },
+        "url": pageUrl,
+      })}
+    />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Inicio", "item": `${siteUrl}/` },
+          { "@type": "ListItem", "position": 2, "name": "Servicios", "item": `${siteUrl}/servicios/` },
+          { "@type": "ListItem", "position": 3, "name": "Pulido de suelos en Benidorm", "item": pageUrl },
+        ],
+      })}
+    />
+
+    <Breadcrumb
+      crumbs={[
+        { name: "Inicio", href: "/" },
+        { name: "Servicios", href: "/servicios/" },
+        { name: "Pulido de suelos en Benidorm" },
+      ]}
+    />
+
+    <div class="service-content trabajo-content">
+      <p>
+        En <strong>Reina Multiservicios</strong> somos una empresa especializada en
+        <strong>pulido y cristalizado de suelos en Benidorm</strong>. Trabajamos sobre
+        mármol, terrazo, granito y piedra natural, devolviendo a cada pavimento su
+        brillo y su uniformidad originales mediante procesos mecánicos de desbaste,
+        diamantado y cristalización. Estamos en La Nucía, a menos de diez minutos de
+        Benidorm, lo que nos permite dar un servicio ágil tanto a particulares como a
+        hoteles y comunidades de toda la ciudad.
+      </p>
+      <p>
+        Con más de 30 años de experiencia, intervenimos en viviendas, chalets,
+        locales comerciales, halls de hotel y zonas comunes de edificios, adaptando
+        el tratamiento al material y al uso que recibe cada superficie.
+      </p>
+
+      <h2>Pulido de mármol y terrazo en Benidorm</h2>
+      <p>
+        El <strong>pulido de mármol en Benidorm</strong> es uno de nuestros trabajos
+        más solicitados en apartamentos de la Playa de Levante y en chalets de la
+        zona alta de la ciudad. El proceso elimina arañazos, marcas de roce y el
+        desgaste acumulado por el tránsito, y recupera la superficie lisa y continua
+        de la piedra. En suelos de <strong>terrazo</strong>, muy habituales en
+        edificios de los años 60 a 90 de Benidorm, aplicamos técnicas equivalentes
+        con rejuntado previo cuando las juntas están abiertas, con resultados que
+        muchas veces evitan tener que sustituir el pavimento.
+      </p>
+
+      <h2>Cristalizado y abrillantado de suelos</h2>
+      <p>
+        Tras el pulido aplicamos el <strong>cristalizado</strong>, un tratamiento
+        químico que crea una capa de protección brillante sobre el pavimento,
+        aumenta su resistencia al desgaste y facilita la limpieza diaria. Para
+        superficies que solo han perdido brillo ofrecemos el
+        <strong>abrillantado</strong> con máquina rotativa, una intervención más
+        rápida y económica pensada para mantenimiento. Podemos conseguir tanto un
+        acabado de alto brillo con efecto espejo como un acabado satinado más
+        discreto, según el estilo de cada vivienda.
+      </p>
+
+      <h2>Pulido de suelos para hoteles y apartamentos turísticos en Benidorm</h2>
+      <p>
+        Benidorm es una ciudad de hoteles, y el estado del suelo de un hall o de un
+        pasillo condiciona la primera impresión del cliente. Realizamos el
+        <strong>pulido y cristalizado de suelos en hoteles</strong> por fases y en
+        franjas horarias de baja ocupación, con maquinaria de aspiración que reduce
+        el polvo al mínimo. Ofrecemos además <strong>planes de mantenimiento
+        periódico</strong> del cristalizado en zonas de alto tránsito, que alargan la
+        vida del acabado y evitan el coste de una restauración completa.
+      </p>
+
+      <h2>Mantenimiento de suelos en comunidades de propietarios</h2>
+      <p>
+        En portales, escaleras y zonas comunes de comunidades de Benidorm
+        recuperamos suelos de mármol y terrazo muy desgastados y establecemos un
+        calendario de abrillantado periódico. Presentamos el presupuesto desglosado
+        para que el administrador o la junta puedan aprobarlo sin sorpresas.
+      </p>
+
+      <h2>Zonas donde trabajamos en Benidorm</h2>
+      <p>
+        Damos servicio en todo el término municipal: Rincón de Loix, Playa de
+        Levante, Playa de Poniente, casco antiguo, La Cala de Finestrat, Salt de
+        l'Aigua y el polígono industrial. También trabajamos de forma habitual en
+        <a href="/pulido-suelos-altea/">Altea</a>, Finestrat, La Nucía, Villajoyosa,
+        Calpe y Alicante capital.
+      </p>
+
+      <div class="not-prose my-8 flex justify-center">
+        <ContactButton link="/contacto/" text="Pedir presupuesto de pulido en Benidorm" />
+      </div>
+    </div>
+
+    <TrabajosCiudad city="Benidorm" />
+
+    <ParallaxService
+      image="detalle-brillo-espejo-marmol-cristalizado-benidorm.webp"
+      slogan="Suelos de Benidorm con brillo de estreno"
+    />
+
+    <section class="service-content">
+      <p>
+        ¿Buscas otro tratamiento? Consulta nuestro servicio general de
+        <a href="/servicios/pulido-cristalizado-superficies/">pulido y cristalizado de superficies</a>,
+        o los servicios de
+        <a href="/servicios/tratamientos-superficies/">tratamientos de suelos y superficies</a> y
+        <a href="/servicios/limpieza-industrial/">limpieza industrial</a> en Benidorm y la Costa Blanca.
+      </p>
+    </section>
+
+    <FaqService faqs={faqs} title="Preguntas frecuentes sobre pulido de suelos en Benidorm" />
+  </main>
+</MainLayout>
