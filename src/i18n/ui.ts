@@ -44,6 +44,11 @@ export const ui = {
     'cookie.moreInfo': 'Más información',
     'cookie.reject':   'Rechazar',
     'cookie.accept':   'Aceptar',
+
+    // Botón flotante de WhatsApp
+    'whatsapp.aria':    'Escríbenos por WhatsApp',
+    'whatsapp.label':   'WhatsApp',
+    'whatsapp.message': 'Hola, me gustaría solicitar información / presupuesto.',
   },
   en: {
     'nav.home':     'Home',
@@ -74,6 +79,10 @@ export const ui = {
     'cookie.moreInfo': 'More information',
     'cookie.reject':   'Reject',
     'cookie.accept':   'Accept',
+
+    'whatsapp.aria':    'Message us on WhatsApp',
+    'whatsapp.label':   'WhatsApp',
+    'whatsapp.message': 'Hello, I would like to request information / a quote.',
   },
   ru: {
     'nav.home':     'Главная',
@@ -104,6 +113,10 @@ export const ui = {
     'cookie.moreInfo': 'Подробнее',
     'cookie.reject':   'Отклонить',
     'cookie.accept':   'Принять',
+
+    'whatsapp.aria':    'Написать нам в WhatsApp',
+    'whatsapp.label':   'WhatsApp',
+    'whatsapp.message': 'Здравствуйте, я хотел бы запросить информацию / смету.',
   },
 } satisfies Record<string, Record<string, string>>;
 

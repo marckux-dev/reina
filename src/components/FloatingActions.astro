@@ -1,0 +1,103 @@
+---
+import { useTranslations, defaultLang, type Language } from '../i18n/ui';
+import { company } from '../data/company';
+import WhatsappIcon from '../icons/WhatsappIcon.svg';
+import MailIcon from '../icons/MailIcon.svg';
+
+const lang = (Astro.currentLocale ?? defaultLang) as Language;
+const t = useTranslations(lang);
+const urlPrefix = lang === defaultLang ? '' : `/${lang}`;
+
+const waHref = `https://wa.me/${company.whatsapp}?text=${encodeURIComponent(t('whatsapp.message'))}`;
+const contactHref = `${urlPrefix}/contacto/`;
+---
+
+<div class="floats-wrap fixed inset-x-0 bottom-4 z-40 flex items-center justify-between gap-3 px-4 pointer-events-none overflow-hidden">
+  <!-- Contacto (entra desde la izquierda) -->
+  <a
+    id="contact-float"
+    href={contactHref}
+    aria-label={t('nav.contact')}
+    class="side-float side-float--left pointer-events-auto inline-flex items-center gap-2 rounded-full bg-primary text-primary-content font-semibold px-4 py-3 shadow-lg shadow-black/25 hover:brightness-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+  >
+    <MailIcon class="w-6 h-6 shrink-0" aria-hidden="true" />
+    <span class="hidden sm:inline">{t('nav.contact')}</span>
+  </a>
+
+  <!-- WhatsApp (entra desde la derecha) -->
+  <a
+    id="wa-float"
+    href={waHref}
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label={t('whatsapp.aria')}
+    class="side-float side-float--right pointer-events-auto inline-flex items-center gap-2 rounded-full bg-[#25D366] text-white font-semibold px-4 py-3 shadow-lg shadow-black/25 hover:brightness-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#25D366]"
+  >
+    <WhatsappIcon class="w-6 h-6 shrink-0 fill-current" aria-hidden="true" />
+    <span class="hidden sm:inline">{t('whatsapp.label')}</span>
+  </a>
+</div>
+
+<style>
+  /* Estado inicial: cada botón fuera de pantalla por su lado (el wrapper con overflow-hidden lo recorta) */
+  .side-float {
+    opacity: 0;
+    transition:
+      transform 1.8s cubic-bezier(0.16, 1, 0.3, 1),
+      opacity 1.4s ease;
+  }
+
+  .side-float--left {
+    transform: translateX(calc(-100% - 2rem));
+  }
+
+  .side-float--right {
+    transform: translateX(calc(100% + 2rem));
+  }
+
+  .side-float.is-visible {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .side-float {
+      transform: none;
+      transition: opacity 0.6s ease;
+    }
+  }
+</style>
+
+<script>
+  // Segundos que espera tras cerrarse el banner de cookies antes de aparecer
+  const REVEAL_DELAY = 4500;
+
+  const floats = document.querySelectorAll<HTMLElement>('.side-float');
+  const banner = document.getElementById('cookie-banner');
+
+  if (floats.length) {
+    const reveal = () => floats.forEach((el) => el.classList.add('is-visible'));
+    const bannerVisible = () => !!banner && !banner.hidden;
+
+    let armed = false;
+    const armTimer = () => {
+      if (armed) return;
+      armed = true;
+      window.setTimeout(reveal, REVEAL_DELAY);
+    };
+
+    if (!bannerVisible()) {
+      // No hay banner (consentimiento ya dado o elemento ausente): contamos el tiempo directamente
+      armTimer();
+    } else if (banner) {
+      // Esperamos a que el banner se oculte (atributo hidden) y entonces arrancamos la cuenta atrás
+      const observer = new MutationObserver(() => {
+        if (banner.hidden) {
+          observer.disconnect();
+          armTimer();
+        }
+      });
+      observer.observe(banner, { attributes: true, attributeFilter: ['hidden'] });
+    }
+  }
+</script>
