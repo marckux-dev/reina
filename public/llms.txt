@@ -1,21 +1,35 @@
 # Reina Multiservicios Costablanca
 
-> Empresa especializada en limpieza industrial, pulido de suelos, trabajos en altura y tratamientos de superficies en Alicante y la Costa Blanca (España).
+> Empresa especializada en limpieza industrial, pulido y cristalizado de suelos, trabajos en altura y tratamientos de superficies en Alicante y la Costa Blanca (España).
 
-Reina Multiservicios Costablanca ofrece servicios profesionales de limpieza, restauración y mantenimiento de superficies para hoteles, comunidades de propietarios, naves industriales, locales comerciales y viviendas de alto standing. Opera en Alicante, Benidorm, La Nucia, Altea, Calpe, Denia, Jávea, Torrevieja, Elche y toda la provincia de Alicante.
+Reina Multiservicios Costablanca ofrece servicios profesionales de limpieza, restauración y mantenimiento de superficies para hoteles, apartamentos turísticos, comunidades de propietarios, naves industriales, locales comerciales y viviendas de alto standing. Opera en Alicante, Benidorm, La Nucía, Altea, Calpe, Denia, Jávea, Villajoyosa, Torrevieja, Elche, Elda y toda la provincia de Alicante.
+
+La sociedad **Reina Multiservicios Costablanca S.L.** se constituyó en **2017** y da continuidad a la actividad de pulido de suelos, cristalizado y limpieza especializada que su equipo desarrolla en la Costa Blanca **desde hace más de 30 años**. La "experiencia de más de 30 años" se refiere a la trayectoria profesional del equipo, no a la antigüedad de la sociedad.
+
+El sitio web está disponible en español (`/`), inglés (`/en/`) y ruso (`/ru/`).
+
+## Páginas principales
+
+- [Inicio](https://reinamultiservicios.es/)
+- [Servicios](https://reinamultiservicios.es/servicios/)
+- [Trabajos realizados](https://reinamultiservicios.es/trabajos/)
+- [Sobre nosotros](https://reinamultiservicios.es/sobre-nosotros/)
+- [Contacto](https://reinamultiservicios.es/contacto/)
 
 ## Servicios
 
 ### Pulido y Cristalizado de Suelos
 Restauración de suelos de mármol, terrazo, granito, mosaico hidráulico y piedra natural mediante procesos mecánicos de desbaste, diamantado y cristalización. Incluye pulido, abrillantado y planes de mantenimiento periódico para hoteles, comunidades y locales comerciales.
 - URL: https://reinamultiservicios.es/servicios/pulido-cristalizado-superficies/
+- Página por ciudad: https://reinamultiservicios.es/pulido-suelos-benidorm/
+- Página por ciudad: https://reinamultiservicios.es/pulido-suelos-altea/
 
 ### Limpieza Industrial
 Servicios integrales de limpieza para naves, fábricas, talleres, centros logísticos, parkings y grandes superficies. Incluye limpieza de fin de obra, limpieza osmotizada de placas solares, desinfección de maquinaria, protocolos APPCC y contratos de mantenimiento periódico.
 - URL: https://reinamultiservicios.es/servicios/limpieza-industrial/
 
 ### Limpieza de Cristales
-Limpieza con agua osmotizada para un acabado sin marcas de cal. Pértigas telescópicas de hasta 9 metros y plataformas elevadoras homologadas para fachadas y edificios en altura. Contratos de mantenimiento semanal, mensual o trimestral.
+Limpieza con agua osmotizada para un acabado sin marcas de cal. Plataformas elevadoras homologadas para fachadas y edificios en altura. Contratos de mantenimiento semanal, mensual o trimestral.
 - URL: https://reinamultiservicios.es/servicios/limpieza-cristales/
 
 ### Pulido y Tratamiento de Hormigón
@@ -30,13 +44,71 @@ Trabajos en altura con plataformas elevadoras de tijera, grúas articuladas y gr
 Tratamientos hidrofugantes, oleofugantes y antideslizantes para piedras calizas, barro cocido, terracota, granito y superficies porosas. Tratamientos antideslizantes homologados conformes al CTE DB-SUA. Abujardado profesional. Conservación de barro cocido y terracota exterior.
 - URL: https://reinamultiservicios.es/servicios/tratamientos-superficies/
 
+## Trabajos realizados (casos reales)
+
+- [Pulido y cristalizado de mármol en un chalet de Benidorm](https://reinamultiservicios.es/trabajos/pulido-suelo-marmol-chalet-benidorm/)
+- [Restauración de suelos de terrazo micrograno blanco en un hotel de Benidorm](https://reinamultiservicios.es/trabajos/pulido-suelos-terrazo-micrograno-benidorm/)
+- [Restauración de suelo de mármol travertino en el casco antiguo de Altea](https://reinamultiservicios.es/trabajos/pulido-suelo-marmol-altea/)
+- [Pulido y cristalizado de suelo de mármol en un apartamento de Alicante](https://reinamultiservicios.es/trabajos/pulido-cristalizado-suelo-apartamento-alicante/)
+- [Limpieza de cristales en la fachada de un hotel de Benidorm](https://reinamultiservicios.es/trabajos/limpieza-cristales-fachada-hotel-benidorm/)
+- [Limpieza de cristales en altura con grúa araña — Grand Hotel Luxor, Terra Mítica](https://reinamultiservicios.es/trabajos/limpiezas-en-altura-alicante/)
+- [Limpieza a presión de techo de nave industrial en Benidorm](https://reinamultiservicios.es/trabajos/limpieza-agua-a-presion-techo-nave-benidorm/)
+- [Limpieza de moqueta en un hotel de Benidorm](https://reinamultiservicios.es/trabajos/limpieza-moqueta-hotel-benidorm/)
+
+## Datos clave
+
+- **Ubicación:** Calle Sella, 3. Polígono Alberca, Nave 2. 03530 La Nucía (Alicante), España.
+- **Zona de servicio:** provincia de Alicante y Costa Blanca (Alicante, Benidorm, La Nucía, Altea, Calpe, Denia, Jávea, Villajoyosa, Torrevieja, Elche, Elda y localidades próximas).
+- **Clientes:** hoteles y apartamentos turísticos, comunidades de propietarios, naves industriales, locales comerciales, oficinas y particulares.
+- **Diferenciadores:** limpieza de cristales con agua osmotizada (sin marcas de cal); grúa tipo araña para accesos difíciles; tratamientos antideslizantes conformes al CTE DB-SUA; endurecedores de hormigón a base de silicato de litio.
+- **Visita técnica y presupuesto:** gratuitos y sin compromiso.
+- **Horario:** lunes a viernes de 08:00 a 20:00; sábados de 08:00 a 16:00.
+
+## Preguntas frecuentes
+
+**¿Desde cuándo opera Reina Multiservicios?**
+La sociedad Reina Multiservicios Costablanca S.L. se constituyó en 2017 y continúa la actividad de pulido de suelos, cristalizado y limpieza que su equipo desarrolla en la Costa Blanca desde hace más de 30 años.
+
+**¿Qué diferencia hay entre pulido, abrillantado y cristalizado?**
+El pulido elimina imperfecciones, arañazos y desniveles mediante abrasivos de diamante. El abrillantado aporta brillo con máquina rotativa y sirve como mantenimiento. El cristalizado crea una capa protectora y brillante que aumenta la resistencia y la durabilidad del pavimento.
+
+**¿Se puede pulir un suelo sin levantarlo?**
+Sí. El pulido y el cristalizado se realizan sobre el pavimento existente. Solo se valora una reparación puntual previa si hay piezas rotas o levantadas.
+
+**¿Cada cuánto tiempo hay que pulir o cristalizar un suelo?**
+En entornos comerciales o de alto tránsito, cada 6-12 meses. En viviendas, cada 1-2 años. Depende del uso y del desgaste de la zona.
+
+**¿Qué es la limpieza con agua osmotizada?**
+Es la limpieza de cristales con agua desmineralizada por ósmosis inversa, que seca sin dejar marcas de cal y sin necesidad de secado manual. Permite trabajar con pértiga telescópica y alcanzar cristales en altura desde el suelo.
+
+**¿Realizan trabajos en altura y en fachadas?**
+Sí, con plataformas elevadoras de tijera, grúas articuladas y grúa tipo araña (equipo compacto para atrios, patios de luces e interiores de hotel), con personal certificado en trabajos verticales.
+
+**¿Qué tratamientos de superficies ofrecen?**
+Tratamientos hidrofugantes, oleofugantes y antideslizantes (conformes al CTE DB-SUA) para piedra caliza, barro cocido, terracota y granito; abujardado; y pulido de hormigón con endurecedores de silicato de litio.
+
+**¿El proceso de pulido genera polvo?**
+Se trabaja con maquinaria dotada de sistema de aspiración que reduce el polvo al mínimo durante el desbaste y el pulido.
+
+**¿Se puede pisar el suelo el mismo día del tratamiento?**
+Sí. Tras el cristalizado el suelo se puede pisar el mismo día; el acabado alcanza su dureza completa en 24-48 horas.
+
+**¿Hacen presupuesto y visita técnica?**
+Sí. La visita técnica y el presupuesto son gratuitos y sin compromiso.
+
+**¿A qué tipo de clientes atienden?**
+Hoteles y apartamentos turísticos, comunidades de propietarios, naves y centros industriales, locales comerciales, oficinas y viviendas particulares.
+
 ## Contacto
 
 - **Web:** https://reinamultiservicios.es
 - **Teléfono / WhatsApp:** +34 627 82 46 19
 - **Email:** info@reinamultiservicios.es
-- **Dirección:** Calle Sella, 3. Polígono Alberca, Nave 2. 03530 La Nucia (Alicante), España
+- **Dirección:** Calle Sella, 3. Polígono Alberca, Nave 2. 03530 La Nucía (Alicante), España
 
 ## Zona de servicio
 
-Provincia de Alicante y Costa Blanca: Alicante, Benidorm, La Nucia, Altea, Calpe, Denia, Jávea, Villajoyosa, Torrevieja, Elche, Elda y localidades próximas.
+Provincia de Alicante y Costa Blanca: Alicante, Benidorm, La Nucía, Altea, Calpe, Denia, Jávea, Villajoyosa, Torrevieja, Elche, Elda y localidades próximas.
+
+---
+Última actualización: 2026-09-02
