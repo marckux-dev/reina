@@ -26,6 +26,10 @@ const canonicalUrl = `${siteUrl}${Astro.url.pathname}`;
 const fullTitle = title.includes('| Reina Multiservicios') ? title : `${title} | Reina Multiservicios`;
 
 const basePath = Astro.url.pathname.replace(/^\/(en|ru)(?=\/|$)/, '') || '/';
+
+// Los botones flotantes no se muestran en contacto, gracias ni 404 (en cualquier idioma).
+const pathForFloats = Astro.url.pathname.replace(/\/$/, '').replace(/^\/(en|ru)(?=\/|$)/, '');
+const hideFloatingActions = ['/contacto', '/gracias', '/404'].includes(pathForFloats);
 const hreflangEs = `${siteUrl}${basePath}`;
 const hreflangEn = `${siteUrl}/en${basePath}`;
 const hreflangRu = `${siteUrl}/ru${basePath}`;
@@ -108,6 +112,6 @@ const metaDescription = description ?? 'Empresa de limpieza industrial, pulidos 
     <slot />
     <Footer />
   <CookieBanner />
-  <FloatingActions />
+  {!hideFloatingActions && <FloatingActions />}
 	</body>
 </html>
