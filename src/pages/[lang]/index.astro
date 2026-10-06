@@ -7,6 +7,7 @@ import ContactButton from '../../components/ContactButton.astro';
 import { getCollection } from 'astro:content';
 import { homeFaqsEn, homeFaqsRu } from '../../data/homeFaqs.ts';
 import FaqService from '../../components/FaqService.astro';
+import Testimonials from '../../components/Testimonials.astro';
 
 export const getStaticPaths = (() => [
   { params: { lang: 'en' } },
@@ -107,7 +108,10 @@ const services = (await getCollection(collectionName))
       <div class="flex justify-center my-8">
         <ContactButton link={`/${lang}/contacto`} text={t.quote} />
       </div>
-      <FaqService faqs={homeFaqs} />
     </section>
+
+    <Testimonials lang={lang as 'en' | 'ru'} />
+
+    <FaqService faqs={homeFaqs} />
   </main>
 </MainLayout>

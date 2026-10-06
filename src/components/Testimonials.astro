@@ -1,0 +1,93 @@
+---
+import { googleReviewsUrl, testimonials } from '../data/testimonials';
+
+interface Props {
+  lang?: 'es' | 'en' | 'ru';
+}
+
+const { lang = 'es' } = Astro.props;
+const copy = {
+  es: {
+    eyebrow: 'Opiniones de clientes',
+    title: 'Lo que dicen de nuestro trabajo',
+    emptyTitle: 'Consulta nuestras opiniones en Google',
+    intro: 'Conoce las opiniones de quienes han confiado en Reina Multiservicios Costablanca.',
+    source: 'Reseña en Google',
+    ratingOfFive: 'de 5 estrellas',
+    review: 'Ver reseña',
+    all: 'Abrir ficha en Google Maps',
+  },
+  en: {
+    eyebrow: 'Customer feedback',
+    title: 'What our customers say',
+    emptyTitle: 'Read our reviews on Google',
+    intro: 'Read feedback from people who have chosen Reina Multiservicios Costablanca.',
+    source: 'Review on Google',
+    ratingOfFive: 'out of 5 stars',
+    review: 'View review',
+    all: 'Open Google Maps listing',
+  },
+  ru: {
+    eyebrow: 'Отзывы клиентов',
+    title: 'Что говорят о нашей работе',
+    emptyTitle: 'Читайте отзывы о нас в Google',
+    intro: 'Узнайте, что говорят клиенты Reina Multiservicios Costablanca.',
+    source: 'Отзыв в Google',
+    ratingOfFive: 'из 5 звёзд',
+    review: 'Посмотреть отзыв',
+    all: 'Открыть профиль в Google Картах',
+  },
+}[lang];
+---
+
+<section class="bg-base-200 rounded-2xl px-6 py-12 mb-8" aria-labelledby="testimonials-title">
+  <div class="max-w-3xl mx-auto text-center mb-8">
+    <p class="text-sm font-bold uppercase tracking-widest text-primary mb-2">{copy.eyebrow}</p>
+    <h2 id="testimonials-title" class="text-3xl font-bold mb-3">
+      {testimonials.length > 0 ? copy.title : copy.emptyTitle}
+    </h2>
+    <p class="text-base-content/70">{copy.intro}</p>
+  </div>
+
+  {testimonials.length > 0 && (
+    <div
+      class:list={[
+        'grid grid-cols-1 gap-5 mb-8 mx-auto',
+        testimonials.length === 1 ? 'max-w-3xl' : 'md:grid-cols-2',
+        testimonials.length > 2 && 'xl:grid-cols-3',
+      ]}
+    >
+      {testimonials.map((testimonial) => (
+        <figure class="bg-base-100 rounded-xl p-6 shadow-sm flex flex-col justify-between gap-6">
+          <div>
+            <span role="img" aria-label={`${testimonial.rating} ${copy.ratingOfFive}`} class="text-amber-500 text-xl tracking-widest">
+              <span aria-hidden="true">{'★'.repeat(testimonial.rating)}</span>
+            </span>
+            <blockquote class="text-lg leading-relaxed mt-3">“{testimonial.quote}”</blockquote>
+          </div>
+          <figcaption class="flex flex-wrap items-center justify-between gap-3 border-t border-base-content/10 pt-4 text-sm">
+            <span><strong>{testimonial.author}</strong><span class="text-base-content/60"> · {copy.source}</span></span>
+            {testimonial.reviewUrl && (
+              <a
+                href={testimonial.reviewUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="font-semibold text-primary underline underline-offset-4 hover:no-underline"
+                aria-label={`${copy.review}: ${testimonial.author}`}
+              >{copy.review}</a>
+            )}
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  )}
+
+  <div class="text-center">
+    <a
+      href={googleReviewsUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="btn btn-primary"
+    >{copy.all}</a>
+  </div>
+</section>

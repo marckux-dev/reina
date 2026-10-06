@@ -48,7 +48,8 @@ src/
 ├── data/
 │   ├── company.ts        # Datos de contacto y empresa
 │   ├── siteMap.ts        # Estructura de navegación
-│   └── homeFaqs.ts       # FAQs de la página de inicio
+│   ├── homeFaqs.ts       # FAQs de la página de inicio
+│   └── testimonials.ts   # Reseñas seleccionadas para la portada
 ├── i18n/
 │   └── ui.ts             # Traducciones (es/en/ru) + helper useTranslations()
 ├── icons/                # SVGs importados como componentes Astro
@@ -85,6 +86,25 @@ El sitio soporta tres idiomas con la i18n nativa de Astro:
 | Русский | `ru` | `/ru/` |
 
 Las traducciones de la UI se gestionan en `src/i18n/ui.ts`. El contenido (servicios y trabajos) se duplica en colecciones separadas por idioma.
+
+---
+
+## Testimonios de Google
+
+La sección de la portada lee `src/data/testimonials.ts`. Para actualizarla, añade o quita entradas del array `testimonials` y vuelve a publicar el sitio. Usa solo reseñas reales, conserva el texto original y el nombre público del autor. Incluye `reviewUrl` únicamente si tienes el enlace directo a esa reseña. Sin él, la tarjeta no muestra el enlace «Ver reseña»; el botón general abre la ficha de Google Maps.
+
+```ts
+export const testimonials: Testimonial[] = [
+  {
+    quote: 'Texto real de la reseña',
+    author: 'Nombre público del autor',
+    rating: 5,
+    reviewUrl: 'https://maps.google.com/...',
+  },
+];
+```
+
+Mientras el array esté vacío, la sección muestra únicamente el enlace a las opiniones en Google. Keystatic no edita este archivo desde producción: está habilitado solo en desarrollo.
 
 ---
 

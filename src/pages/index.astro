@@ -13,6 +13,7 @@ const services = (await getCollection('services'))
   .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
 import { homeFaqs } from '../data/homeFaqs.ts'
 import FaqService from '../components/FaqService.astro';
+import Testimonials from '../components/Testimonials.astro';
 
 const localServices = [
   {
@@ -196,6 +197,8 @@ const localServices = [
         ))}
       </div>
     </section>
+
+    <Testimonials />
 
     <FaqService faqs={ homeFaqs }/>
 
