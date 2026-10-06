@@ -3,9 +3,19 @@ import { languages, defaultLang, type Language } from '../i18n/ui';
 
 const currentLocale = (Astro.currentLocale ?? defaultLang) as Language;
 const currentPath = Astro.url.pathname;
+const localServicePaths: Record<string, string> = {
+  '/pulido-suelos-benidorm': '/servicios/pulido-cristalizado-superficies/',
+  '/pulido-suelos-altea': '/servicios/pulido-cristalizado-superficies/',
+  '/limpieza-cristales-benidorm': '/servicios/limpieza-cristales/',
+  '/limpieza-industrial-benidorm': '/servicios/limpieza-industrial/',
+};
 
 function getLocalizedPath(targetLang: Language): string {
   const withoutLocale = currentPath.replace(/^\/(en|ru)\//, '/');
+  const localService = localServicePaths[withoutLocale.replace(/\/$/, '')];
+  if (localService) {
+    return targetLang === defaultLang ? withoutLocale : `/${targetLang}${localService}`;
+  }
   // Paths with no i18n equivalent: keep ES version or redirect to target lang home
   if (withoutLocale.startsWith('/legal') || withoutLocale.startsWith('/gracias')) {
     return targetLang === defaultLang ? withoutLocale : `/${targetLang}/`;

@@ -3,11 +3,51 @@ import MainLayout from '../layouts/MainLayout.astro';
 import HeroSlider from '../components/HeroSlider.astro';
 import Card from '../components/Card.astro';
 import ContactButton from '../components/ContactButton.astro';
+import { Image } from 'astro:assets';
+import pulidoBenidormImage from '../assets/images/suelo-marmol-efecto-espejo-chalet-benidorm.webp';
+import pulidoAlteaImage from '../assets/images/pulido-suelo-marmol-altea/coverImage/src.jpg';
+import cristalesBenidormImage from '../assets/images/fachada-hotel-limpieza-cristales.webp';
+import industrialBenidormImage from '../assets/images/techo-despues-limpieza-presion-benidorm.webp';
 import { getCollection } from 'astro:content';
 const services = (await getCollection('services'))
   .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
 import { homeFaqs } from '../data/homeFaqs.ts'
 import FaqService from '../components/FaqService.astro';
+
+const localServices = [
+  {
+    city: 'Benidorm',
+    title: 'Pulido de suelos en Benidorm',
+    description: 'Mármol y terrazo en hoteles, comunidades y viviendas.',
+    href: '/pulido-suelos-benidorm/',
+    image: pulidoBenidormImage,
+    alt: 'Suelo de mármol pulido con efecto espejo en un chalet de Benidorm',
+  },
+  {
+    city: 'Altea',
+    title: 'Pulido de suelos en Altea',
+    description: 'Restauración de mármol, travertino y piedra natural.',
+    href: '/pulido-suelos-altea/',
+    image: pulidoAlteaImage,
+    alt: 'Suelo de mármol travertino restaurado en el casco antiguo de Altea',
+  },
+  {
+    city: 'Benidorm',
+    title: 'Limpieza de cristales en Benidorm',
+    description: 'Fachadas de hoteles y cristaleras de difícil acceso.',
+    href: '/limpieza-cristales-benidorm/',
+    image: cristalesBenidormImage,
+    alt: 'Fachada acristalada de hotel en Benidorm tras su limpieza',
+  },
+  {
+    city: 'Benidorm',
+    title: 'Limpieza industrial en Benidorm',
+    description: 'Limpieza técnica de hoteles y naves industriales.',
+    href: '/limpieza-industrial-benidorm/',
+    image: industrialBenidormImage,
+    alt: 'Techo de una nave de Benidorm después de la limpieza a presión',
+  },
+];
 ---
 
 <MainLayout 
@@ -108,7 +148,7 @@ import FaqService from '../components/FaqService.astro';
         {
         services.map( service => (
         <Card
-          image={ service.data.headerImage }
+          image={ typeof service.data.headerImage === 'string' ? service.data.headerImage : service.data.headerImage.src }
           title={ service.data.navItem }
           href={ `/servicios/${ service.slug }` }
         />
@@ -121,10 +161,43 @@ import FaqService from '../components/FaqService.astro';
       </div>
 
 
-    <FaqService faqs={ homeFaqs }/>
-
-
     </section>
+
+    <section class="bg-base-200 rounded-2xl px-6 py-12 mb-8" aria-labelledby="zonas-title">
+      <div class="max-w-3xl mx-auto text-center mb-8">
+        <p class="text-sm font-bold uppercase tracking-widest text-primary mb-2">Costa Blanca</p>
+        <h2 id="zonas-title" class="text-3xl font-bold mb-3">Servicios por zonas</h2>
+        <p class="text-base-content/70">
+          Descubre cómo trabajamos en Benidorm y Altea, con ejemplos reales de cada servicio.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5">
+        {localServices.map((service) => (
+          <a href={service.href} class="card bg-base-100 shadow-sm overflow-hidden group transition-shadow hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
+            <figure class="h-44 overflow-hidden">
+              <Image
+                src={service.image}
+                alt={service.alt}
+                widths={[360, 560]}
+                sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 25vw"
+                format="webp"
+                quality={65}
+                loading="lazy"
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+            </figure>
+            <div class="card-body gap-2">
+              <span class="text-xs font-bold uppercase tracking-wider text-primary">{service.city}</span>
+              <h3 class="card-title text-lg leading-snug">{service.title}</h3>
+              <p class="text-sm text-base-content/70">{service.description}</p>
+              <span class="text-sm font-semibold text-primary mt-2">Ver servicio en la zona →</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <FaqService faqs={ homeFaqs }/>
 
   </main>
 </MainLayout>
